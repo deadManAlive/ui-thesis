@@ -20,6 +20,8 @@
 #cover()
 #pagebreak(weak: true)
 
+#counter(page).update(1)
+
 = Daftar Isi
 #[
   #show outline.entry.where(

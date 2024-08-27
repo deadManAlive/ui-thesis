@@ -1,6 +1,6 @@
 #let cover(
   title: "Judul",
-  name: "Name",
+  name: "Nama",
   npm: "NPM",
   faculty: "Fakultas",
   program: "Program",
@@ -30,17 +30,19 @@
 
     *SKRIPSI*
 
-    #v(8em)
+    #v(6em)
 
     *#upper(name)*
 
     *#npm*
 
-    #v(8em)
+    #v(6em)
 
     *#upper(faculty)*
 
     *#upper(program)*
+
+    #v(2em)
 
     *#upper(location)*
 
