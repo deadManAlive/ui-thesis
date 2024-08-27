@@ -13,7 +13,7 @@
       #text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
     ]
   )
-  set par(justify: true, first-line-indent: 2em, leading: 1.5em)
+  set block(spacing: 1em)
 
   doc
 }
@@ -38,6 +38,7 @@
         ]
       }
     },
+    header-ascent: 1.5cm,
     footer: context {
       let matches = query(heading.where(level: 1))
       let h = here().page()
@@ -47,7 +48,7 @@
       if has-h1 {
         counter(page).display()
       }
-      [ \ ]
+      // [ \ ]
       set align(right)
       text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
     }
@@ -70,7 +71,8 @@
     .join(".")
   )
   
-  set block(spacing: 2em)
+  set par(justify: true, first-line-indent: 2em, leading: 1.5em)
+  set block(spacing: 1.5em)
   set heading(numbering: "1.1.1.")
   set text(lang: "id")
   show heading: set block(spacing: 1.5em)

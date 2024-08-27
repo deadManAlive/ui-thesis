@@ -1,3 +1,5 @@
+#import "cover.typ": cover
+
 #set par(leading: 1em)
 #set page(numbering: "i")
 #set page(
@@ -14,6 +16,9 @@
   #head.body
   #v(1.5em)
 ]
+
+#cover()
+#pagebreak(weak: true)
 
 = Daftar Isi
 #[
