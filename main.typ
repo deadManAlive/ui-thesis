@@ -1,8 +1,9 @@
 #import "primer/primer.typ": main, primer
+#import "primer/pre.typ": pre
 
 #show: doc => primer(doc)
 
-#include "primer/pre.typ"
+#pre
 
 #main()[
   #include "chapters/ch1.typ"

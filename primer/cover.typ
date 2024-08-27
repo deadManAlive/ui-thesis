@@ -1,12 +1,6 @@
-#let cover(
-  title: "Judul",
-  name: "Nama",
-  npm: "NPM",
-  faculty: "Fakultas",
-  program: "Program",
-  location: "Tempat",
-  time: "Agustus 2024") = {
-  [
+#import "../config.typ": cfg
+
+#let cover = [
     #set align(center)
     #set text(
       size: 14pt
@@ -24,7 +18,7 @@
 
     #v(2em)
 
-    *#upper(title)*
+    *#upper(cfg.title)*
 
     #v(6em)
 
@@ -32,20 +26,19 @@
 
     #v(6em)
 
-    *#upper(name)*
+    *#upper(cfg.name)*
 
-    *#npm*
+    *#cfg.npm*
 
     #v(6em)
 
-    *#upper(faculty)*
+    *#upper(cfg.faculty)*
 
-    *#upper(program)*
+    *#upper(cfg.program)*
 
     #v(2em)
 
-    *#upper(location)*
+    *#upper(cfg.location)*
 
-    *#upper(time)*
-  ]
-}
+    *#upper(cfg.time)*
+]
