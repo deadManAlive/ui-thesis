@@ -6,12 +6,6 @@
   set page(
     paper: "a4",
     margin: (x: 3cm, y: 3cm),
-    footer: context [
-      #set align(center)
-      #counter(page).display() \
-      #set align(right)
-      #text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
-    ]
   )
   set block(spacing: 1em)
 

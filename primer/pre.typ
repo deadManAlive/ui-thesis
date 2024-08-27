@@ -1,8 +1,25 @@
 #import "cover.typ": cover
+#import "title.typ": title
 
 #let pre = [
   #set par(leading: 1em)
   #set page(numbering: "i")
+  #set outline(title: none, depth: 3, indent: auto)
+  #show heading.where(level: 1): head => context [
+    #set align(center)
+    #head.body
+    #v(1.5em)
+  ]
+
+  #set page(footer: [])
+
+  #cover
+
+  #title
+  
+  #counter(page).update(1)
+
+  // with Footer (from abstract)
   #set page(
     footer: context [
       #set align(center)
@@ -11,17 +28,6 @@
       #text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
     ]
   )
-  #set outline(title: none, depth: 3, indent: auto)
-  #show heading.where(level: 1): head => context [
-    #set align(center)
-    #head.body
-    #v(1.5em)
-  ]
-
-  #cover
-  #pagebreak(weak: true)
-
-  #counter(page).update(1)
 
   = Daftar Isi
   #[

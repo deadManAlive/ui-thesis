@@ -1,15 +1,15 @@
 #import "../config.typ": cfg
 
-#let cover = [
+#let title = [
   #set align(center)
   #set text(
     size: 14pt
   )
 
   #image(
-    "assets/makara_color.png",
-    width: 2.5cm,
-  )
+      "assets/makara_black.png",
+      width: 2.5cm,
+    )
 
   *UNIVERSITAS INDONESIA*
 
@@ -21,7 +21,11 @@
 
   *SKRIPSI*
 
-  #v(6em)
+  #v(1em)
+
+  *Diajukan sebagai salah satu syarat memperoleh gelar Sarjana Teknik*
+
+  #v(4em)
 
   *#upper(cfg.name)*
 
