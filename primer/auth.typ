@@ -12,18 +12,16 @@
   #v(6em)
 
   #table(
-    columns: 2,
-    align: (left, left + horizon),
+    columns: 3,
+    align: (left, left + horizon, left + horizon),
     stroke: none,
-    [Nama], [: #cfg.name],
-    [NPM], [: #cfg.npm],
+    [Nama], [:], [#cfg.name],
+    [NPM], [:], [#cfg.npm],
     [
       #v(1em)
       Tanda Tangan
       #v(1em)
-    ], [
-      : ......
-    ],
-    [Tanggal], [: #cfg.time]
+    ], [:], [......],
+    [Tanggal], [:], [#cfg.time]
   )
 ]
