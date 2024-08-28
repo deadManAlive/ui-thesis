@@ -3,6 +3,8 @@
 #import "auth.typ": auth
 #import "valid.typ": valid
 #import "intro.typ": intro
+#import "publ.typ": publ
+
 #let pre = [
   #set par(leading: 1em)
   #set page(numbering: "i")
@@ -43,6 +45,8 @@
   #intro
 
   #pagebreak(weak: true)
+
+  #publ
 
   // with Footer (from abstract)
   #set page(
