@@ -1,6 +1,7 @@
 #import "cover.typ": cover
 #import "title.typ": title
 #import "auth.typ": auth
+#import "valid.typ": valid
 
 #let pre = [
   #set par(leading: 1em)
@@ -8,7 +9,7 @@
   #set outline(title: none, depth: 3, indent: auto)
   #show heading.where(level: 1): head => context [
     #set align(center)
-    #head.body
+    #upper(head.body)
     #v(1.5em)
   ]
 
@@ -32,6 +33,10 @@
   )
 
   #auth
+
+  #pagebreak(weak: true)
+
+  #valid
 
   #pagebreak(weak: true)
 

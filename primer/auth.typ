@@ -2,9 +2,6 @@
 
 #let auth = [
   #set align(center)
-  #set text(
-    size: 12pt
-  )
 
   = Halaman Pernyataan Orisinalitas
 
@@ -16,7 +13,7 @@
 
   #table(
     columns: 2,
-    align: left,
+    align: (left, left + horizon),
     stroke: none,
     [Nama], [: #cfg.name],
     [NPM], [: #cfg.npm],
@@ -25,9 +22,7 @@
       Tanda Tangan
       #v(1em)
     ], [
-      #v(1em)
       : ......
-      #v(1em)
     ],
     [Tanggal], [: #cfg.time]
   )

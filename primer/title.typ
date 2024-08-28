@@ -23,7 +23,7 @@
 
   #v(1em)
 
-  *Diajukan sebagai salah satu syarat memperoleh gelar Sarjana Teknik*
+  *Diajukan sebagai salah satu syarat memperoleh gelar #cfg.degree*
 
   #v(4em)
 
