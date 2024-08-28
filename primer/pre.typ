@@ -1,5 +1,6 @@
 #import "cover.typ": cover
 #import "title.typ": title
+#import "auth.typ": auth
 
 #let pre = [
   #set par(leading: 1em)
@@ -14,10 +15,19 @@
   #set page(footer: [])
 
   #cover
+  
+  #pagebreak(weak: true)
+  #counter(page).update(1)
 
   #title
+
+  #pagebreak(weak: true)
+
+  #auth
+
+  #pagebreak(weak: true)
+
   
-  #counter(page).update(1)
 
   // with Footer (from abstract)
   #set page(
