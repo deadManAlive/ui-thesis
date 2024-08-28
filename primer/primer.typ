@@ -2,6 +2,7 @@
   set text(
     font: "Times New Roman",
     size: 12pt,
+    lang: "id"
   )
   set page(
     paper: "a4",
@@ -9,6 +10,7 @@
   )
   set block(spacing: 1em)
   show heading: set text(size: 12pt)
+  set par(justify: true)
 
   doc
 }
