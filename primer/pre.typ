@@ -23,11 +23,17 @@
 
   #pagebreak(weak: true)
 
+  // roman numbering start after title page
+  #set page(
+    footer: context [
+      #set align(center)
+      #counter(page).display("i")
+    ]
+  )
+
   #auth
 
   #pagebreak(weak: true)
-
-  
 
   // with Footer (from abstract)
   #set page(
