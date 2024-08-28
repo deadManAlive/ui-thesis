@@ -2,7 +2,7 @@
 #import "title.typ": title
 #import "auth.typ": auth
 #import "valid.typ": valid
-
+#import "intro.typ": intro
 #let pre = [
   #set par(leading: 1em)
   #set page(numbering: "i")
@@ -37,6 +37,10 @@
   #pagebreak(weak: true)
 
   #valid
+
+  #pagebreak(weak: true)
+
+  #intro
 
   #pagebreak(weak: true)
 
