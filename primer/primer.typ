@@ -8,6 +8,7 @@
     margin: (x: 3cm, y: 3cm),
   )
   set block(spacing: 1em)
+  show heading: set text(size: 12pt)
 
   doc
 }
