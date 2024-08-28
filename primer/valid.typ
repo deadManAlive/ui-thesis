@@ -2,7 +2,6 @@
 
 #let valid = [
   #set align(left)
-  #set par(justify: true)
   
   = Halaman Pengesahan
 

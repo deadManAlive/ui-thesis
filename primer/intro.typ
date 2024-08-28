@@ -2,7 +2,6 @@
 
 #let intro = [
   #show par: set block(spacing: 1.5em)
-  #set par(justify: true)
 
   = Kata Pengantar
 
