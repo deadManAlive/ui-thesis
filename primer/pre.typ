@@ -69,7 +69,7 @@
   ]
   #pagebreak(weak: true)
 
-  = Daftar Persamaan
-  #outline(target: figure.where(kind: "Equation"))
+  = Daftar Gambar
+  #outline(target: figure.where(kind: image))
 
 ]

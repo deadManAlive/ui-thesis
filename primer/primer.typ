@@ -50,9 +50,42 @@
       text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
     }
   )
-  
+
+  set figure(
+    numbering: (..nums) => {
+      let ch = str(counter(heading).get().first())
+      let fc = nums.pos().map(str).join(".")
+
+      ch + "." + fc
+    }
+  )
+
+  show figure.where(
+    kind: image
+  ): set figure(
+    supplement: [Gambar]
+  )
+
+  show figure.where(
+    kind: table
+  ): set figure(
+    supplement: [Tabel]
+  )
+
+  set math.equation(
+    numbering: (..nums) => {
+      let ch = str(counter(heading).get().first())
+      let fc = nums.pos().map(str).join(".")
+
+      "(" + ch + "." + fc + ")"
+    }
+  )
 
   show heading.where(level: 1): head => context [
+    #counter(figure.where(kind: image)).update(0)
+    #counter(figure.where(kind: table)).update(0)
+    #counter(math.equation).update(0)
+
     #set align(center)
     #set par(leading: 0.75em)
     #upper([#counter(heading).display()])
@@ -62,10 +95,7 @@
   ]
 
   show heading.where(level: 1): set heading(
-  numbering: (..nums) => "Bab " + nums
-    .pos()
-    .map(str)
-    .join(".")
+    numbering: (..nums) => "Bab " + str(nums.pos().first())
   )
   
   set par(justify: true, first-line-indent: 2em, leading: 1.5em)
