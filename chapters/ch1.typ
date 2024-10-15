@@ -9,7 +9,7 @@
   caption: [Feynman Diagram],
 ) <feynman>
 
-#lorem(100)
+#lorem(100) @lamport1986latex
 
 #lorem(50)
 

@@ -11,4 +11,6 @@
 
   #include "chapters/ch2.typ"
   #pagebreak(weak: true)
+
+  #bibliography("sources.bib", style: "ieee", title: [Daftar Pustaka])
 ]
