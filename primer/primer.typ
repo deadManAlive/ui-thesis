@@ -78,7 +78,8 @@
       let fc = nums.pos().map(str).join(".")
 
       "(" + ch + "." + fc + ")"
-    }
+    },
+    supplement: []
   )
 
   show heading.where(level: 1): head => context [

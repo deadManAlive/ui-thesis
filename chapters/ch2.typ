@@ -3,7 +3,7 @@
 
 $ F_n=F_(n-1)+F_(n-2) $ <hellow>
 
-#lorem(50) @knuth1997art
+#lorem(50)
 
 == Honey
 
