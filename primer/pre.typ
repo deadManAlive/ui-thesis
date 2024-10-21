@@ -71,5 +71,9 @@
 
   = Daftar Gambar
   #outline(target: figure.where(kind: image))
+  #pagebreak(weak: true)
+
+  = Daftar Tabel
+  #outline(target: figure.where(kind: table))
 
 ]

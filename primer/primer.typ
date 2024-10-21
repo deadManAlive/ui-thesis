@@ -69,8 +69,12 @@
   show figure.where(
     kind: table
   ): set figure(
-    supplement: [Tabel]
+    supplement: [Tabel],
   )
+
+  show figure.where(
+    kind: table
+  ): set figure.caption(position: top)
 
   set math.equation(
     numbering: (..nums) => {
