@@ -1,7 +1,7 @@
 #import "../config.typ":cfg
 
 #let intro = [
-  #show par: set block(spacing: 1.5em)
+  #set par(spacing: 1.5em)
 
   = Kata Pengantar
 

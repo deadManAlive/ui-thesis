@@ -31,7 +31,7 @@
       if not has-h1 {
         [
           #set align(right)
-          #locate(loc => counter(page).at(loc).first())
+          #context counter(page).at(here()).first()
         ]
       }
     },

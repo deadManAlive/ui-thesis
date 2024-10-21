@@ -2,6 +2,7 @@
 
 #let title = [
   #set align(center)
+  #set par(justify: false)
   #set text(
     size: 14pt
   )
@@ -17,7 +18,7 @@
 
   *#upper(cfg.title)*
 
-  #v(6em)
+  #v(4em)
 
   *SKRIPSI*
 

@@ -15,7 +15,7 @@
     [Judul Skripsi], [:], [#cfg.title],
   )
 
-  #v(4em)
+  #v(2em)
 
   #[
     #set text(weight: "bold")
