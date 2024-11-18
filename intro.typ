@@ -1,10 +1,16 @@
-#lorem(128):
+Puji dan syukur penulis panjatkan kepada Tuhan Yang Maha Esa karena atas berkat, rahmat, dan karunia-Nyalah penulis dapat menyelesaikan laporan skripsi ini. Penulisan laporan skripsi ini tentunya tidak terlepas dari bantuan dari berbagai pihak, baik secara langsung maupun tidak langsung. Oleh karena itu, pada kata pengantar ini penulis menyampaikan terima kasih yang sebesar-besarnya kepada:
 
-#for i in range(5) [
-  + #lorem(40 - 5 * i)
-]
++ Prof. Dr. Ir. Eko Tjipto Rahardjo, M.Sc. selaku dosen pembimbing yang telah meluangkan waktu dan pikirannya untuk membimbing penulis dalam menyusun laporan skripsi ini.
 
-#lorem(80)
++ Prof. Dr. Ir. Fitri Yulia Zulkifli, S.T., M.Sc., IPM dan Dr. Ir. Catur Apriono, S.T., M.T., Ph.D. selaku pembimbing AMRG yang juga telah memberikan banyak masukan kepada penulis.
+
++ Kedua orang tua penulis, Lusi, dan keluarga penulis yang telah memberikan dukungan semangat, moral, dan material sehingga penulis dapat menyelesaikan penulisan laporan skripsi ini.
+
++ Rekan-rekan program sarjana bimbingan AMRG sebagai rekan seperjuangan dan bertukar pikiran dalam penyusunan laporan skripsi ini.
+
++ Seluruh _civitas academica_ Departemen Teknik Elektro Fakultas Teknik yang tidak dapat disebutkan satu per satu.
+
+Akhir kata, penulis menyadari bahwa laporan skipsi ini masih jauh dari kata sempurna, sehingga penulis memohon maaf atas segala kekurangan dalam laporan skripsi ini. Semoga skripsi ini dapat memberikan banyak manfaat kepada pembaca.
 
 #v(4em)
 
