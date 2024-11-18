@@ -4,6 +4,7 @@
 #import "valid.typ": valid
 #import "intro.typ": intro
 #import "publ.typ": publ
+#import "abs.typ": abs_id, abs_en
 
 #let pre = [
   #set par(leading: 1em)
@@ -47,6 +48,16 @@
   #pagebreak(weak: true)
 
   #publ
+
+  #pagebreak(weak: true)
+
+  #abs_id
+
+  #pagebreak(weak: true)
+
+  #abs_en
+
+  #pagebreak(weak: true)
 
   // with Footer (from abstract)
   #set page(
