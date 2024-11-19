@@ -4,6 +4,19 @@
 #let abs_id = [
   = Abstrak
 
+    #table(
+    columns: 3,
+    stroke: none,
+    [Nama], [:], [#cfg.name],
+    [Program Studi], [:], [#cfg.program],
+    [Judul],[:],[#cfg.title],
+    [Pembimbing], [:], [
+      #for adv in cfg.advisors [
+        #adv \
+      ]
+    ],
+  )
+
   #abstract_id.abstract
 
   \
@@ -24,6 +37,19 @@
 
 #let abs_en = [
   = Abstract
+
+  #table(
+    columns: 3,
+    stroke: none,
+    [Name], [:], [#cfg.name],
+    [Department], [:], [#cfg.program],
+    [Title],[:],[#cfg.title_en],
+    [Advisor], [:], [
+      #for adv in cfg.advisors [
+        #adv \
+      ]
+    ],
+  )
 
   #abstract_en.abstract
 

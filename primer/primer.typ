@@ -60,6 +60,13 @@
     }
   )
 
+  show figure.caption: it => [
+    #set text(size: 10pt)
+    #it.supplement
+    #context it.counter.display(it.numbering):
+    #it.body
+  ]
+
   show figure.where(
     kind: image
   ): set figure(
