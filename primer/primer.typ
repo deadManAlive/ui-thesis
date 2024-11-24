@@ -64,13 +64,14 @@
     #set text(size: 10pt)
     #it.supplement
     #context it.counter.display(it.numbering):
-    #it.body
+    #it.body\.
   ]
 
   show figure.where(
     kind: image
   ): set figure(
-    supplement: [Gambar]
+    supplement: [Gambar],
+    placement: auto
   )
 
   show figure.where(
