@@ -33,7 +33,7 @@ Karena bergantung pada diskritisasi, yaitu pemecahan sistem kontinu menjadi elem
 _Ray tracing_ (RT) sebagai pendekatan asimtotik untuk solusi persamaan Maxwell berdasarkan kepada representasi gelombang dalam bentuk sinar.
 RT belakangan menjadi metode pemodelan propagasi elektromagnetik yang populer karena algoritma yang lebih sederhana serta perkembangan teknologi _general purpose graphical processing unit_ (GPGPU) yang dapat mendukung komputasi paralel@sarestoniemi_overview_2017 @andreas_rogne_raytracing_2022.
 
-Pada laporan skripsi ini, akan dirancang sebuah aplikasi, dari algoritma dibaliknya hingga antarmuka GUI, untuk memodelkan propagasi gelombang untuk lingkungan _indoor_ pada _floorplan_ dua dimensi, terutama untuk  radio Wi-Fi 2.4 GHz dan 5 GHz dan digunakan metode _shooting and bouncing rays_ (SBR) untuk menemukan path yang valid. Kemudian dilakukan pengujian dari aplikasi yang telah dibuat terhadap hasil simulasi aplikasi komersial dan juga hasil pengukuran di lapangan.
+Pada laporan skripsi ini, akan dirancang sebuah aplikasi, dari algoritma dibaliknya hingga antarmuka GUI, untuk memodelkan propagasi gelombang untuk lingkungan _indoor_ pada _floorplan_ dua dimensi, terutama untuk  radio Wi-Fi 2.4 GHz dan 5 GHz dan digunakan metode _shooting and bouncing rays_ (SBR) untuk menemukan path yang valid, dimana interaksi sinar dan lingkungan dimodelkan oleh _geometrical optics_ dan _geometric theory of diffraction_. Kemudian dilakukan pengujian dari aplikasi yang telah dibuat terhadap hasil simulasi aplikasi komersial dan juga hasil pengukuran di lapangan.
 
 == Rumusan Masalah
 
