@@ -253,7 +253,7 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
 
 \
 
-Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $S$. Jika titik-titik pada sinar-sinar cahaya yang memiliki nilai $S$ yang sama disambungkan, akan didapatkan permukaan yang menggambarkan muka gelombang. Dengan kata lain, muka gelombang adalah permukaan ketinggian (_level surface_) dari dari fungsi gelombang. @wavefront mengilustrasikan garis hijau yang menyambungkan titik-titik pada sinar (_light rays_) yang memiliki nilai $S$ yang sama, yang membentuk muka gelombang (_wavefronts_).
+Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Gradien eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $S$. Jika titik-titik pada sinar-sinar cahaya yang memiliki nilai $S$ yang sama disambungkan, akan didapatkan permukaan yang menggambarkan muka gelombang. Dengan kata lain, muka gelombang adalah permukaan ketinggian (_level surface_) dari dari fungsi gelombang. @wavefront mengilustrasikan garis hijau yang menyambungkan titik-titik pada sinar (_light rays_) yang memiliki nilai $S$ yang sama, yang membentuk muka gelombang (_wavefronts_).
 
 #figure(
   image("assets/wavefront.png", width: 60%),
@@ -262,17 +262,13 @@ Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$.
 
 === Vektor Poynting
 
-Salah satu teorema dalam kalkulus vektor adalah bahwa vektor gradien tegak lurus dengan kurva atau permukaan ketinggian. Oleh karena itu, $bup(p)$ sebagai gradien dari permukaan ketinggian dari $S$ akan selalu tegak lurus dengan permukaan tersebut. Hal ini juga dapat dibuktikan dengan menjabarkan vektor Poynting $bup(S)$ rata-rata dari medan elektromagnetik yang berupa@orfanidis_electromagnetic_2016
+Salah satu teorema dalam kalkulus vektor adalah bahwa vektor gradien tegak lurus dengan kurva atau permukaan ketinggian. Oleh karena itu, $bup(p)$ sebagai gradien dari permukaan ketinggian dari $S$ akan selalu tegak lurus dengan permukaan tersebut. Hal ini juga dapat dibuktikan dengan menjabarkan vektor Poynting $bup(S)$ rata-rata dari medan elektromagnetik yang berupa
 
-#[
-  #set math.equation(number-align: bottom)
-  $
-    angle.l bup(S) angle.r &= 1/2 cal(Re)[bup(E) times dash(bup(H))] \
-    &= 1/(2mu) cal(Re)[bup(E) times dash(bup(B))]
-  $
-]
+$ angle.l bup(S) angle.r = 1/(2mu) cal(Re)[bup(E) times dash(bup(B))] $
 
-Pertama dengan melakukan pendekatan pada persamaan @lkexpansion untuk nilai $omega$ yang sangat besar sehingga deret hanya menyisakan suku ke-nol:
+\
+
+Pertama dengan melakukan pendekatan pada persamaan @lkexpansion untuk nilai $omega$ yang sangat besar sehingga deret hanya menyisakan suku ke-nol sebagai suku yang signifikan:
 
 $
   lim_(omega arrow infinity) tilde(bup(E))(bup(r), omega) = tilde(bup(E))_0(bup(r)) e^(-j k phi.alt(bup(r)))
@@ -290,9 +286,46 @@ Memasukkan kedua nilai tersebut kepersamaan @fourb hingga @foure dengan mengguna
 
 #[
   #set math.equation(number-align: bottom)
-  #let ex = [$e^(-j k phi.alt(bup(r)))$]
-  #let eo(f) = [$tilde(bup(#f))_0(bup(r))$]
+  #set box(stroke: 0.2pt)
   #let ps = [$phi.alt(bup(r))$]
+  #let ex = [$e^(-j k ps)$]
+  #let eo(f) = [$tilde(bup(#f))_0(bup(r))$]
+
+  $
+    nabla dot tilde(bup(E)) &= 0 \
+    nabla dot (eo(E) ex) &= 0 \
+    ex nabla dot eo(E) + eo(E) dot nabla ex &= 0 \
+    ex nabla dot eo(E) + eo(E) dot (-j k ex nabla ps) &= 0 \
+    nabla dot eo(E) - j k nabla ps dot eo(E) &= 0 \
+    nabla ps dot eo(E) &= 1/(j k) nabla dot eo(E)
+  $
+
+  $
+    nabla dot tilde(bup(B)) &= 0 \
+    nabla dot (eo(B) ex) &= 0 \
+    nabla ps dot eo(B) &= 1/(j k) nabla dot eo(B)
+  $
+
+  $
+    nabla times tilde(bup(E)) &=  -j omega tilde(bup(B)) \
+    nabla times (eo(E) ex) &= -j omega eo(B) ex \
+    ex (nabla times eo(E)) + (nabla ex) times eo(E) &= -j omega eo(B) ex \
+    ex nabla times eo(E) - j k ex nabla ps times eo(E) &= -j omega eo(B) ex \
+    nabla times eo(E) - j k nabla ps times eo(E) &= -j omega eo(B) \
+    j k nabla ps times eo(E) &= j omega eo(B) + nabla times eo(E) \
+    nabla ps times eo(E) &= c eo(B) + 1/(j k) nabla times eo(E)
+  $
+
+  $
+    nabla times tilde(bup(B)) &= (j omega)/c^2 tilde(bup(E)) \
+    nabla times (eo(B) ex) &= (j omega)/c^2 eo(E) ex \
+    j k nabla ps times eo(B) &= -(j omega)/c^2 eo(E) + nabla times eo(B) \
+    nabla ps times eo(B) &= 1/c eo(E) + 1/(j k) nabla times eo(B)
+  $
+
+  \
+
+  Karena $omega arrow infinity$ dan $k = omega / c$, maka $k arrow infinity$, sehingga
 
   $ 
     nabla ps dot eo(E) = 0
@@ -303,11 +336,11 @@ Memasukkan kedua nilai tersebut kepersamaan @fourb hingga @foure dengan mengguna
   $ <pseoiszero>
   
   $
-    nabla ps times eo(E) = j c eo(B) 
+    nabla ps times eo(E) = c eo(B) 
   $
 
   $
-    nabla ps times eo(B) = -j/c eo(E)
+    nabla ps times eo(B) = - 1/c eo(E)
   $
   
   \
@@ -320,7 +353,7 @@ Memasukkan kedua nilai tersebut kepersamaan @fourb hingga @foure dengan mengguna
     &= 1/(2mu)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
   $ <poynting1>
 
-  Persamaan @pseoiszero membuat suku kedua dari @poynting1 bernilai nol, sedangkan $nabla ps$ adalah riil, selain itu $1/4 cal(Re)[epsilon bup(E) dot dash(bup(E))]$ adalah kerapatan energi listrik rata-rata $angle.l w_e angle.r$@orfanidis_electromagnetic_2016, sehingga
+  Persamaan @pseoiszero membuat suku kedua dari @poynting1 bernilai nol, sedangkan $nabla ps$ adalah riil, selain itu $1/4 cal(Re)[epsilon bup(E) dot dash(bup(E))]$ adalah kerapatan energi listrik rata-rata $angle.l w_e angle.r$, sehingga
 
   $
     angle.l bup(S) angle.r &= 2/(mu epsilon) angle.l w_e angle.r nabla ps
@@ -329,4 +362,4 @@ Memasukkan kedua nilai tersebut kepersamaan @fourb hingga @foure dengan mengguna
 
 \
 
-Persamaan @finalpoynting menunjukkan bahwa vektor Poynting sebagai vektor yang menunjukkan arah energi dari gelombang elektromagnetik, searah dengan eikonal. Implikasi dari hal ini adalah bahwa propagasi gelombang sebagai aliran energi dapat direpresentasikan sebagai garis-garis sinar. Hal inilah yang mendasari optika geometris sebagai analisis propagasi gelombang elektromagnetik dalam bentuk representasi sinar-sinar.
+Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vektor yang menunjukkan arah energi dari gelombang elektromagnetik, memiliki arah yang sama dengan momentum optik $nabla phi.alt (bup(r))$. Implikasi dari hal ini adalah bahwa propagasi gelombang sebagai aliran energi dapat direpresentasikan sebagai garis-garis sinar. Hal inilah yang mendasari GO sebagai analisis propagasi gelombang elektromagnetik dalam bentuk representasi sinar-sinar.
