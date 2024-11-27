@@ -26,7 +26,7 @@ Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan d
     caption: [Persamaan-persamaan Maxwell],
   )
 
-  \
+  di mana
 
   $
     Q = integral.triple_Omega rho space d V
@@ -53,7 +53,7 @@ Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan d
   adalah arus listrik berupa kerapatan arus listrik $bup(J)$ yang melalui $Sigma$.
 ]
 
-Persamaan-persamaan Maxwell dapat dijabarkan dalam bentuk integral maupun diferensial, dimana bentuk integral dari persamaan-persamaan ini dapat menjelaskan perilaku medan listrik dan magnet pada suatu area pada ruang sementara itu bentuk diferensialnya membantu dalam menjelaskan perilaku medan listrik dan medan magnet lokal pada suatu titik.
+Persamaan-persamaan Maxwell dapat dijabarkan dalam bentuk integral maupun diferensial, di mana bentuk integral dari persamaan-persamaan ini dapat menjelaskan perilaku medan listrik dan magnet pada suatu area pada ruang sementara itu bentuk diferensialnya membantu dalam menjelaskan perilaku medan listrik dan medan magnet lokal pada suatu titik.
 
 === Hukum Gauss
 
@@ -75,7 +75,7 @@ Persamaan kedua dari persamaan Maxwell merupakan formulasi dari hukum magnet Gau
   caption: [Fluks magnetik yang melewati permukaan tertutup],
 ) <gaussmag>
 
-@gaussmag mengilustrasikan implikasi dari hukum magnet Gauss, dimana fluks magnetik yang melewati suatu permukaan tertutup akan selalu bernilai nol. Pada permukaan $cal(S)_A$ hal ini terjadi karena jumlah garis fluks magnetik yang memasuki permukaan sama dengan jumlah garis fluks magnetik yang keluar dari permuakaan, sedangkan pada permukaan $cal(S)_B$, semua garis medan dilingkupi oleh permukaan sehingga fluks yang melalui permukaan juga bernilai nol.
+@gaussmag mengilustrasikan implikasi dari hukum magnet Gauss, di mana fluks magnetik yang melewati suatu permukaan tertutup akan selalu bernilai nol. Pada permukaan $cal(S)_A$ hal ini terjadi karena jumlah garis fluks magnetik yang memasuki permukaan sama dengan jumlah garis fluks magnetik yang keluar dari permukaan, sedangkan pada permukaan $cal(S)_B$, semua garis medan dilingkupi oleh permukaan sehingga fluks yang melalui permukaan juga bernilai nol.
 
 === Hukum Induksi Faraday
 
@@ -86,7 +86,7 @@ Sementara persamaan pertama dan kedua dari persamaan-persamaan Maxwell menunjukk
   caption: [Induksi EMF (gaya gerak listrik) akibat pergerakan magnet di sekitar kumparan],
 ) <faradayimg>
 
-@faradayimg menunjukkan salah satu implikasi nyata dari hukum induksi Faraday, dimana gaya gerak listrik dihasilkan ketika magnet digerakkan disekitar kumparan. Hal ini terjadi karena ketika magnet digerakkan, maka terjadi perubahan garis medan magnet yang melewati permukaan yang dilingkupi oleh kumparan tersebut, yang menurut hukum induksi Faraday ini, akan menghasilkan gaya gerak listrik di sepanjang kumparan.
+@faradayimg menunjukkan salah satu implikasi nyata dari hukum induksi Faraday, di mana gaya gerak listrik dihasilkan ketika magnet digerakkan di sekitar kumparan. Hal ini terjadi karena ketika magnet digerakkan, maka terjadi perubahan garis medan magnet yang melewati permukaan yang dilingkupi oleh kumparan tersebut, yang menurut hukum induksi Faraday ini, akan menghasilkan gaya gerak listrik di sepanjang kumparan.
 
 === Hukum Ampère
 
@@ -120,7 +120,7 @@ Lalu dengan melakukan substitusi persamaan @binvacuum ke persamaan @ceinvacuum d
 
 $ nabla times nabla times bup(E) = -mu_0 epsilon_0 diff^2/(diff t^2) bup(E) $ <cceinvacum>
 
-Salah satu identitas operator _curl_ adalah $nabla times (nabla times F) = nabla(nabla dot F)-nabla^2 F$, sedangkan pada ruang hampa tnapa sumber fluks listrik $nabla dot bup(E) = 0$, sehingga persamaan @cceinvacum menjadi:
+Salah satu identitas operator _curl_ adalah $nabla times (nabla times F) = nabla (nabla dot F)-nabla^2 F$, sedangkan pada ruang hampa tnapa sumber fluks listrik $nabla dot bup(E) = 0$, sehingga persamaan @cceinvacum menjadi:
 
 $ nabla^2 bup(E) = mu_0 epsilon_0 diff^2/(diff t^2) bup(E) $
 
@@ -128,7 +128,7 @@ atau
 
 $ diff^2/(diff t^2)bup(E)= c^2 nabla^2 bup(E) $ <ewaveequation>
 
-yang merupakan persamaan gelombang, dimana kecepatan cahaya pada ruang hampa $c=1/sqrt(mu_0 epsilon_0)$. Persamaan @ewaveequation merupakan persamaan diferensial parsial yang menjelaskan propagasi gelombang listrik pada ruang hampa. Dengan penuruanan yang sama, didapatkan persamaan gelombang magnet berupa:
+yang merupakan persamaan gelombang, di mana kecepatan cahaya pada ruang hampa $c=1/sqrt(mu_0 epsilon_0)$. Persamaan @ewaveequation merupakan persamaan diferensial parsial yang menjelaskan propagasi gelombang listrik pada ruang hampa. Dengan penurunan yang sama, didapatkan persamaan gelombang magnet berupa:
 
 $ diff^2/(diff t^2)bup(B) = c^2 nabla^2 bup(B) $
 
@@ -141,7 +141,7 @@ $ nabla dot tilde(bup(B)) = 0 $
 $ nabla times tilde(bup(E)) =  -j omega tilde(bup(B)) $
 $ nabla times tilde(bup(B)) =  (j omega)/c^2 tilde(bup(E)) $ <foure>
 
-dimana $tilde(bup(E)) : Gamma times RR arrow RR^3$ dab $tilde(bup(B)) : Gamma times RR arrow RR^3$ masing-masing merupakan medan listrik dan medan magnet sebagai fungsi vektor pada domain frekuensi.
+di mana $tilde(bup(E)) : Gamma times RR arrow RR^3$ dab $tilde(bup(B)) : Gamma times RR arrow RR^3$ masing-masing merupakan medan listrik dan medan magnet sebagai fungsi vektor pada domain frekuensi.
 
 Jika dilakukan transformasi Fourier pada persamaan @ewaveequation, akan didapatkan:
 
@@ -156,17 +156,17 @@ Jika dilakukan transformasi Fourier pada persamaan @ewaveequation, akan didapatk
   $ <helmholtz>
 ]
 
-dimana persamaan @helmholtz adalah persamaan Helmholtz dengan $k=omega/c$ adalah angka gelombang.
+di mana persamaan @helmholtz adalah persamaan Helmholtz dengan $k=omega/c$ adalah angka gelombang.
 
 === Persamaan Eikonal
 
-Jika gelombang elektromagnetik berpropagasi pada medium nonhomogen dimana terdapat permitivias $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v_p (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium juga berupa fungsi ruang:
+Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v_p (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium juga berupa fungsi ruang:
 
 $ n(bup(r)) = c/(v_p (bup(r))) $
 
 \
 
-Ketika persamaan @helmholtz diaplikasikan pada gelombang yang berpropagasi pada medium nonhomogen ini, maka:
+Ketika persamaan @helmholtz diaplikasikan pada gelombang yang berpropagasi pada medium non-homogen ini, maka:
 
 #[
   #set math.equation(number-align: bottom)
@@ -180,13 +180,13 @@ Ketika persamaan @helmholtz diaplikasikan pada gelombang yang berpropagasi pada 
 
 \
 
-Solusi tepat dari persamaan Maxwell secara umum sulit diperoleh secara langsung, sehingga pada prakteknya, perkiraan solusi dari sistem persamaan tersebut umumnya dilakukan dengan pendekatan, salah satunya adalah ekspansi asimtotik Luneberg-Kline@dominek_additional_1987:
+Solusi tepat dari persamaan Maxwell secara umum sulit diperoleh secara langsung, sehingga pada praktiknya, perkiraan solusi dari sistem persamaan tersebut umumnya dilakukan dengan pendekatan, salah satunya adalah ekspansi asimtotik Luneberg-Kline@dominek_additional_1987:
 
 $
   hat(bup(E))(bup(r), omega) = e^(-j k phi.alt(bup(r))) sum_(i in NN)(hat(bup(E))_i (bup(r))) / (j omega)^n
 $ <lkexpansion>
 
-dimana $phi.alt (bup(r))$ adalah fungsi fasa dan $tilde(bup(E))_i (bup(r))$ adalah vektor amplitudo untuk komponen orda ke-$i$ dari ekspansi asimtotik tersebut.
+di mana $phi.alt (bup(r))$ adalah fungsi fasa dan $tilde(bup(E))_i (bup(r))$ adalah vektor amplitudo untuk komponen orde ke-$i$ dari ekspansi asimtotik tersebut.
 
 Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
 
@@ -282,7 +282,7 @@ $
 
 \
 
-Memasukkan kedua nilai tersebut kepersamaan @fourb hingga @foure dengan menggunakan identitas kalkulus vektor $nabla dot (psi bup(F)) = psi nabla dot bup(F) + bup(F) dot nabla psi$ dan $nabla times (psi bup(F)) = psi (nabla times bup(F))+(nabla psi) times bup(F)$, didapatkan:
+Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggunakan identitas kalkulus vektor $nabla dot (psi bup(F)) = psi nabla dot bup(F) + bup(F) dot nabla psi$ dan $nabla times (psi bup(F)) = psi (nabla times bup(F))+(nabla psi) times bup(F)$, didapatkan:
 
 #[
   #set math.equation(number-align: bottom)
