@@ -1,3 +1,6 @@
+#import "@preview/equate:0.2.1": equate
+#show ref: equate
+
 = Pendahuluan <intro>
 
 == Latar Belakang
@@ -15,11 +18,11 @@ Dalam kondisi-kondisi tersebut, adanya _dead zone_ di area yang tidak diinginkan
 Terdapat berbagai macam cara yang dapat dilakukan untuk perencanaan tersebut, contoh yang sederhana adalah menggunakan model empiris, seperti dalam kondisi _indoor_ di antaranya ITU-R P.1238-9 (pemodelan propagasi dalam ruangan) dan model _log-distance path loss_. Kedua model tersebut memperkirakan _path loss_ sebagai fungsi dari jarak, frekuensi, dan sebagainya.
 Persamaan @plosm1 merupakan pemodelan ITU-R P.1238-9 di mana _path loss_ total $L$ merupakan fungsi dari _path loss_ pada jarak referensi $L_0$, koefisien rugi daya $N$, jarak $d$, jarak referensi $d_0$, dan faktor rugi penetrasi untuk $n$ lantai pada frekuensi tertentu $L_f (n)$.
 Sementara itu, pada pemodelan _log-distance path loss_ pada persamaan @plosm2, $gamma$ adalah eksponen nilai _path loss_ yang bergantung pada frekuensi dan jenis bangunan dan $chi$ adalah variabel acak normal (Gaussian) yang menggambarkan atenuasi akibat _fading_.
-$ L = L_0 + N log_10 d/d_0 + L_f (n) $ <plosm1>
-$ L = L_0 + 10 gamma log_10 d/d_0 + chi $ <plosm2>
-$
-  L_U &= &69.55 + 26.16 log_10 f - 13.82 log_10 h_B \ &&- C_H + (44.9 - 6.55 log_10 h_B) log_10 d \
-$ <okumurahata>
+#equate($
+  L &= &&L_0 + N log_10 d/d_0 + L_f (n)  #<plosm1> \
+  L &= &&L_0 + 10 gamma log_10 d/d_0 + chi  #<plosm2> \
+  L_U &= &&69.55 + 26.16 log_10 f - 13.82 log_10 h_B \ & &&- C_H + (44.9 - 6.55 log_10 h_B) log_10 d #<okumurahata>
+$)
 
 Sedangkan persamaan @okumurahata merupakan contoh lainnya dari pemodelan empiris yaitu model Hata (atau Okumura-Hata) untuk lingkungan _outdoor_ yaitu perkotaan@hata_empirical_1980 di mana $L_U$ adalah _path loss_, $f$ adalah frekuensi, $h_B$ ketinggian antena _base station_, $d$ jarak antara _base_ dan _mobile station_, dan $C_H$ faktor koreksi ketinggian antena dengan nilai yang bergantung kepada frekuensi, ketinggian antena _mobile station_, dan ukuran wilayah kota itu sendiri.
 
