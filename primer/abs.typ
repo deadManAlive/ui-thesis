@@ -36,7 +36,7 @@
 ]
 
 #let abs_en = [
-  = Abstract
+  #heading(outlined: false)[Abstract]
 
   #table(
     columns: 3,
