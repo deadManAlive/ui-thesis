@@ -8,7 +8,7 @@ Pemodelan propagasi gelombang elektromagnetik didasarkan kepada Optika Geometris
 
 == Persamaan-Persamaan Maxwell
 
-Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) in Gamma$, dengan $Gamma subset RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya. 
+Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) in Gamma$, dengan $Gamma subset RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya.
 
 #[
   #set math.equation(numbering: none)
@@ -160,9 +160,9 @@ di mana persamaan @helmholtz adalah persamaan Helmholtz dengan $k=omega/c$ adala
 
 === Persamaan Eikonal
 
-Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v_p (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium juga berupa fungsi ruang:
+Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium juga berupa fungsi ruang:
 
-$ n(bup(r)) = c/(v_p (bup(r))) $
+$ n(bup(r)) = c/(v (bup(r))) $
 
 \
 
@@ -172,7 +172,7 @@ Ketika persamaan @helmholtz diaplikasikan pada gelombang yang berpropagasi pada 
   #set math.equation(number-align: bottom)
 
   $
-    (nabla^2 + omega^2/(v_p^2(bup(r)))) tilde(bup(E)) &= 0 \
+    (nabla^2 + omega^2/(v^2(bup(r)))) tilde(bup(E)) &= 0 \
     (nabla^2 + n^2(bup(r)) omega^2/c^2) tilde(bup(E)) &= 0 \
     (nabla^2 + n^2(bup(r)) k^2) tilde(bup(E)) &= 0 \
   $ <nhhelmholtz>
@@ -208,7 +208,7 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
   \
 
   Operator Laplace (Laplacian) $nabla^2$ memiliki identitas $nabla^2 (psi dot bup(F)) = bup(F) nabla^2 psi + 2 nabla psi dot nabla bup(F) + psi nabla^2 bup(F)$ dengan $psi$ medan skalar dan $bup(F)$ medan vektor, sehingga suku pertama dari persamaan @a1 dapat dikembangkan menjadi:
-  
+
   $
     sn 1/jw [en nabla^2 ex  + 2 nabla ex dot nabla en + ex nabla^2 en] \
     + nr k^2 sn ex/jw en = 0
@@ -227,18 +227,18 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
   $
     sn 1/jw [-j k ex en nabla^2 phi.alt(bup(r)) - k^2 ex en (nabla phi.alt(bup(r)))^2 \
     - 2 j k ex nabla phi.alt(bup(r)) dot nabla en + ex nabla^2 en \
-    + nr k^2 ex en 
+    + nr k^2 ex en
     ] &= 0 \
 
     ex sn 1/jw [-j k en nabla^2 phi.alt(bup(r)) - k^2 en (nabla phi.alt(bup(r)))^2 \
     - 2 j k nabla phi.alt(bup(r)) dot nabla en + nabla^2 en \
-    + nr k^2 en 
+    + nr k^2 en
     ] &= 0 \
 
     ex sn 1/jw [(nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2) \
     - j(k en nabla^2 phi.alt(bup(r))) + 2k nabla phi.alt(bup(r)) dot nabla en)] &= 0
   $ <lkexpanded>
-  
+
 \
 
   Agar persamaan @lkexpanded benar, maka suku riil dan imajiner dari persamaan tersebut harus sama dengan 0.
@@ -247,13 +247,13 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
     nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2 &= 0 \
     k^2 en (nabla phi.alt(bup(r)))^2 &= nabla^2 en + nr k^2 en \
     (nabla phi.alt(bup(r)))^2 &= (nabla^2 en)/(k^2 en) + nr \
-    ||nabla phi.alt(bup(r))|| &= n(bup(r))
+    norm(nabla phi.alt(bup(r))) &= n(bup(r))
   $ <eikonal>
 ]
 
 \
 
-Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Gradien eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $S$. Jika titik-titik pada sinar-sinar cahaya yang memiliki nilai $S$ yang sama disambungkan, akan didapatkan permukaan yang menggambarkan muka gelombang. Dengan kata lain, muka gelombang adalah permukaan ketinggian (_level surface_) dari dari fungsi gelombang. @wavefront mengilustrasikan garis hijau yang menyambungkan titik-titik pada sinar (_light rays_) yang memiliki nilai $S$ yang sama, yang membentuk muka gelombang (_wavefronts_).
+Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Gradien eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $sigma$. Jika titik-titik pada sinar-sinar cahaya yang memiliki nilai $sigma$ yang sama disambungkan, akan didapatkan permukaan yang menggambarkan muka gelombang. Dengan kata lain, muka gelombang adalah permukaan ketinggian (_level surface_) dari dari fungsi gelombang. @wavefront mengilustrasikan garis hijau yang menyambungkan titik-titik pada sinar (_light rays_) yang memiliki nilai $sigma$ yang sama, yang membentuk muka gelombang (_wavefronts_).
 
 #figure(
   image("assets/wavefront.png", width: 60%),
@@ -264,7 +264,7 @@ Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$.
 
 Salah satu teorema dalam kalkulus vektor adalah bahwa vektor gradien tegak lurus dengan kurva atau permukaan ketinggian. Oleh karena itu, $bup(p)$ sebagai gradien dari permukaan ketinggian dari $S$ akan selalu tegak lurus dengan permukaan tersebut. Hal ini juga dapat dibuktikan dengan menjabarkan vektor Poynting $bup(S)$ rata-rata dari medan elektromagnetik yang berupa
 
-$ angle.l bup(S) angle.r = 1/(2mu) cal(Re)[bup(E) times dash(bup(B))] $
+$ angle.l bup(S) angle.r = 1/(2mu) cal(Re)[bup(E) times dash(bup(B))] $ <poynting0>
 
 \
 
@@ -272,7 +272,7 @@ Pertama dengan melakukan pendekatan pada persamaan @lkexpansion untuk nilai $ome
 
 $
   lim_(omega arrow infinity) tilde(bup(E))(bup(r), omega) = tilde(bup(E))_0(bup(r)) e^(-j k phi.alt(bup(r)))
-$
+$ <limelexp>
 
 yang juga berlaku untuk medan magnet
 
@@ -286,7 +286,6 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
 
 #[
   #set math.equation(number-align: bottom)
-  #set box(stroke: 0.2pt)
   #let ps = [$phi.alt(bup(r))$]
   #let ex = [$e^(-j k ps)$]
   #let eo(f) = [$tilde(bup(#f))_0(bup(r))$]
@@ -327,33 +326,37 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
 
   Karena $omega arrow infinity$ dan $k = omega / c$, maka $k arrow infinity$, sehingga
 
-  $ 
+  $
     nabla ps dot eo(E) = 0
   $
 
   $
     nabla ps dot eo(B) = 0
   $ <pseoiszero>
-  
+
   $
-    nabla ps times eo(E) = c eo(B) 
+    nabla ps times eo(E) = c eo(B)
   $
 
   $
     nabla ps times eo(B) = - 1/c eo(E)
   $
-  
+
   \
 
   Menggunakan perkalian silang tiga vektor $bup(A) times (bup(B) times bup(C)) = (bup(A) dot bup(C))bup(B) - (bup(A) dot bup(B))bup(C)$, maka
 
   $
-    angle.l bup(S) angle.r &= 1/(2 mu_0) cal(Re)[bup(E) times dash(bup(B))] \
+    angle.l bup(S) angle.r &= 1/(2 mu) cal(Re)[bup(E) times dash(bup(B))] \
     &= 1/(2mu)cal(Re)[eo(E) times (nabla ps times dash(eo(E)))] \
     &= 1/(2mu)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
   $ <poynting1>
 
-  Persamaan @pseoiszero membuat suku kedua dari @poynting1 bernilai nol, sedangkan $nabla ps$ adalah riil, selain itu $1/4 cal(Re)[epsilon bup(E) dot dash(bup(E))]$ adalah kerapatan energi listrik rata-rata $angle.l w_e angle.r$, sehingga
+  Persamaan @pseoiszero membuat suku kedua dari @poynting1 bernilai nol, sedangkan $nabla ps$ adalah riil, selain itu
+
+  $ angle.l w_e angle.r = 1/4 cal(Re)[epsilon bup(E) dot dash(bup(E))] $ <elintencity>
+
+  adalah kerapatan energi listrik rata-rata, sehingga
 
   $
     angle.l bup(S) angle.r &= 2/(mu epsilon) angle.l w_e angle.r nabla ps
@@ -363,3 +366,120 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
 \
 
 Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vektor yang menunjukkan arah energi dari gelombang elektromagnetik, memiliki arah yang sama dengan momentum optik $nabla phi.alt (bup(r))$. Implikasi dari hal ini adalah bahwa propagasi gelombang sebagai aliran energi dapat direpresentasikan sebagai garis-garis sinar. Hal inilah yang mendasari GO sebagai analisis propagasi gelombang elektromagnetik dalam bentuk representasi sinar-sinar.
+
+== Atenuasi Ruang
+
+Karena $n = c/v$ dan $mu epsilon = 1/v^2$ serta suatu vektor unit $hat(bup(s)) $ dapat didefinisikan sebagai $(nabla phi.alt(bup(r)))/(norm(nabla phi.alt(bup(r)))) = (nabla phi.alt(bup(r)))/n$, maka persamaan @finalpoynting dapat ditulis sebagai
+
+$ angle.l bup(S) angle.r = 2 v angle.l w_e angle.r hat(bup(s)) $
+
+sehingga intensitas gelombang elektromagnetik $I$ dapat didefinisikan sebagai nilai mutlak dari vektor Poynting rata-rata@born_principles_1999 dan dapat ditulis sebagai
+
+$ I = abs(angle.l bup(S) angle.r) = 2 v angle.l w_e angle.r $ <poyntintent>
+
+\
+
+Sementara itu, daya total $P$ yang dipancarkan oleh suatu sumber dapat didefinisikan sebagai
+
+$ P = integral bup(I)(bup(r)) dot d bup(A) $ <power>
+
+dimana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran intensitas dan $bup(A)$ suatu permukaan tertutup yang mencakup suatu sumber. Pada gelombang planar, persamaan ini tidak relevan karena sumber gelombang berupa bidang tak hingga sehingga P hanya berlaku pada suatu permukaan $cal(A) in bup(A)$. Tetapi, pada suatu sumber non-planar seperti sumber titik, gelombang yang dihasilkan adalah gelombang bola (_spherical_). Pada bentuk gelombang ini, persamaan @power menjadi
+
+#[
+  #set math.equation(number-align: bottom)
+  $
+    P &= I dot 4 pi r^2 \
+    I &= P/(4 pi r^2)
+  $ <sphintent>
+]
+
+#figure(
+  image("assets/invsqr.png", width: 60%),
+  caption: [Ilustrasi hukum kuadrat terbalik]
+) <invsqr>
+
+dimana $I$ dan $r$ memiliki hubungan kuadrat terbalik, seperti yang diilustrasikan oleh @invsqr dimana pada jumlah fluks yang tetap akan melewati permukaan dengan rasio $n^2$ untuk setiap perubahan jarak $n$ menjauhi sumber radiasi.
+
+Kemudian, karena $c dash(c) = abs(c)^2$ dengan $c in CC$, maka persaamaan @elintencity juga dapat ditulis sebagai
+
+$
+  angle.l w_e angle.r = 1/4 epsilon abs(bup(E))^2
+$
+
+sehingga dari persamaan tersebut, persamaan @finalpoynting, persaamaan @poyntintent, dan persamaan @sphintent dapat dilihat bahwa
+
+$
+  abs(bup(E)) prop 1/r
+$
+
+\
+
+#figure(
+  image("assets/spherical.jpg", width: 60%),
+  caption: [Muka gelombang dan sinar pada gelombang lingkaran],
+) <spherical>
+
+@spherical menunjukkan muka gelombang sebuah gelombang lingkaran (irisan 2 dimensi dari gelombang bola), dimana muka gelombang $sigma_0$ pada waktu $t$ memiliki jari-jari $rho_0$ dan kemudian $rho_0 + Delta rho$ setelah $Delta t$. Karena $P$ konstan, maka
+
+$ (abs(bup(E)(rho_0)))/(abs(bup(E)(rho_0 + Delta rho))) = (rho_0+Delta rho)/rho_0 $ <intencratio>
+
+dan jika perhitungan dimulai dari sumber ($rho_0 = 0$) dan permukaan yang berjarak $r$ dari sumber, maka
+
+$ abs(bup(E)(rho_0 + Delta rho)) = 1/r abs(bup(E)(rho_0)) $
+
+sehingga $1/r$ adalah koefisien atenuasi ruang $A(r)$ pada jarak $r$ dari sumber.
+
+== Refleksi dan Refraksi
+
+=== Refleksi
+
+$ bup(E)_r(bup(p)_r) = mat(E_(i parallel), E_(i perp);) dot mat(R_parallel; R_perp) $
+
+$ R_perp = (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t) $
+$ R_parallel = (-eta_1 cos theta_i - eta_2 cos theta_t)/(eta_1 cos theta_i + eta_2 cos theta_t) $
+
+=== Refraksi
+
+$ bup(E)_r(bup(p)_r) = mat(E_(i parallel), E_(i perp);) dot mat(T_parallel; T_perp) $
+
+$ T_perp = (2 eta_2 cos theta_i)/(eta_2 cos theta_i + eta_1 cos theta_t) $
+$ T_parallel = (2 eta_2 cos theta_i)/(eta_1 cos theta_i + eta_2 cos theta_t) $
+
+== Difraksi
+
+$ D(phi, phi') = -(e^(-j pi/4))/(2 sqrt(2 pi k)) [1/cos((phi - phi')/2) minus.plus 1/cos((phi + phi')/2)] $
+
+== Elektromagnetika Komputasional
+
+$ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+
+$ E_"total" = sum_i E_R[i] $
+
+#page(flipped: true)[
+  #set par(leading: 1em)
+  #show figure: set block(breakable: true)
+  == Tabel Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
+
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto, auto, auto),
+      align: left,
+      table.header([Aspek], [*Ray Tracing*], [*Geometrical Optics*], [*Physical Optics*], [*Geometric Theory \ of Diffraction*], [*Uniform Theory \ of Diffraction*]),
+
+      [Definisi],
+      [Istilah umum yang merujuk kepada metode perhitungan jalur gelombang atau pun partikel pada suatu sistem dengan mempertimbangkan berbagai interaksi antara sinar sebagai representasi jalur dengan sistem.],
+      [Pemodelan propagasi gelombang elektromagnetik ke dalam bentuk sinar-sinar yang bergerak lurus pada medium homogen. Pemodelan ini dapat menjelaskan refleksi dan refraksi.],
+      [Metode pemodelan gelombang elektromagnetik yang juga berbasis kepada representasi sinar dari gelombang elektromagnetik, tetapi juga mempertimbangkan sifat-sifat gelombang dari propagasi elektromagnetik. Dapat memodelkan interferensi, difraksi, dan polarisasi.],
+      [Ekstensi dari _Geometrical Optics_ yang menyertakan pemodelan difraksi. GTD memodelkan difraksi dengan mengasumsikan suatu sumber sekunder dari gelombang elektromagnetik pada titik difraksi sudut.],
+      [Penyempurnaan terhadap GTD yang gagal mengkalkulasi beberapa sudut pada difraksi. UTD menyertakan prinsip-prinsip PO untuk memodelkan difraksi secara lebih akurat.],
+
+      [Dasar Teori],
+      [Tergantung bidang aplikasinya, RT dapat didasarkan kepada _geometrical optics_, _geometrical acoustics_, seismologi, relativitas umum, dan sebagainya],
+      [Persamaan eikonal dari persamaan gelombang elektromagnetik dan ekspansi Luneberg-Kline.],
+      [Persamaan-persamaan Maxwell, persamaan Gelombang, prinsip Huygens, dsb.],
+      [_Geometrical optics_, dengan pemodelan difraksi.],
+      [Dengan memasukkan prinsip _physical optics_ ke GTD, maka diskontinuitas pada pemodelan GTD dapat diatasi.]
+    ),
+    caption: [Perbandingan RT, GO, PO, GTD, UTD],
+  )
+]

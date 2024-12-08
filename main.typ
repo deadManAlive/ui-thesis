@@ -1,5 +1,6 @@
 #import "primer/primer.typ": main, primer
 #import "primer/pre.typ": pre
+#import "primer/post.typ": post
 
 #show: doc => primer(doc)
 
@@ -11,10 +12,6 @@
 
   #include "chapters/ch2.typ"
   #pagebreak(weak: true)
-
-  #[
-    #set par(leading: 1em)
-    #set block(spacing: 1em)
-    #bibliography("sources.bib", style: "ieee", title: [Daftar Pustaka])
-  ]
 ]
+
+#post

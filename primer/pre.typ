@@ -82,9 +82,11 @@
 
   = Daftar Tabel
   #outline(target: figure.where(kind: table))
+  #pagebreak(weak: true)
 
   = Daftar Gambar
-  #outline(target: figure.where(kind: image))
+    #outline(target: figure.where(kind: image))
+  ]
   #pagebreak(weak: true)
 
 ]

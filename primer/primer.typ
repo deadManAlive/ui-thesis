@@ -2,7 +2,8 @@
   set text(
     font: "Times New Roman",
     size: 12pt,
-    lang: "id"
+    lang: "id",
+    hyphenate: true
   )
   set page(
     paper: "a4",
