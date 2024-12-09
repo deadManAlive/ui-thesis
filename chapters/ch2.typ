@@ -8,7 +8,7 @@ Pemodelan propagasi gelombang elektromagnetik didasarkan kepada Optika Geometris
 
 == Persamaan-Persamaan Maxwell
 
-Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) in Gamma$, dengan $Gamma subset RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya.
+Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) = hat(bup(x))x + hat(bup(y))y + hat(bup(z))z in Gamma$, dengan $Gamma subset RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya.
 
 #[
   #set math.equation(numbering: none)
@@ -138,7 +138,7 @@ Persamaan-persamaan @gaussvacuum sampai @binvacuum juga dapat dijabarkan ke dala
 
 $ nabla dot tilde(bup(E)) = 0 $  <fourb>
 $ nabla dot tilde(bup(B)) = 0 $
-$ nabla times tilde(bup(E)) =  -j omega tilde(bup(B)) $
+$ nabla times tilde(bup(E)) =  -j omega tilde(bup(B)) $ <fourfar>
 $ nabla times tilde(bup(B)) =  (j omega)/c^2 tilde(bup(E)) $ <foure>
 
 di mana $tilde(bup(E)) : Gamma times RR arrow RR^3$ dab $tilde(bup(B)) : Gamma times RR arrow RR^3$ masing-masing merupakan medan listrik dan medan magnet sebagai fungsi vektor pada domain frekuensi.
@@ -429,57 +429,240 @@ $ abs(bup(E)(rho_0 + Delta rho)) = 1/r abs(bup(E)(rho_0)) $
 
 sehingga $1/r$ adalah koefisien atenuasi ruang $A(r)$ pada jarak $r$ dari sumber.
 
-== Refleksi dan Refraksi
+== Refleksi dan Transmisi
 
-=== Refleksi
+=== Kondisi Antarmuka Pada Persamaan Maxwell
 
-$ bup(E)_r(bup(p)_r) = mat(E_(i parallel), E_(i perp);) dot mat(R_parallel; R_perp) $
+#figure(
+  image("assets/interface.jpg", width: 60%),
+  caption: [Ilustrasi sebuah segmen pada perbatasan medium]
+) <interface>
 
-$ R_perp = (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t) $
-$ R_parallel = (-eta_1 cos theta_i - eta_2 cos theta_t)/(eta_1 cos theta_i + eta_2 cos theta_t) $
 
-=== Refraksi
+Misakan $Sigma$ adalah sebuah persegi dalam sebuah _loop_ disepanjang batas medium dengan panjang sejajar batas $cal(l)$ dan lebar $delta$ seperti pada @interface, persamaan Faraday @faradarorig menjelaskan hubungan medan magnet dan listrik yang berada di dalam _loop_ tersebut.
 
-$ bup(E)_r(bup(p)_r) = mat(E_(i parallel), E_(i perp);) dot mat(T_parallel; T_perp) $
+$ integral.cont_(diff Sigma) bup(E) dot d bup(cal(l)) = - upright(d) / (upright(d) t) integral.double_Sigma bup(B) dot d bup(S) $ <faradarorig>
 
-$ T_perp = (2 eta_2 cos theta_i)/(eta_2 cos theta_i + eta_1 cos theta_t) $
-$ T_parallel = (2 eta_2 cos theta_i)/(eta_1 cos theta_i + eta_2 cos theta_t) $
+\
 
-== Difraksi
+Jika $delta$ mendekati 0, maka luas $S$ juga mendekati 0 sehingga sisi kanan persamaan tersebut menjadi 0, sedangkan sisi kiri tidak terpengaruh:
 
-$ D(phi, phi') = -(e^(-j pi/4))/(2 sqrt(2 pi k)) [1/cos((phi - phi')/2) minus.plus 1/cos((phi + phi')/2)] $
+#[
+  #set math.equation(number-align: bottom)
+  $
+    lim_(delta arrow 0) integral.cont_(diff Sigma) bup(E) dot d bup(cal(l)) &= lim_(delta arrow 0) - upright(d) / (upright(d) t) integral.double_Sigma bup(B) dot d bup(S) \
+    integral.cont_(diff Sigma) bup(E) dot d bup(cal(l)) &= 0
+  $
+]
 
-== Elektromagnetika Komputasional
+\
 
-$ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+Karena $cal(l)$ dimasing-masing sisi medium memiliki arah yang berbeda dan cukup kecil sehingga $bup(E)$ konstan, maka
 
-$ E_"total" = sum_i E_R[i] $
+$ (bup(E)_2 - bup(E)_1) dot bup(t) = 0 $
 
-#page(flipped: true)[
-  #set par(leading: 1em)
-  #show figure: set block(breakable: true)
-  == Tabel Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
+dengan $bup(t)$ vektor tangensial dari medium, yang berada pada bidang medium. Agar medan listrik kontinyu, maka komponen normal dari antarmuka tersebut harus bernilai 0 sehingga
+
+$ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
+
+=== Koefisien Refleksi dan Transmisi
+
+#[
+  #let un(z) = [$hat(bup(#z))$]
 
   #figure(
-    table(
-      columns: (auto, auto, auto, auto, auto, auto),
-      align: left,
-      table.header([Aspek], [*Ray Tracing*], [*Geometrical Optics*], [*Physical Optics*], [*Geometric Theory \ of Diffraction*], [*Uniform Theory \ of Diffraction*]),
+    image("assets/reftran.jpg", width: 60%),
+    caption: [Refleksi dan transmisi gelombang elektromagnetik $(bup(E)_i, bup(H)_i)$ pada sebuah perbatasan medium pada bidang $x z$]
+  ) <reftrans>
 
-      [Definisi],
-      [Istilah umum yang merujuk kepada metode perhitungan jalur gelombang atau pun partikel pada suatu sistem dengan mempertimbangkan berbagai interaksi antara sinar sebagai representasi jalur dengan sistem.],
-      [Pemodelan propagasi gelombang elektromagnetik ke dalam bentuk sinar-sinar yang bergerak lurus pada medium homogen. Pemodelan ini dapat menjelaskan refleksi dan refraksi.],
-      [Metode pemodelan gelombang elektromagnetik yang juga berbasis kepada representasi sinar dari gelombang elektromagnetik, tetapi juga mempertimbangkan sifat-sifat gelombang dari propagasi elektromagnetik. Dapat memodelkan interferensi, difraksi, dan polarisasi.],
-      [Ekstensi dari _Geometrical Optics_ yang menyertakan pemodelan difraksi. GTD memodelkan difraksi dengan mengasumsikan suatu sumber sekunder dari gelombang elektromagnetik pada titik difraksi sudut.],
-      [Penyempurnaan terhadap GTD yang gagal mengkalkulasi beberapa sudut pada difraksi. UTD menyertakan prinsip-prinsip PO untuk memodelkan difraksi secara lebih akurat.],
+  Medan listrik dari sebuah gelombang elektromagnetik datang ke sebuah perbatasan medium yang bergerak pada bidang $x z$ seperti pada @reftrans dapat diformulasikan sebagai
 
-      [Dasar Teori],
-      [Tergantung bidang aplikasinya, RT dapat didasarkan kepada _geometrical optics_, _geometrical acoustics_, seismologi, relativitas umum, dan sebagainya],
-      [Persamaan eikonal dari persamaan gelombang elektromagnetik dan ekspansi Luneberg-Kline.],
-      [Persamaan-persamaan Maxwell, persamaan Gelombang, prinsip Huygens, dsb.],
-      [_Geometrical optics_, dengan pemodelan difraksi.],
-      [Dengan memasukkan prinsip _physical optics_ ke GTD, maka diskontinuitas pada pemodelan GTD dapat diatasi.]
-    ),
-    caption: [Perbandingan RT, GO, PO, GTD, UTD],
-  )
+  $
+    bup(E)_i = un(y)E_0 e^(-j bup(k)_i dot r)
+  $ <harm2>
+
+  dimana $E_0 e^(-j bup(k)_i dot r) : RR^3 arrow RR$ sedangkan medan akibat refleksi $bup(E)_r$ dan transmisi $bup(E)_t$ pada perbatasan medium adalah
+
+  $
+    bup(E)_r = un(y) Gamma e^(-j bup(k)_r dot bup(r))
+  $ <refl1>
+
+  $
+    bup(E)_r = un(y) T e^(-j bup(k)_t dot bup(r))
+  $ <trans1>
+
+  dimana $Gamma$ dan $T$ adalah koefisien refleksi dan transmisi.
+
+  Dengan $un(z)$ sebagai normal dari antarmuka medium, maka dari persamaan @intcond, didapatkan
+
+  #[
+    #set math.equation(number-align: bottom)
+    $
+      un(z) times (bup(E)_i + bup(E)_r) &= un(z) times bup(E)_t |_(z=0) \
+      un(z) times (un(y)E_0 e^(-j bup(k)_i dot r) + un(y) R e^(-j bup(k)_r dot bup(r))) &= un(z) times un(y) T e^(-j bup(k)_t dot bup(r)) |_(z=0) \
+    $ <continuity>
+  ]
+
+  \
+
+  Selain itu, kontinuitas juga mengharuskan gelombang memiliki fasa yang sama pada titik refleksi, sehingga
+
+  $
+    bup(k)_i dot bup(r) = bup(k)_r dot bup(r) = bup(k)_t dot bup(r) |_(z=0)
+  $ <continuity1>
+
+  \
+
+  Karena $bup(k) = abs(bup(k))hat(bup(k))$, sedangkan $abs(bup(k))$ adalah intrinsik untuk setiap medium, sehingga @continuity1 menjadi
+
+  $ k_1 sin theta_i = k_1 sin theta_r = k_2 sin theta_t $
+
+  yang menunjukkan hukum refleksi
+
+  $ theta_i = theta_r $
+
+  dan hukum Snellius
+
+  $ n_1 sin theta_i = n_2 sin theta_t $
+
+  dimana $k_n = n k_0$, $k_0$ angka gelombang pada vakum.
+
+  \
+
+  Selain itu, persamaan @continuity1 menunjukkan bahwa persamaan @continuity dapat disederhanakan menjadi
+
+  $ 1 + Gamma = T $ <refltrans>
+
+  yang menunjukkan hubungan koefisien refleksi dan transmisi.
+
+  === Refleksi dan Transmisi Gelombang Elektromagnetik
+
+  Jika kembali diperhatikan persamaan gelombang listrik harmonik dengan sembarang arah osilasi
+
+  $ bup(E) = E_0 e^(-j bup(k) dot bup(r)) $
+
+  dan kemudian diaplikasikan ke persamaan @fourfar, akan didapatkan
+
+  #[
+    #set math.equation(number-align: bottom)
+    $
+       -j omega bup(B) &= nabla times bup(E) \
+       &= nabla times E_0 e^(-j bup(k) dot bup(r)) \
+       &= -j bup(k) times E_0 e^(-j bup(k) dot bup(r)) \
+       &= -j bup(k) times bup(E) \
+       bup(B) &= (bup(k) times bup(E)) / omega
+    $
+
+    karena $bup(k) = abs(bup(k)) hat(bup(k)) = omega/v bup(hat(k)) = omega sqrt(mu epsilon) hat(bup(k))$, maka
+
+    $
+      bup(B) &=(omega sqrt(mu epsilon) hat(bup(k)) times bup(E))/omega \
+      &= sqrt(mu epsilon) hat(bup(k)) times bup(E)
+    $
+
+    atau juga dapat ditulis dalam
+
+    $ bup(H) = (hat(bup(k)) times bup(E)) / eta $
+
+    dimana $eta = sqrt(mu/epsilon)$ impedansi medium.
+
+    \
+
+    Mengaplikasikan persamaan tersebut ke persamaan @harm2 hingga @trans1 memberikan
+
+    $ bup(H)_i = E_0/eta_1 bup(k)_i times e^(-j bup(k)_i dot bup(r))  $ <magr1>
+    $ bup(H)_i = (Gamma E_0)/eta_1 bup(k)_r times e^(-j bup(k)_r dot bup(r))  $
+    $ bup(H)_i = (T E_0)/eta_1 bup(k)_t times e^(-j bup(k)_t dot bup(r))  $ <magr3>
+    
+    \
+
+    Lalu seperti halnya medan listrik, kontinuitas medan magnet dapat ditentukan dengan
+
+    $ un(z) times (bup(H)_i + bup(H)_r) &= un(z) times bup(H)_t |_(z=0) $
+
+    dan dari @reftrans dapat diuraikan masing-masing vektor gelombang menjadi komponen-komponen unitnya
+
+    $ un(k)_i &= un(x) sin theta_i + un(z) cos theta_i $
+    $ un(k)_r &= un(x) sin theta_r - un(z) cos theta_r $
+    $ un(k)_t &= un(x) sin theta_t + un(z) cos theta_t $
+
+    sehingga persamaan @magr1 hingga @magr3 menjadi
+
+    $ 1/eta_1 (-cos theta_i e^(-j bup(k)_i dot bup(r))+Gamma cos theta_r e^(-j bup(k)_r dot bup(r)))=T/eta_2(-cos theta_t e^(-j bup(k)_t dot bup(r))) $
+
+    \
+
+    Karena $theta_i = theta_r$ dan pada $z=0$, fasa tiap suku adalah sama, maka
+
+    $ 1/eta_1 (Gamma - 1) cos theta_i = - T/theta_2 cos theta_t $
+
+    \
+
+    Dengan @refltrans, maka didapatkan
+
+    $
+      Gamma = (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t)
+    $ <gammafin>
+
+    dan
+
+    $
+      T = (2 eta_2 cos theta_i)/(eta_2 cos theta_i + eta_1 cos theta_t)
+    $ <tfin>
+
+    \
+
+    Kedua koefisien berlaku ketika medan listrik tegak lurus dengan bidang refleksi, sehingga $Gamma = Gamma_perp$ dan $T = T_perp$ untuk persamaan @gammafin dan @tfin.
+
+    Dengan cara yang sama, tetapi memutar $bup(E)$ dan $bup(H)$ sehingga $bup(E)$ pada bidang refleksi, didapatkan
+
+    $
+      Gamma_parallel = (eta_2 cos theta_t - eta_1 cos theta_i)/(eta_2 cos theta_t + eta_1 cos theta_i)
+    $
+
+    dan
+
+    $
+      T_parallel = (2 eta_2 cos theta_i)/(eta_2 cos theta_t + eta_1 cos theta_i)
+    $
+  ]
 ]
+
+// == Difraksi
+
+// $ D(phi, phi') = -(e^(-j pi/4))/(2 sqrt(2 pi k)) [1/cos((phi - phi')/2) minus.plus 1/cos((phi + phi')/2)] $
+
+// == Elektromagnetika Komputasional
+
+// $ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+
+// $ E_"total" = sum_i E_R[i] $
+
+// #page(flipped: true)[
+//   #set par(leading: 1em)
+//   #show figure: set block(breakable: true)
+//   == Tabel Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
+
+//   #figure(
+//     table(
+//       columns: (auto, auto, auto, auto, auto, auto),
+//       align: left,
+//       table.header([Aspek], [*Ray Tracing*], [*Geometrical Optics*], [*Physical Optics*], [*Geometric Theory \ of Diffraction*], [*Uniform Theory \ of Diffraction*]),
+
+//       [Definisi],
+//       [Istilah umum yang merujuk kepada metode perhitungan jalur gelombang atau pun partikel pada suatu sistem dengan mempertimbangkan berbagai interaksi antara sinar sebagai representasi jalur dengan sistem.],
+//       [Pemodelan propagasi gelombang elektromagnetik ke dalam bentuk sinar-sinar yang bergerak lurus pada medium homogen. Pemodelan ini dapat menjelaskan refleksi dan refraksi.],
+//       [Metode pemodelan gelombang elektromagnetik yang juga berbasis kepada representasi sinar dari gelombang elektromagnetik, tetapi juga mempertimbangkan sifat-sifat gelombang dari propagasi elektromagnetik. Dapat memodelkan interferensi, difraksi, dan polarisasi.],
+//       [Ekstensi dari _Geometrical Optics_ yang menyertakan pemodelan difraksi. GTD memodelkan difraksi dengan mengasumsikan suatu sumber sekunder dari gelombang elektromagnetik pada titik difraksi sudut.],
+//       [Penyempurnaan terhadap GTD yang gagal mengkalkulasi beberapa sudut pada difraksi. UTD menyertakan prinsip-prinsip PO untuk memodelkan difraksi secara lebih akurat.],
+
+//       [Dasar Teori],
+//       [Tergantung bidang aplikasinya, RT dapat didasarkan kepada _geometrical optics_, _geometrical acoustics_, seismologi, relativitas umum, dan sebagainya],
+//       [Persamaan eikonal dari persamaan gelombang elektromagnetik dan ekspansi Luneberg-Kline.],
+//       [Persamaan-persamaan Maxwell, persamaan Gelombang, prinsip Huygens, dsb.],
+//       [_Geometrical optics_, dengan pemodelan difraksi.],
+//       [Dengan memasukkan prinsip _physical optics_ ke GTD, maka diskontinuitas pada pemodelan GTD dapat diatasi.]
+//     ),
+//     caption: [Perbandingan RT, GO, PO, GTD, UTD],
+//   )
+// ]
