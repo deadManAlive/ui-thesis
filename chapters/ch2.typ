@@ -628,41 +628,64 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
   ]
 ]
 
-// == Difraksi
+== Difraksi
 
-// $ D(phi, phi') = -(e^(-j pi/4))/(2 sqrt(2 pi k)) [1/cos((phi - phi')/2) minus.plus 1/cos((phi + phi')/2)] $
+Difraksi adalah perubahan arah gelombang disekitar celah atau objek penghambat. Difraksi merupakan fenomena gelombang yang tidak dapat dijelaskan oleh _geometrical optics_ murni karena didasarkan oleh sifat gelombang dari radiasi elektromagnetik. Oleh karena itu, _geometric theory of diffraction_ (GTD) dikembangkan untuk menyertakan difraksi sudut pada GO. Seperti halnya GO, GTD memodelkan gelombang sebagai eikonal dari sinar-sinar yang bergerak pada medium. Difraksi terjadi ketika suatu sinar mengenai sudut penghambat. Pada GTD, titik difraksi menjadi sumber dari sinar-sinar baru sebagai model dari perubahan arah gelombang akibat difraksi.
 
-// == Elektromagnetika Komputasional
+#figure(
+  image("assets/diffr.png", width: 60%),
+  caption: [Difraksi sudut dan wilayah-wilayahnya]
+) <diffr>
 
-// $ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+Hal yang perlu diperhatikan bahwa medan elektromagnetik hasil difraksi tidak mungkin lebih besar dari medan yang datang. @diffr menunjukkan beberapa ruang difraksi yang dibatasi oleh batas refleksi (antara ruang I dan II) dan batas bayangan (antara ruang II dan III). Jika medan magnet total yang mengenai sudut dari sumber $S$ adalah $bup(E)_"total"$, maka
 
-// $ E_"total" = sum_i E_R[i] $
+$
+  bup(E)_"total" = cases(
+    bup(E)_i + bup(E)_r + bup(E)_d " " &"ruang I",
+    bup(E)_i _ bup(E)_d " " &"ruang II",
+    bup(E)_d " " &"ruang III"
+  )
+$
 
-// #page(flipped: true)[
-//   #set par(leading: 1em)
-//   #show figure: set block(breakable: true)
-//   == Tabel Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
+dimana
 
-//   #figure(
-//     table(
-//       columns: (auto, auto, auto, auto, auto, auto),
-//       align: left,
-//       table.header([Aspek], [*Ray Tracing*], [*Geometrical Optics*], [*Physical Optics*], [*Geometric Theory \ of Diffraction*], [*Uniform Theory \ of Diffraction*]),
+$ bup(E)_d = F E_0 e^(-j k s) $
 
-//       [Definisi],
-//       [Istilah umum yang merujuk kepada metode perhitungan jalur gelombang atau pun partikel pada suatu sistem dengan mempertimbangkan berbagai interaksi antara sinar sebagai representasi jalur dengan sistem.],
-//       [Pemodelan propagasi gelombang elektromagnetik ke dalam bentuk sinar-sinar yang bergerak lurus pada medium homogen. Pemodelan ini dapat menjelaskan refleksi dan refraksi.],
-//       [Metode pemodelan gelombang elektromagnetik yang juga berbasis kepada representasi sinar dari gelombang elektromagnetik, tetapi juga mempertimbangkan sifat-sifat gelombang dari propagasi elektromagnetik. Dapat memodelkan interferensi, difraksi, dan polarisasi.],
-//       [Ekstensi dari _Geometrical Optics_ yang menyertakan pemodelan difraksi. GTD memodelkan difraksi dengan mengasumsikan suatu sumber sekunder dari gelombang elektromagnetik pada titik difraksi sudut.],
-//       [Penyempurnaan terhadap GTD yang gagal mengkalkulasi beberapa sudut pada difraksi. UTD menyertakan prinsip-prinsip PO untuk memodelkan difraksi secara lebih akurat.],
+dengan $D$ adalah koefisien difraksi yang berupa@keller_geometrical_1962
 
-//       [Dasar Teori],
-//       [Tergantung bidang aplikasinya, RT dapat didasarkan kepada _geometrical optics_, _geometrical acoustics_, seismologi, relativitas umum, dan sebagainya],
-//       [Persamaan eikonal dari persamaan gelombang elektromagnetik dan ekspansi Luneberg-Kline.],
-//       [Persamaan-persamaan Maxwell, persamaan Gelombang, prinsip Huygens, dsb.],
-//       [_Geometrical optics_, dengan pemodelan difraksi.],
-//       [Dengan memasukkan prinsip _physical optics_ ke GTD, maka diskontinuitas pada pemodelan GTD dapat diatasi.]
-//     ),
-//     caption: [Perbandingan RT, GO, PO, GTD, UTD],
-//   )
-// ]
+$ D(phi, phi') = -(e^(-j pi/4))/(2 sqrt(2 pi k)) [1/cos((phi - phi')/2) minus.plus 1/cos((phi + phi')/2)] $
+
+== Elektromagnetika Komputasional
+
+$ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+
+$ E_"total" = sum_i E_R[i] $
+
+#page(flipped: true)[
+  #set par(leading: 1em)
+  #show figure: set block(breakable: true)
+  == Tabel Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
+
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto, auto, auto),
+      align: left,
+      table.header([Aspek], [*Ray Tracing*], [*Geometrical Optics*], [*Physical Optics*], [*Geometric Theory \ of Diffraction*], [*Uniform Theory \ of Diffraction*]),
+
+      [Definisi],
+      [Istilah umum yang merujuk kepada metode perhitungan jalur gelombang atau pun partikel pada suatu sistem dengan mempertimbangkan berbagai interaksi antara sinar sebagai representasi jalur dengan sistem.],
+      [Pemodelan propagasi gelombang elektromagnetik ke dalam bentuk sinar-sinar yang bergerak lurus pada medium homogen. Pemodelan ini dapat menjelaskan refleksi dan refraksi.],
+      [Metode pemodelan gelombang elektromagnetik yang juga berbasis kepada representasi sinar dari gelombang elektromagnetik, tetapi juga mempertimbangkan sifat-sifat gelombang dari propagasi elektromagnetik. Dapat memodelkan interferensi, difraksi, dan polarisasi.],
+      [Ekstensi dari _Geometrical Optics_ yang menyertakan pemodelan difraksi. GTD memodelkan difraksi dengan mengasumsikan suatu sumber sekunder dari gelombang elektromagnetik pada titik difraksi sudut.],
+      [Penyempurnaan terhadap GTD yang gagal mengkalkulasi beberapa sudut pada difraksi. UTD menyertakan prinsip-prinsip PO untuk memodelkan difraksi secara lebih akurat.],
+
+      [Dasar Teori],
+      [Tergantung bidang aplikasinya, RT dapat didasarkan kepada _geometrical optics_, _geometrical acoustics_, seismologi, relativitas umum, dan sebagainya],
+      [Persamaan eikonal dari persamaan gelombang elektromagnetik dan ekspansi Luneberg-Kline.],
+      [Persamaan-persamaan Maxwell, persamaan Gelombang, prinsip Huygens, dsb.],
+      [_Geometrical optics_, dengan pemodelan difraksi.],
+      [Dengan memasukkan prinsip _physical optics_ ke GTD, maka diskontinuitas pada pemodelan GTD dapat diatasi.]
+    ),
+    caption: [Perbandingan RT, GO, PO, GTD, UTD],
+  )
+]
