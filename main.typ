@@ -12,6 +12,15 @@
 
   #include "chapters/ch2.typ"
   #pagebreak(weak: true)
+
+  #include "chapters/ch3.typ"
+  #pagebreak(weak: true)
+
+  #include "chapters/ch4.typ"
+  #pagebreak(weak: true)
+
+  #include "chapters/ch5.typ"
+  #pagebreak(weak: true)
 ]
 
-#post
+#post(attach: true)

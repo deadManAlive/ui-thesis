@@ -9,8 +9,7 @@
   time     : "Agustus 2024",
   degree   : "Sarjana Teknik",
   advisors : (
-    "Dr. Doom",
-    "Dr. Strange",
+    "Prof. Dr. Ir. Eko Tjipto Rahardjo, M.Sc.",
   ),
   examiners: (
     "Mr. Mr.",

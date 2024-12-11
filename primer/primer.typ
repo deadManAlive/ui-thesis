@@ -76,6 +76,17 @@
   )
 
   show figure.where(
+    kind: raw
+  ): set figure(
+    supplement: [Kode Sumber],
+    placement: none
+  )
+  
+  show figure.where(
+    kind: raw
+  ): set block(breakable: true)
+
+  show figure.where(
     kind: table
   ): set figure(
     supplement: [Tabel],

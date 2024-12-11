@@ -31,11 +31,11 @@
   ]
 
   #[
-    #let dpad = 15pt
+    #let dpad = (x: 10pt, y: 12pt)
     #table(
       columns: 4,
       stroke: none,
-      inset: (dpad, dpad, dpad, (x: 25pt, y: dpad)),
+      inset: dpad,
       ..for a in cfg.advisors {
         ([Pembimbing], [:], a, [(......tanda tangan......)])
       },

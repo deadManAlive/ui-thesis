@@ -51,9 +51,19 @@ Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan d
   $
 
   adalah arus listrik berupa kerapatan arus listrik $bup(J)$ yang melalui $Sigma$.
+
+  Medan listrik juga dapat direpresentasikan sebagai medan induksi listrik $bup(D)$, di mana pada ruang tanpa sumber medan listrik memiliki hubungan
+
+  $ bup(D) = epsilon bup(E) $
+
+  dan medan magnet juga dapat direpresentasikan melalui medan magnetisasi $bup(H)$, yang pada ruang tanpa sumber medan magnet
+
+  $ bup(H) = 1/mu_0 bup(B) $
 ]
 
-Persamaan-persamaan Maxwell dapat dijabarkan dalam bentuk integral maupun diferensial, di mana bentuk integral dari persamaan-persamaan ini dapat menjelaskan perilaku medan listrik dan magnet pada suatu area pada ruang sementara itu bentuk diferensialnya membantu dalam menjelaskan perilaku medan listrik dan medan magnet lokal pada suatu titik.
+\
+
+Persamaan-persamaan Maxwell ini dapat dijabarkan dalam bentuk integral maupun diferensial, di mana bentuk integral dari persamaan-persamaan ini dapat menjelaskan perilaku medan listrik dan magnet pada suatu area pada ruang sementara itu bentuk diferensialnya membantu dalam menjelaskan perilaku medan listrik dan medan magnet lokal pada suatu titik.
 
 === Hukum Gauss
 
@@ -90,7 +100,7 @@ Sementara persamaan pertama dan kedua dari persamaan-persamaan Maxwell menunjukk
 
 === Hukum Ampère
 
-Persamaan terakhir dari persamaan Maxwell berkorelasi dengan hukum Ampère yang menunjukkan bahwa perubahan medan listrik juga dapat menimbulkan medan magnet. Bentuk integral dari persamaan ini menunjukkan bahwa fluks magnet melingkar akar terbentuk pada suatu lingkaran tertutup (_loop_) ketika pada permukaan yang dilingkupi oleh lingkaran tertutup tersebut dilewati oleh muatan listrik dan/atau terjadi perubahan medan magnet. Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di suatu titik terdapat kerapatan arus dan/atau perubahan medan listrik, maka akan timbul medan magnet melingkar di titik tersebut (_curl_). @ampereimg menunjukkan efek dari hukum ini dimana ketika arus melewati sebuah kawat, maka akan terbentuk medan magnet melingkar di sekitarnya.
+Persamaan terakhir dari persamaan Maxwell berkorelasi dengan hukum Ampère yang menunjukkan bahwa perubahan medan listrik juga dapat menimbulkan medan magnet. Bentuk integral dari persamaan ini menunjukkan bahwa fluks magnet melingkar akar terbentuk pada suatu lingkaran tertutup (_loop_) ketika pada permukaan yang dilingkupi oleh lingkaran tertutup tersebut dilewati oleh muatan listrik dan/atau terjadi perubahan medan magnet. Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di suatu titik terdapat kerapatan arus dan/atau perubahan medan listrik, maka akan timbul medan magnet melingkar di titik tersebut (_curl_). @ampereimg menunjukkan efek dari hukum ini di mana ketika arus melewati sebuah kawat, maka akan terbentuk medan magnet melingkar di sekitarnya.
 
 #figure(
   image("assets/ampereimg.png", width: 80%),
@@ -119,6 +129,8 @@ $ nabla times nabla times bup(E) = - diff / (diff t) nabla times bup(B) $ <ceinv
 Lalu dengan melakukan substitusi persamaan @binvacuum ke persamaan @ceinvacuum didapatkan:
 
 $ nabla times nabla times bup(E) = -mu_0 epsilon_0 diff^2/(diff t^2) bup(E) $ <cceinvacum>
+
+\
 
 Salah satu identitas operator _curl_ adalah $nabla times (nabla times F) = nabla (nabla dot F)-nabla^2 F$, sedangkan pada ruang hampa tnapa sumber fluks listrik $nabla dot bup(E) = 0$, sehingga persamaan @cceinvacum menjadi:
 
@@ -159,6 +171,10 @@ Jika dilakukan transformasi Fourier pada persamaan @ewaveequation, akan didapatk
 di mana persamaan @helmholtz adalah persamaan Helmholtz dengan $k=omega/c$ adalah angka gelombang.
 
 === Persamaan Eikonal
+
+Indeks refraksi $n$ merupakan sebuah skalar yang berupa perbandingan antara cepat rambat gelombang elektromagnetik pada vakum $c$ dan kecepatan fasa pada material $v$
+
+$ n = c/v  = sqrt(mu epsilon)/sqrt(mu_0 epsilon_0) = sqrt(mu_r epsilon_r) $
 
 Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium juga berupa fungsi ruang:
 
@@ -264,7 +280,7 @@ Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$.
 
 Salah satu teorema dalam kalkulus vektor adalah bahwa vektor gradien tegak lurus dengan kurva atau permukaan ketinggian. Oleh karena itu, $bup(p)$ sebagai gradien dari permukaan ketinggian dari $S$ akan selalu tegak lurus dengan permukaan tersebut. Hal ini juga dapat dibuktikan dengan menjabarkan vektor Poynting $bup(S)$ rata-rata dari medan elektromagnetik yang berupa
 
-$ angle.l bup(S) angle.r = 1/(2mu) cal(Re)[bup(E) times dash(bup(B))] $ <poynting0>
+$ angle.l bup(S) angle.r = 1/(2mu_0) cal(Re)[bup(E) times dash(bup(B))] $ <poynting0>
 
 \
 
@@ -347,19 +363,19 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
   Menggunakan perkalian silang tiga vektor $bup(A) times (bup(B) times bup(C)) = (bup(A) dot bup(C))bup(B) - (bup(A) dot bup(B))bup(C)$, maka
 
   $
-    angle.l bup(S) angle.r &= 1/(2 mu) cal(Re)[bup(E) times dash(bup(B))] \
-    &= 1/(2mu)cal(Re)[eo(E) times (nabla ps times dash(eo(E)))] \
-    &= 1/(2mu)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
+    angle.l bup(S) angle.r &= 1/(2 mu_0) cal(Re)[bup(E) times dash(bup(B))] \
+    &= 1/(2mu_0)cal(Re)[eo(E) times (nabla ps times dash(eo(E)))] \
+    &= 1/(2mu_0))cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
   $ <poynting1>
 
   Persamaan @pseoiszero membuat suku kedua dari @poynting1 bernilai nol, sedangkan $nabla ps$ adalah riil, selain itu
 
-  $ angle.l w_e angle.r = 1/4 cal(Re)[epsilon bup(E) dot dash(bup(E))] $ <elintencity>
+  $ angle.l w_e angle.r = 1/4 cal(Re)[epsilon_0 bup(E) dot dash(bup(E))] $ <elintencity>
 
   adalah kerapatan energi listrik rata-rata, sehingga
 
   $
-    angle.l bup(S) angle.r &= 2/(mu epsilon) angle.l w_e angle.r nabla ps
+    angle.l bup(S) angle.r &= 2/(mu_0 epsilon_0) angle.l w_e angle.r nabla ps
   $ <finalpoynting>
 ]
 
@@ -383,7 +399,7 @@ Sementara itu, daya total $P$ yang dipancarkan oleh suatu sumber dapat didefinis
 
 $ P = integral bup(I)(bup(r)) dot d bup(A) $ <power>
 
-dimana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran intensitas dan $bup(A)$ suatu permukaan tertutup yang mencakup suatu sumber. Pada gelombang planar, persamaan ini tidak relevan karena sumber gelombang berupa bidang tak hingga sehingga P hanya berlaku pada suatu permukaan $cal(A) in bup(A)$. Tetapi, pada suatu sumber non-planar seperti sumber titik, gelombang yang dihasilkan adalah gelombang bola (_spherical_). Pada bentuk gelombang ini, persamaan @power menjadi
+di mana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran intensitas dan $bup(A)$ suatu permukaan tertutup yang mencakup suatu sumber. Pada gelombang planar, persamaan ini tidak relevan karena sumber gelombang berupa bidang tak hingga sehingga P hanya berlaku pada suatu permukaan $cal(A) in bup(A)$. Tetapi, pada suatu sumber non-planar seperti sumber titik, gelombang yang dihasilkan adalah gelombang bola (_spherical_). Pada bentuk gelombang ini, persamaan @power menjadi
 
 #[
   #set math.equation(number-align: bottom)
@@ -398,7 +414,7 @@ dimana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran i
   caption: [Ilustrasi hukum kuadrat terbalik]
 ) <invsqr>
 
-dimana $I$ dan $r$ memiliki hubungan kuadrat terbalik, seperti yang diilustrasikan oleh @invsqr dimana pada jumlah fluks yang tetap akan melewati permukaan dengan rasio $n^2$ untuk setiap perubahan jarak $n$ menjauhi sumber radiasi.
+di mana $I$ dan $r$ memiliki hubungan kuadrat terbalik, seperti yang diilustrasikan oleh @invsqr di mana pada jumlah fluks yang tetap akan melewati permukaan dengan rasio $n^2$ untuk setiap perubahan jarak $n$ menjauhi sumber radiasi.
 
 Kemudian, karena $c dash(c) = abs(c)^2$ dengan $c in CC$, maka persaamaan @elintencity juga dapat ditulis sebagai
 
@@ -419,7 +435,7 @@ $
   caption: [Muka gelombang dan sinar pada gelombang lingkaran],
 ) <spherical>
 
-@spherical menunjukkan muka gelombang sebuah gelombang lingkaran (irisan 2 dimensi dari gelombang bola), dimana muka gelombang $sigma_0$ pada waktu $t$ memiliki jari-jari $rho_0$ dan kemudian $rho_0 + Delta rho$ setelah $Delta t$. Karena $P$ konstan, maka
+@spherical menunjukkan muka gelombang sebuah gelombang lingkaran (irisan 2 dimensi dari gelombang bola), di mana muka gelombang $sigma_0$ pada waktu $t$ memiliki jari-jari $rho_0$ dan kemudian $rho_0 + Delta rho$ setelah $Delta t$. Karena $P$ konstan, maka
 
 $ (abs(bup(E)(rho_0)))/(abs(bup(E)(rho_0 + Delta rho))) = (rho_0+Delta rho)/rho_0 $ <intencratio>
 
@@ -481,7 +497,7 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
     bup(E)_i = un(y)E_0 e^(-j bup(k)_i dot r)
   $ <harm2>
 
-  dimana $E_0 e^(-j bup(k)_i dot r) : RR^3 arrow RR$ sedangkan medan akibat refleksi $bup(E)_r$ dan transmisi $bup(E)_t$ pada perbatasan medium adalah
+  di mana $E_0 e^(-j bup(k)_i dot r) : RR^3 arrow RR$ sedangkan medan akibat refleksi $bup(E)_r$ dan transmisi $bup(E)_t$ pada perbatasan medium adalah
 
   $
     bup(E)_r = un(y) Gamma e^(-j bup(k)_r dot bup(r))
@@ -491,7 +507,7 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
     bup(E)_r = un(y) T e^(-j bup(k)_t dot bup(r))
   $ <trans1>
 
-  dimana $Gamma$ dan $T$ adalah koefisien refleksi dan transmisi.
+  di mana $Gamma$ dan $T$ adalah koefisien refleksi dan transmisi.
 
   Dengan $un(z)$ sebagai normal dari antarmuka medium, maka dari persamaan @intcond, didapatkan
 
@@ -525,7 +541,7 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
   $ n_1 sin theta_i = n_2 sin theta_t $
 
-  dimana $k_n = n k_0$, $k_0$ angka gelombang pada vakum.
+  di mana $k_n = n k_0$, $k_0$ angka gelombang pada vakum.
 
   \
 
@@ -564,7 +580,7 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
     $ bup(H) = (hat(bup(k)) times bup(E)) / eta $
 
-    dimana $eta = sqrt(mu/epsilon)$ impedansi medium.
+    di mana $eta = sqrt(mu/epsilon)$ impedansi medium.
 
     \
 
@@ -614,7 +630,7 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
     Kedua koefisien berlaku ketika medan listrik tegak lurus dengan bidang refleksi, sehingga $Gamma = Gamma_perp$ dan $T = T_perp$ untuk persamaan @gammafin dan @tfin.
 
-    Dengan cara yang sama, tetapi memutar $bup(E)$ dan $bup(H)$ sehingga $bup(E)$ pada bidang refleksi, didapatkan
+    Dengan cara yang sama, tetapi dengan memutar $bup(E)$ dan $bup(H)$ sehingga $bup(E)$ pada bidang refleksi dan $bup(B)$ tegak lurus, didapatkan
 
     $
       Gamma_parallel = (eta_2 cos theta_t - eta_1 cos theta_i)/(eta_2 cos theta_t + eta_1 cos theta_i)
@@ -647,7 +663,7 @@ $
   )
 $
 
-dimana
+di mana
 
 $ bup(E)_d = F E_0 e^(-j k s) $
 
@@ -657,9 +673,15 @@ $ D(phi, phi') = -(e^(-j pi/4))/(2 sqrt(2 pi k)) [1/cos((phi - phi')/2) minus.pl
 
 == Elektromagnetika Komputasional
 
+=== _Ray Tracing_
+
+=== _Shooting and Bouncing Rays_
+
 $ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
 
 $ E_"total" = sum_i E_R[i] $
+
+$ "RSSI" = 10 log_(10) abs(bup(E)_"total")^2/(1 "mW") space "dBm"  $
 
 #page(flipped: true)[
   #set par(leading: 1em)

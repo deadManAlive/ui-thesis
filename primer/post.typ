@@ -1,4 +1,4 @@
-#let post = [
+#let post(attach: bool) = [
   #[
     #show heading.where(level: 1): set heading(
       numbering: none
@@ -11,13 +11,15 @@
       #v(1.5em)
     ]
 
-    #include "../attachment.typ"
-    #pagebreak(weak: true)
-
     #[
       #set par(leading: 1em)
       #set block(spacing: 1em)
       #bibliography("../sources.bib", style: "ieee", title: [Daftar Pustaka])
+      #pagebreak(weak: true)
+    ]
+
+    #if attach [
+      #include "../attachment.typ"
     ]
   ]
 ]
