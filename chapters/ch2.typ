@@ -8,7 +8,9 @@ _Ray tracing_ merupakan kerangka kerja ilmiah yang hadir di berbagai bidang disi
 Dengan kata lain, agar suatu fenomena gelombang dapat dimodelkan melalui _ray tracing_, terdapat dua hal yang perlu diperhatikan, yaitu bahwa konsep sinar sebagai representasi propagasi gelombang valid pada ruang terkait serta terdapat mekanisme-mekanisme yang menjelaskan interaksi sinar tersebut dengan lingkungan.
 
 Pemodelan propagasi gelombang elektromagnetik didasarkan kepada Optika Geometris (_Geometrical Optics_/GO) berupa pendekatan asimtotik terhadap persamaan Maxwell yang memperlakukan gelombang elektromagnetik sebagi sinar-sinar dan dapat menjadi mekanisme yang menjelaskan refleksi dan refraksi.
-_Geometric theory of diffraction_ (GTD) dikembangkan untuk menjelaskan difraksi@keller_geometrical_1962, dan kemudian _uniform theory of diffraction_ (UTD), yang bekerja menggunakan prinsip Optika Fisik (_Physical Optics_/PO) berupa perkembangan selanjutnya dari GO dengan mempertimbangkan sifat gelombang dari sinar dan dapat menjelaskan interferensi, difraksi, polarisasi, dan lainnya yang tidak dapat dijelaskan oleh GO@albani_uniform_2011. Tergantung kebutuhan, mekanisme lainnya seperti BSDF untuk memodelkan hamburan permukaan, dan lainnya dapat diintegrasikan ke dalam sistem untuk memodelkan fenomena gelombang yang berbeda.
+_Geometric theory of diffraction_ (GTD) dikembangkan untuk menjelaskan difraksi@keller_geometrical_1962 yang kemudian berkembang menjadi _uniform theory of diffraction_ (UTD) untuk menjawab beberapa permasalahan pada GTD@paknys_applied_2016.
+
+Selain itu juga terdapat konsep _physical optics_ (PO) sebagai alternatif dari GO yang mempertimbangkan karakter gelombang dari propagasi dan dapat menjelaskan interferensi, difraksi, polarisasi, dan lainnya yang tidak dapat dijelaskan oleh GO@albani_uniform_2011, serta _physical theory of diffraction_ (PTD) sebagai ekuivalen dari GTD dengan basis PO yang memberikan koreksi pada difraksi di sekitar permukaan konduktif@balanis_balanis_2024. Tergantung kebutuhan, mekanisme lainnya seperti _Bidirectional Scattering Distribution Function_ (BSDF) untuk memodelkan hamburan permukaan, dan lainnya dapat diintegrasikan ke dalam sistem untuk memodelkan fenomena gelombang yang berbeda.
 
 == Persamaan-Persamaan Maxwell
 
@@ -206,10 +208,10 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
 
   \
 
-  Operator Laplace (Laplacian) $nabla^2$ memiliki identitas $nabla^2 (psi dot bup(F)) = bup(F) nabla^2 psi + 2 nabla psi dot nabla bup(F) + psi nabla^2 bup(F)$ dengan $psi$ medan skalar dan $bup(F)$ medan vektor, sehingga suku pertama dari persamaan @a1 dapat dikembangkan menjadi:
+  Operator Laplace (Laplacian) $nabla^2$ memiliki identitas $nabla^2 (psi bup(F)) = bup(F) nabla^2 psi + 2 (nabla psi dot nabla) bup(F) + psi nabla^2 bup(F)$ dengan $psi$ medan skalar dan $bup(F)$ medan vektor, sehingga suku pertama dari persamaan @a1 dapat dikembangkan menjadi:
 
   $
-    sn 1/jw [en nabla^2 ex  + 2 nabla ex dot nabla en + ex nabla^2 en] \
+    sn 1/jw [en nabla^2 ex  + 2 (nabla ex dot nabla) en + ex nabla^2 en] \
     + nr k^2 sn ex/jw en = 0
   $
 
@@ -225,22 +227,22 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
 
   $
     sn 1/jw [-j k ex en nabla^2 phi.alt(bup(r)) - k^2 ex en (nabla phi.alt(bup(r)))^2 \
-    - 2 j k ex nabla phi.alt(bup(r)) dot nabla en + ex nabla^2 en \
+    - 2 (j k ex nabla phi.alt(bup(r)) dot nabla) en + ex nabla^2 en \
     + nr k^2 ex en
     ] &= 0 \
 
     ex sn 1/jw [-j k en nabla^2 phi.alt(bup(r)) - k^2 en (nabla phi.alt(bup(r)))^2 \
-    - 2 j k nabla phi.alt(bup(r)) dot nabla en + nabla^2 en \
+    - 2 (j k nabla phi.alt(bup(r)) dot nabla) en + nabla^2 en \
     + nr k^2 en
     ] &= 0 \
 
     ex sn 1/jw [(nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2) \
-    - j(k en nabla^2 phi.alt(bup(r))) + 2k nabla phi.alt(bup(r)) dot nabla en)] &= 0
+    - j(k en nabla^2 phi.alt(bup(r)) + 2k (nabla phi.alt(bup(r)) dot nabla) en)] &= 0
   $ <lkexpanded>
 
 \
 
-  Agar persamaan @lkexpanded benar, maka suku riil dan imajiner dari persamaan tersebut harus sama dengan 0.
+  Agar persamaan @lkexpanded benar untuk $omega$ yang sangat besar, maka suku riil dan imajiner dari persamaan tersebut harus sama dengan 0.
 
   $
     nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2 &= 0 \
@@ -370,6 +372,8 @@ Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vek
 
 == Atenuasi Ruang
 
+=== Daya dan Intensitas Gelombang Elektromagnetik
+
 Jika suatu vektor unit $hat(bup(s)) $ dapat didefinisikan sebagai $(nabla phi.alt(bup(r)))/(norm(nabla phi.alt(bup(r)))) = (nabla phi.alt(bup(r)))/n$, maka persamaan @finalpoynting dapat ditulis sebagai
 
 $ angle.l bup(S) angle.r = 2 c angle.l w_e angle.r hat(bup(s)) $
@@ -429,6 +433,26 @@ dan jika perhitungan dimulai dari sumber ($rho_0 = 0$) dan permukaan yang berjar
 $ abs(bup(E)(rho_0 + Delta rho)) = 1/r abs(bup(E)(rho_0)) $
 
 sehingga $1/r$ adalah koefisien atenuasi ruang $A(r)$ pada jarak $r$ dari sumber, sesuai dengan persamaan @epropir.
+
+=== Atenuasi Ruang Secara Umum
+
+Suku imajiner dari persamaan @lkexpanded akan memberikan
+
+#[
+  #set math.equation(number-align: bottom)
+  #let en = [$tilde(bup(E))_i (bup(r))$]
+  #let pr = [$phi.alt(bup(r))$]
+
+  $
+    en nabla^2 pr &= -2 (nabla pr dot nabla) en
+  $
+  
+]
+
+#figure(
+  image("assets/gc.jpg", width: 80%),
+  caption: [Dua permukaan gelombang sebagai lengkungan Gauss],
+) <gausscurv>
 
 == Refleksi dan Transmisi
 
@@ -658,6 +682,10 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
 Difraksi merupakan fenomena gelombang berupa terjadinya penyebaran atau pembelokan muka gelombang di sekitar suatu penghalang. Dalam fisika klasik, hal ini dapat dijelaskan sebagai implikasi dari prinsip Huygens-Fresnel, dimana setiap titik pada muka gelombang merupakan sumber gelombang bulat sekunder yang kemudian berinterferensi satu sama lainnya membentuk muka gelombang sebenarnya, seperti yang diilustrasikan pada @huygenswf. Oleh karena itu, difraksi mengakibatkan adanya medan propagasi pada ruang bayangan yang ditimbulkan pada ruang NLOS oleh suatu benda yang berada di jalur propagasi gelombang.
 
+$
+  #box
+$
+
 #figure(
   image("assets/huygens.png", width: 60%),
   caption: [Pembentukan muka gelombang berdasarkan prinsip Huygens-Fresnel]
@@ -669,6 +697,8 @@ Dapat dicermati bahwa difraksi sebagai fenomena gelombang menjadi batasan dari m
   image("assets/shadow.jpg", width: 80%),
   caption: [Difraksi oleh beberapa bentuk penghalang]
 ) <shadow>
+
+_Geometric theory of diffraction_ (GTD) kemudian dikembangkan oleh J. B. Keller yang mengintegrasikan difraksi kedalam GO. GTD menambahkan jenis sinar baru pada GO disamping sinar refleksi dan transmisi, yaitu sinar difraksi yang berupa solusi atas masalah batas dan sinar-sinar tersebut haruslah memenuni prinsip Fermat@keller_geometrical_1962. Implikasi dari teori tersebut adalah bahwa difraksi dapat dimodelkan seperti refleksi dan transmisi, yaitu dapat dimodelkan dengan sinar dan berupa fenomena lokal yang hanya bergantung pada geometri penghalang dan parameter-parameter gelombang dari sinar datang@balanis_balanis_2024.
 
 == Lintasan Propagasi
 

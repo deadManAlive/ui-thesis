@@ -1,8 +1,9 @@
 #import "@preview/lovelace:0.3.0": *
 #import "@preview/codly:1.1.1": *
 #import "@preview/codly-languages:0.1.1": *
-#show: codly-init.with()
+#import "@preview/fletcher:0.5.3" as fletcher: diagram, node, edge, shapes
 
+#show: codly-init.with()
 #codly(languages: codly-languages)
 
 #set raw(block: true)
@@ -12,11 +13,44 @@
 
 = Metode dan Penulisan Program
 
-== Alur Perancangan Program
+== Metode Perancangan Program
 
 #figure(
-  image("assets/workflow.png"),
-  placement: none, caption: [Diagram alur perancangan aplikasi]
+  [
+    #scale(75%, reflow: true)[
+      #diagram(
+        spacing: (4em, 2em),
+        node-stroke: black,
+        (
+          node((0, 0), [Mulai], shape: circle),
+          node((0, 1), [Studi literatur]),
+          node((0, 2), [Memilih perangkat \ pemrograman]),
+          node((0, 3), [Menyusun kerangka \ antarmuka program]),
+          node((0, 4), [Menyusun kerangka \ matematis (vektor) \ program]),
+          node((0, 5), [Menyusun algoritma \ dasar SBR]),
+        ).intersperse(edge("-|>")).join(),
+        (
+          node((2, 1), [Menyusun pemodelan \ refleksi dan transmisi]),
+          node((2, 2), [Menyusun pemodelan \ difraksi]),
+          node((2, 3), [Menyusun algoritma \ _ray tracing_]),
+          node((2, 4), [Validasi menggunakan \ Altair FEKO]),
+          node((2, 5), [Apakah \ hasil validasi cukup baik \ (> 80%)?], shape: shapes.diamond),
+        ).intersperse(edge("-|>")).join(),
+        (
+          node((2, 7), [Membandingkan dengan \ hasil pengukuran]),
+          node((2, 8), [Membentuk kesimpulan]),
+          node((2, 9), [Selesai]),
+        ).intersperse(edge("-|>")).join(),
+        node((3, 3), [Melakukan penyesuaian \ pada model / algoritma]),
+        edge((2,5), "-|>",(2,7), [Ya]),
+        edge((0, 5), "r,u,u,u,u,r", "-|>"),
+        edge((2,5), "r,u,u", "-|>", [Tidak]),
+        edge((3,3), "u,u,l", "-|>")
+      )
+    ]
+  ],
+  caption: [Diagram alur perancangan program],
+  placement: none,
 )
 
 Secara garis besar, perancangan aplikasi ini terdiri dari dua tahap, yaitu 1.) penyusunan kerangka aplikasi bersama kerangka algoritma SBR, serta 2.) pemodelan interaksi gelombang lebih lanjut dan validasi. Pembagian ke dalam tahap-tahap tersebut dilakukan karena terdapat tingkat kesulitan dalam implementasi dan perbedaan dalam topik pembahasan secara umum. Secara kronologis, perancangan aplikasi dimulai dari studi literatur, kemudian penulisan kerangka pemrograman, penulisan pemodelan lebih lanjut, dan diakhiri dengan validasi.
@@ -27,7 +61,7 @@ Bagian utama dari tahap pertama adalah penulisan kerangka GUI program, geometri 
 
 Tahap kedua dalam penulisan program ini berfokus kepada integrasi GTD ke dalam program untuk memodelkan difraksi gelombang. Pada tahap ini, dilakukan perhitungan terhadap koefisien refleksi, refraksi, difraksi, dan atenuasi ruang. Tahap ini kemudian akan diuji dengan validasi terhadap aplikasi komersial Altair FEKO, dan dilakukan penyesuaian model agar mencapai tingkat validasi yang mencukupi. Perbandingan dilakukan dengan cara membandingkan hasil simulasi aplikasi yang dirancang dengan simulasi FEKO pada ukuran geometri dan parameter material dan gelombang yang sama.
 
-=== _Environment_ Pemrograman
+=== Perangkat Pemrograman
 
 #figure(
     image("assets/benchmark.png"),
@@ -36,17 +70,7 @@ Tahap kedua dalam penulisan program ini berfokus kepada integrasi GTD ke dalam p
 
 Pemilihan _environment_ pemrograman dilakukan untuk mempertimbangkan bagaimana aplikasi akan ditulis, seperti memutuskan jenis aplikasi, bahasa pemrograman, _framework_, dan sebagainya. Dalam hal ini, penulis memutuskan untuk menulis aplikasi _native_ (non web) untuk memaksimalkan performa dari aplikasi. Setelah mempertimbangkan beberapa bahasa pemrograman, penulis memutuskan untuk menggunakan bahasa Rust yang memiliki performa _native_ tanpa _garbage collector_ seperti C dan C++ tetapi memiliki keamanan memori seperti Java dan Python. Untuk _framework_ pembantu, penulis memutuskan hanya menggunakan _library_ grafis dan menulis bagian lainnya, termasuk model dan objek geometri dari nol.
 
-@benchies menunjukkan perbandingan performa antara beberapa bahasa pemrograman untuk mengimplementasikan algoritma _shooting and bouncing rays_ sederhana dari @pseudosbr. Algoritma tersebut, bersama program akhir diprogram dan dijalankan pada komputer/laptop dengan spesifikasi berikut:
-
-- CPU: Intel Core i5-8300H (4 _cores_, 8 _threads_) \@ 2.3 GHz.
-- Memori: SK Hynix 2X8 GB DDR4-2400 \@ 1200 MHz.
-- Penyimpanan: Hitachi 1 TB SATA III \@ 6 Gbps.
-- Grafis: Intel UHD 630 (iGPU) + Nvidia GeForce GTX 1050 4 GB VRAM.
-- OS: Microsoft Windows 10 ver. 22H2 (_build_ 19045.5131)
-- _Compiler_: Rust (_toolchain_ `stable-x86_64-pc-windows-gnu`, rustc ver. 1.81.0).
-
-\
-
+@benchies menunjukkan perbandingan performa antara beberapa bahasa pemrograman untuk mengimplementasikan algoritma _shooting and bouncing rays_ sederhana dari @pseudosbr.
 Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rerata yang sedikit lebih baik dari C. Sisi performa dari Rust menjadi salah satu dari beberapa justifikasi untuk menulis program di bahasa tersebut, disamping _type safety_, _memory safety_, dan _developer experience_ yang akan sangat membantu dalam penyusunan program.
 
 #figure(
@@ -76,14 +100,28 @@ Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rera
     supplement: [Algoritma],
     caption: [Psudokode algoritma perulangan SBR sederhana yang dikembangkan. Dengan himpunan segmen garis dinding penghalang $W$, jumlah iterasi $n$, titik awal segmen sinar $bup(o)_n$, arah sinar $bup(d)_n$, vektor penghalang $bup(w)$, dan himpunan sinar hasil $S$],
     kind: "Algorithm",
-    outlined: false
+    outlined: false, placement: auto,
 ) <pseudosbr>
+
+Algoritma tersebut, bersama program akhir dikembangkan dan dijalankan pada komputer/laptop dengan spesifikasi berikut:
+- CPU: Intel Core i5-8300H (4 _cores_, 8 _threads_) \@ 2.3 GHz.
+- Memori: SK Hynix 2X8 GB DDR4-2400 \@ 1200 MHz.
+- Penyimpanan: Hitachi 1 TB SATA III \@ 6 Gbps.
+- Grafis: Intel UHD 630 (iGPU) + Nvidia GeForce GTX 1050 4 GB VRAM.
+- OS: Microsoft Windows 10 ver. 22H2 (_build_ 19045.5131).
+- _Compiler_ Rust: _toolchain_ `stable-x86_64-pc-windows-gnu`, rustc ver. 1.81.0.
+Sementara untuk perbandingan pada @benchies digunakan:
+- _Compiler_ C: Mingw-w64 GCC ver. 14.2.0.
+- _Runtime_ Python: CPython ver. 3.10.6.
+- _Runtime_ PyPy: 7.13.7 (Python 3.10.14).
+
+Perangkat lunak lainnya yang digunakan adalah editor teks.
 
 == Konfigurasi dan Algoritma SBR
 
 #figure(
   image("assets/prog.png"),
-  caption: [Diagram alir algoritma program secara umum]
+  caption: [Diagram alir algoritma program secara umum. Instruksi hijau adalah tahap pertama (dasar algoritma dan SBR)]
 ) <prog>
 
 @prog merupakan diagram alir yang menunjukkan alur umum dari algoritma aplikasi. Program dapat dibagi atas alur utama (kiri) yang terdiri dari interaksi dengan pengguna dan perhitungan, sedangkan algoritma _shooting and bouncing rays_ (SBR) yang mengintegrasikan perhitungan refleksi, refraksi, dan difraksi oleh setiap sinar ke dalam alurnya sendiri, yang dipanggil untuk setiap segmen sinar. Karena menggunakan framework grafis egui yang bekerja pada mode _immediate_, maka alur di atas akan dipanggil untuk setiap frame yang akan ditampilkan.
@@ -194,7 +232,7 @@ Kode Sumber 3.4 menunjukkan potongan kode bagian-bagian dari loop utama ini.
             Window::new("Options");
             // ...
         });
-        
+
         walls.draw(0.005, RED);
         tx.draw_hidable(0.01, YELLOW);
         rx.draw_hidable(0.01, BLUE);
@@ -232,7 +270,7 @@ Fungsi `update` dari modul `interaction` merupakan fungsi yang menjembatani anta
         let mut ray_tank = Vec::with_capacity(ray_number as usize);
 
         if !mouse_over_panel {
-            // ... 
+            // ...
         }
 
         if tx.visible {
