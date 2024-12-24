@@ -14,7 +14,7 @@
     #[
       #set par(leading: 1em)
       #set block(spacing: 1em)
-      #bibliography("../sources.bib", style: "ieee", title: [Daftar Pustaka])
+      #bibliography("../sources.bib", style: "ieee", title: [Daftar Acuan])
       #pagebreak(weak: true)
     ]
 

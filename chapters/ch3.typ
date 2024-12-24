@@ -6,11 +6,11 @@
 #codly(languages: codly-languages)
 
 #set raw(block: true)
-#show raw: set text(size: 8pt)
+#show figure.where(kind: raw): set text(size: 10pt)
 
 #let bup(v) = [$bold(upright(#v))$]
 
-= Penulisan Program
+= Metode dan Penulisan Program
 
 == Alur Perancangan Program
 
@@ -19,10 +19,9 @@
   placement: none, caption: [Diagram alur perancangan aplikasi]
 )
 
-Secara garis besar, perancangan aplikasi ini terdiri dari dua tahap, yaitu: 1). Penyusunan kerangka aplikasi dan kerangka algoritma, serta 2). Pemodelan materi, _ray tracing_, dan validasi. Pembagian ke dalam tahap-tahap tersebut didasarkan kepada tingkat kesulitan dalam implementasi dan perbedaan dalam topik pembahasan secara umum. Secara kronologis, perancangan aplikasi dimulai dari studi literatur, kemudian penulisan kerangka pemrograman, penulisan pemodelan material, dan diakhiri dengan validasi.
+Secara garis besar, perancangan aplikasi ini terdiri dari dua tahap, yaitu 1.) penyusunan kerangka aplikasi bersama kerangka algoritma SBR, serta 2.) pemodelan interaksi gelombang lebih lanjut dan validasi. Pembagian ke dalam tahap-tahap tersebut dilakukan karena terdapat tingkat kesulitan dalam implementasi dan perbedaan dalam topik pembahasan secara umum. Secara kronologis, perancangan aplikasi dimulai dari studi literatur, kemudian penulisan kerangka pemrograman, penulisan pemodelan lebih lanjut, dan diakhiri dengan validasi.
 
-Studi literatur dilakukan pertama kali (dan berlanjut selama penulisan program) untuk hal terkait teori dasar yang mendasari propagasi gelombang, metode sinar sebagai pendekatan solusi propagasi gelombang, serta fenomena-fenomena gelombang yang dapat dimodelkan dengan metode sinar. Selain itu, studi literatur juga dilakukan dalam mempersiapkan _environment_ pemrograman diantaranya adalah pemrograman grafis, pemodelan geometri dalam pemrograman, dasar pemrograman itu sendiri, dan sebagainya.
-
+Studi literatur dilakukan pertama kali untuk hal terkait teori dasar yang mendasari propagasi gelombang, metode sinar sebagai pendekatan solusi propagasi gelombang, serta fenomena-fenomena gelombang yang dapat dimodelkan dengan metode sinar. Selain itu, studi literatur juga dilakukan dalam mempersiapkan _environment_ pemrograman diantaranya adalah pemrograman grafis, pemodelan geometri dalam pemrograman, dasar pemrograman itu sendiri, dan sebagainya.
 
 Bagian utama dari tahap pertama adalah penulisan kerangka GUI program, geometri program, termasuk implementasi berbagai operasi matematika terutama operasi vektor, dan kemudian diakhiri dengan penulisan algoritma dasar SBR yaitu bagian algoritma yang bertanggung jawab dalam peluncuran sinar (_ray launcing_). Pemodelan refleksi dan refraksi dapat diintegrasikan pada tahap ini karena sifatnya yang linier (mengubah arah/magnitudo satu sinar).
 
@@ -37,34 +36,50 @@ Tahap kedua dalam penulisan program ini berfokus kepada integrasi GTD ke dalam p
 
 Pemilihan _environment_ pemrograman dilakukan untuk mempertimbangkan bagaimana aplikasi akan ditulis, seperti memutuskan jenis aplikasi, bahasa pemrograman, _framework_, dan sebagainya. Dalam hal ini, penulis memutuskan untuk menulis aplikasi _native_ (non web) untuk memaksimalkan performa dari aplikasi. Setelah mempertimbangkan beberapa bahasa pemrograman, penulis memutuskan untuk menggunakan bahasa Rust yang memiliki performa _native_ tanpa _garbage collector_ seperti C dan C++ tetapi memiliki keamanan memori seperti Java dan Python. Untuk _framework_ pembantu, penulis memutuskan hanya menggunakan _library_ grafis dan menulis bagian lainnya, termasuk model dan objek geometri dari nol.
 
-@benchies menunjukkan perbandingan performa antara beberapa bahasa pemrograman untuk mengimplementasikan algoritma _shooting and bouncing rays_ sederhana dari @pseudosbr. Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rerata yang sedikit lebih baik dari C. Sisi performa dari Rust menjadi salah satu dari beberapa justifikasi untuk menulis program di bahasa tersebut, disamping _type safety_, _memory safety_, dan _developer experience_ yang akan sangat membantu dalam penyusunan program.
+@benchies menunjukkan perbandingan performa antara beberapa bahasa pemrograman untuk mengimplementasikan algoritma _shooting and bouncing rays_ sederhana dari @pseudosbr. Algoritma tersebut, bersama program akhir diprogram dan dijalankan pada komputer/laptop dengan spesifikasi berikut:
+
+- CPU: Intel Core i5-8300H (4 _cores_, 8 _threads_) \@ 2.3 GHz.
+- Memori: SK Hynix 2X8 GB DDR4-2400 \@ 1200 MHz.
+- Penyimpanan: Hitachi 1 TB SATA III \@ 6 Gbps.
+- Grafis: Intel UHD 630 (iGPU) + Nvidia GeForce GTX 1050 4 GB VRAM.
+- OS: Microsoft Windows 10 ver. 22H2 (_build_ 19045.5131)
+- _Compiler_: Rust (_toolchain_ `stable-x86_64-pc-windows-gnu`, rustc ver. 1.81.0).
+
+\
+
+Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rerata yang sedikit lebih baik dari C. Sisi performa dari Rust menjadi salah satu dari beberapa justifikasi untuk menulis program di bahasa tersebut, disamping _type safety_, _memory safety_, dan _developer experience_ yang akan sangat membantu dalam penyusunan program.
 
 #figure(
-    align(left)[
+    [
         #set math.equation(numbering: none)
-        #pseudocode-list[
-        + $bup(o)_0 = mat(0, 0)$
-        + *for each* $i = 1,2,...,128$ *do*
-            + $bup(d)_0 = mat(cos (i slash 127), sin (i slash 127))$
-            + *for each* $j = 1,2,...,32$ *do*
-                + *SBR*. $bup(o)$ origin, $bup(d)$ direction
-                - $ {(bup(o)_j, bup(d)_j) |
-                   (bup(s), bup(e)) in RR^2 times RR^2, \
-                   bup(w) = bup(e) - bup(s),
-                   bup(p)_1 = bup(s) - bup(o)_(j-1),
-                   bup(p)_2 = -bup(d)_(j-1),
-                   bup(p)_3 = "Rot"_(pi slash 2)(bup(w)), \
-                   bup(o)_j = bup(s) + norm(bup(p)_2 times bup(p)_1)/(bup(p)_2 dot bup(p)_3) dot (bup(w)), \
-                   bup(d)_j = "Refl"_(angle bup(w))(bup(d)_(j-1))} $
+        #set align(left)
+        #pseudocode-list(indentation: 2em)[
+        - *variabel*:
+        + $W subset RR^2 times RR^2$
+        + $n in NN$
+        + $bup(o)_0 in RR^2$
+        + $bup(d)_0 in RR^2$
+        - *SBR*:
+        + *for each* $i = 1,2,...,n$ *do*
+            + *for each* $(bup(s), bup(e)) in W$
+                + $bup(w) = bup(e) - bup(s)$
+                + $bup(p)_1 = bup(s) - bup(o)_(i-1)$
+                + $bup(p)_2 = -bup(d)_(i-1)$
+                + $bup(p)_3 = "Rot"_(pi slash 2)(bup(w))$
+                + $bup(o)_i = bup(s) + norm(bup(p)_2 times bup(p)_1)/(bup(p)_2 dot bup(p)_3) dot bup(w)$
+                + $bup(d)_i = "Refl"_(angle bup(w))(bup(d)_(i-1))$
             + *end*
         + *end*
+        + $S = union.big_(i in Q) (bup(o)_i, bup(d)_i)$
         ]
     ],
     supplement: [Algoritma],
-    caption: [Algoritma perulangan SBR sederhana]
+    caption: [Psudokode algoritma perulangan SBR sederhana yang dikembangkan. Dengan himpunan segmen garis dinding penghalang $W$, jumlah iterasi $n$, titik awal segmen sinar $bup(o)_n$, arah sinar $bup(d)_n$, vektor penghalang $bup(w)$, dan himpunan sinar hasil $S$],
+    kind: "Algorithm",
+    outlined: false
 ) <pseudosbr>
 
-== Konfigurasi dan _Shooting and Bouncing Rays_
+== Konfigurasi dan Algoritma SBR
 
 #figure(
   image("assets/prog.png"),
@@ -75,70 +90,31 @@ Pemilihan _environment_ pemrograman dilakukan untuk mempertimbangkan bagaimana a
 
 === Konfigurasi
 
-Seperti yang telah dijelaskan sebelumnya, penulisan aplikasi hanya menggunakan library grafis, sementara berbagai macam komponen geometri dan algoritma ditulis dari nol. Kode Sumber 3.1 menunjukkan konfigurasi proyek dimana dependencies berisi library yang dibutuhkan. Terlihat bahwa library yang dibutuhkan hanya egui-macroquad untuk menggambar antarmuka dengan pengguna, image yang berguna untuk memproses gambar, dan macroquad sebagai library utama untuk menggambar berbagai objek dalam aplikasi. egui-macroquad sendiri sebenarnya adalah library yang membantu dalam mengintegrasikan egui sebagai penyedia antarmuka pengguna (seperti tombol dan teks), dengan macroquad, dengan pembagian seperti pada @apppart. Bagian profile.release sendiri mengatur optimasi compiler untuk mengompilasi kode dengan target performa tertinggi.
+Seperti yang telah dijelaskan sebelumnya, penulisan aplikasi hanya menggunakan library grafis, sementara berbagai macam komponen geometri dan algoritma ditulis dari nol. Kode Sumber 3.1 menunjukkan konfigurasi proyek dimana bersama beberapa dependensi berupa _library_ yang dibutuhkan oleh program. Terlihat bahwa _library_ yang dibutuhkan hanya `egui-macroquad` untuk membantu dalam menggambar antarmuka dengan pengguna, _image_ yang berguna untuk memproses gambar, dan `macroquad` sebagai _library_ utama untuk menggambar berbagai objek dalam aplikasi. `egui-macroquad` sendiri sebenarnya adalah library yang membantu dalam mengintegrasikan `egui` sebagai penyedia antarmuka pengguna (seperti tombol dan teks), dengan `macroquad`, dengan pembagian seperti pada @apppart. Bagian ```toml profile.release``` sendiri mengatur optimasi _compiler_ untuk mengompilasi kode dengan target performa tertinggi.
 
 #figure(
-    ```toml
-    # Cargo.toml
-
-    [package]
-    name = "fray"
-    version = "0.1.0"
-    edition = "2021"
-
-    [dependencies]
-    egui-macroquad = "0.15.0"
-    image = "0.24.7"
-    macroquad = "0.3.26"
-
-    [profile.release]
-    opt-level = 3
-    lto = true
-    codegen-units = 1
-    panic = 'abort'
-    strip = true
-    ```,
+    raw(read("../fray/Cargo.toml"), lang: "toml"),
     caption: [Konfigurasi proyek Rust]
 )
 
-#figure(image("assets/pro1.png", width: 80%), caption: [Tampilan GUI aplikasi dengan pembagian egui (kotak merah terang) dengan macroquad (batas biru)]) <apppart>
+#figure(image("assets/pro1.png", width: 80%), caption: [Tampilan GUI aplikasi dengan pembagian `egui` (kotak merah terang) dengan `macroquad` (batas biru)]) <apppart>
 
 === Inisiasi Awal Aplikasi
 
 #figure(
-    ```rust
-    #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
-    use std::f32::consts::PI;
-
-    use egui_macroquad::{
-        egui::{Align, Align2, Button, Layout, Slider, Window},
-        ui,
-    };
-    use fps::{FrameTimeCounter, FrameTimeTank};
-    use interaction::Hideable;
-    use macroquad::prelude::*;
-    use objects::{Drawable, Polygon, Segment, Vector};
-    use receiver::generate_tx_array;
-    use reception_sphere::{point_projection, project};
-
-    mod fps;
-    mod icon;
-    mod interaction;
-    mod objects;
-    mod plot;
-    mod receiver;
-    mod reception_sphere;
-    mod sbr;
-    ```,
+    [
+        #codly-range(1, end: 28)
+        #raw(read("../fray/src/main.rs"), lang: "rust")
+    ],
     caption: [Konfigurasi dan impor beberapa modul]
 ) <initmain>
 
 \
 
-Seperti yang terlihat pada @initmain, kode utama aplikasi ini (_file_ `main.rs`) diawali dengan konfigurasi yang mengatur bahwa aplikasi adalah aplikasi GUI, sehingga aplikasi tidak akan menampilkan console ketika aplikasi dijalankan. Setelah itu, konstanta pi di-import bersama beberapa objek UI dari egui-macroquad. Konstanta dan objek-objek UI tersebut di-import karena akan sering digunakan pada modul main ini. Setelah itu, modul-modul aplikasi serta objek-objek yang akan digunakan di dalamnya diimpor.
+Seperti yang terlihat pada @initmain, kode utama aplikasi ini (_file_ `main.rs`) diawali dengan konfigurasi yang mengatur bahwa aplikasi adalah aplikasi GUI. Setelah itu, konstanta `PI` ($pi$) diimpor bersama beberapa objek UI dari `egui-macroquad`. Konstanta dan objek-objek UI tersebut di-import karena akan sering digunakan pada modul `main` ini. Setelah itu, modul-modul program diinisiasi serta objek-objek yang akan digunakan di dalamnya diimpor, berikut dua konstanta, `MAX_RAYS` dan `MAX_ITER`, yang masing-masing menentukan batas jumlah sinar dan iterasi SBR yang dapat diatur pada antarmuka.
 
-Setelah melakukan konfigurasi dan inisiasi modul, berikutnya adalah definisi fungsi ```rs main()``` yang menjadi fungsi utama yang dipanggil ketika aplikasi dijalankan. @mainvars menampilkan bahwa fungsi ini diawali dengan inisiasi variabel-variabel yang menampung nilai input dari pengguna, sehingga digunakan let mut agar dapat menampung nilai input yang berubah-ubah. Sementara itu, variabel `tx` dan `rx` adalah variabel yang masing-masing menyimpan posisi sumber dan penerima, yang kemudian diwrap dalam objek Hideable dari modul `interaction` agar dapat ditampilkan dan dihilangkan sesuai kebutuhan. Fungsi `set_camera` digunakan untuk mengatur tingkat _zoom_ dan rasio aspek dari GUI. Tahap inisiasi ini diakhiri dengan inisiasi objek `FrameTimeTank` dari modul `fps` yang berguna untuk menyimpan larik data FPS untuk diukur rata-ratanya.
+Setelah melakukan konfigurasi dan inisiasi modul, berikutnya adalah definisi fungsi ```rs fn main()``` yang menjadi fungsi utama yang dipanggil ketika aplikasi dijalankan. @mainvars menampilkan bahwa fungsi ini diawali dengan inisiasi variabel-variabel yang menampung nilai input dari pengguna, sehingga digunakan let mut agar dapat menampung nilai input yang berubah-ubah.
+Sementara itu, variabel `tx` dan `rx` adalah variabel yang masing-masing menyimpan posisi sumber dan penerima, yang kemudian diwrap dalam objek `Hideable` dari modul `interaction` agar dapat ditampilkan dan dihilangkan sesuai kebutuhan. Fungsi `set_camera` digunakan untuk mengatur tingkat _zoom_ dan rasio aspek dari GUI. Tahap inisiasi ini diakhiri dengan inisiasi objek `FrameTimeTank` dari modul `fps` yang berguna untuk menyimpan larik data FPS untuk diukur rata-ratanya.
 
 #figure(
     ```rust
@@ -240,7 +216,7 @@ Pada potongan kode di atas, `FrameTimeCounter` merupakan objek dari modul fps ya
 
 === Fungsi ```rs intersection::update``` Sebagai Inisiator _Ray Tracing_
 
-Fungsi `update` dari modul `interaction` merupakan fungsi yang menjembatani antara mekanisme antarmuka GUI dengan algoritma ray tracing. Dapat dilihatd ari _signature_ fungsi tersebut bahwa fungsi ini menerima posisi tx, posisi rx, data poligon yang merepresentasikan reflektor dinding, sudut dari sinar-sinar yang akan dipancarkan, kondisi terkait apakah kursor berada di atas panel egui atau tidak, jumlah sinar yang akan diluncurkan dari sumber, serta batas jumlah iterasi pada SBR. Fungsi mengembalikan data berupa ```rs Vec<Vec<Segment>>``` yang menunjukkan bahwa fungsi ini mengembalikan hasil kalkulasi segmen melalui SBR untuk setiap sinar.
+Fungsi `update` dari modul `interaction` merupakan fungsi yang menjembatani antara mekanisme antarmuka GUI dengan algoritma ray tracing. Dapat dilihatd ari _signature_ fungsi tersebut bahwa fungsi ini menerima posisi pemancar `tx`, posisi penerima `rx`, data kontainer segmen yang berisi segmen-segmen garis sebagai penghalang, sudut dari sinar-sinar yang akan dipancarkan, kondisi terkait apakah kursor berada di atas panel `egui` atau tidak, jumlah sinar yang akan diluncurkan dari sumber, serta batas jumlah iterasi pada SBR. Fungsi mengembalikan data berupa ```rs Vec<Vec<Segment>>``` yang mengimplikasikan bahwa fungsi ini mengembalikan hasil kalkulasi segmen melalui SBR untuk setiap sinar.
 
 #figure(
     ```rs
@@ -311,7 +287,7 @@ Inti dari algoritma _ray tracing_ pada aplikasi ini berada pada metode SBR yang 
             .map(|z| z.into())
     }
     ```,
-    caption: [Fungsi `shooting` dari modul `sbr`]
+    caption: [Fungsi `sbr::shooting` sebagai pembangkit sinar]
 ) <sbrshoot>
 
 #let bud(r) = [$dash(bup(#r))$]
@@ -352,7 +328,7 @@ dimana $bup(s)$ vektor yang menunjukkan titik awal segmen dan $bup(e)$ vektor ya
         None
     }
     ```,
-    caption: [Fungsi `intersect` dari struktur `Ray` untuk menemukan perpotongan antara suatu sinar dan segmen]
+    caption: [Fungsi `objects::Ray::intersect` untuk menemukan perpotongan antara suatu sinar dan segmen]
 ) <isect>
 
 
@@ -369,38 +345,20 @@ Bagian kedua dari implementasi SBR pada aplikasi ini adalah algoritma _bouncing_
 Secara umum, algoritma ini merupakan implementasi konkrit dari @sbrtec. Potongan yang menunjukkan kerja fungsi ini secara umum dapat dilihat pada @bouncing.
 
 #figure(
-    ```rs
-    pub fn bouncing(
-        tx: (f32, f32),
-        walls: &Polygon,
-        offset: &f32, iter: u32
-    ) -> Vec<Segment> {
-        let res = (0..iter)
-            .scan((tx, *offset, None), |state, _| {
-                let state_tx = state.0;
-                let state_offset = state.1;
-                let state_filtered_wall_index = state.2;
-
-                let curr_refl = // conditional shooting...
-
-                let n_idx = // get next reflecting wall index...
-                let rslope = // get next reflecting wall slope...
-                let next_offset = // get next ray direction
-
-                *state = (curr_refl, next_offset, Some(n_idx));
-
-                Some(*state)
-            })
-            .map(|(p, _, _)| p)
-            .collect::<Vec<_>>();
-
-        let res = Polygon::new_open([vec![tx], res].concat());
-
-        res.segments
-    }
-    ```,
-    caption: [Potongan kode dari fungsi `bouncing` dari modul `sbr`]
+    [
+        #codly-range(22, end: 90)
+        #raw(read("../fray/src/sbr.rs"), lang: "rs")
+    ],
+    caption: [Potongan kode dari fungsi `sbr::bouncing`]
 ) <bouncing>
+
+== Pemodelan Interaksi Sinar
+
+=== Transmisi
+
+=== Difraksi
+
+== _Ray Tracing_
 
 == Tampilan Aplikasi
 

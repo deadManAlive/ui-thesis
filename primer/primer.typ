@@ -109,6 +109,7 @@
   show heading.where(level: 1): head => context [
     #counter(figure.where(kind: image)).update(0)
     #counter(figure.where(kind: table)).update(0)
+    #counter(figure.where(kind: "Algorithm")).update(0)
     #counter(math.equation).update(0)
 
     #set align(center)

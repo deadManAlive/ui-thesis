@@ -1,69 +1,51 @@
-= Dasar Teori
+#import "@preview/cetz:0.3.1"
+
+= Metode _Ray Tracing_
 
 #let bup(x) = [$bold(upright(#x))$]
 
-_Ray tracing_ merupakan kerangka kerja ilmiah yang hadir di berbagai bidang disiplin ilmu sebagai sebuah metode yang digunakan untuk memahami bagaimana gelombang berpropagasi dalam ruang, dan waktu. Meskipun memiliki konsep inti yang sama dalam aplikasinya di berbagai bidang, yaitu mengikuti ("_tracing_") sinar-sinar ("_rays_") untuk memodelkan interaksi dengan permukaan dan batasan, seperti simulasi cahaya pada grafika komputer, propagasi gelombang suara pada akustik, hingga propagasi gelombang seismik dalam seismologi dan dan cahaya dalam relativitas umum, prinsip-prinsip yang mendasari _ray tracing_ berbeda-beda secara signifikan satu sama lain pada bidang yang berbeda. Dengan kata lain, agar suatu fenomena gelombang dapat dimodelkan melalui _ray tracing_, terdapat dua hal yang perlu diperhatikan, yaitu bahwa konsep sinar sebagai representasi propagasi gelombang valid pada ruang terkait serta terdapat mekanisme-mekanisme yang menjelaskan interaksi sinar tersebut dengan lingkungan.
+_Ray tracing_ merupakan kerangka kerja ilmiah yang hadir di berbagai bidang disiplin ilmu sebagai sebuah metode yang digunakan untuk memahami bagaimana gelombang berpropagasi dalam ruang, dan waktu. Meskipun memiliki konsep inti yang sama dalam aplikasinya di berbagai bidang, yaitu mengikuti ("_tracing_") sinar-sinar ("_rays_") untuk memodelkan interaksi dengan permukaan dan batasan, seperti simulasi cahaya pada grafika komputer, propagasi gelombang suara pada akustik, hingga propagasi gelombang seismik dalam seismologi dan dan cahaya dalam relativitas umum, prinsip-prinsip yang mendasari _ray tracing_ berbeda-beda secara signifikan satu sama lain pada bidang yang berbeda.
+Dengan kata lain, agar suatu fenomena gelombang dapat dimodelkan melalui _ray tracing_, terdapat dua hal yang perlu diperhatikan, yaitu bahwa konsep sinar sebagai representasi propagasi gelombang valid pada ruang terkait serta terdapat mekanisme-mekanisme yang menjelaskan interaksi sinar tersebut dengan lingkungan.
 
-Pemodelan propagasi gelombang elektromagnetik didasarkan kepada Optika Geometris (_Geometrical Optics_/GO) berupa pendekatan asimtotik terhadap persamaan Maxwell yang memperlakukan gelombang elektromagnetik sebagi sinar-sinar dan dapat menjadi mekanisme yang menjelaskan refleksi dan refraksi. _Geometric theory of diffraction_ (GTD) dikembangkan untuk menjelaskan difraksi@keller_geometrical_1962, dan kemudian _uniform theory of diffraction_ (UTD), yang bekerja menggunakan prinsip Optika Fisik (_Physical Optics_/PO) berupa perkembangan selanjutnya dari GO dengan mempertimbangkan sifat gelombang dari sinar dan dapat menjelaskan interferensi, difraksi, polarisasi, dan lainnya yang tidak dapat dijelaskan oleh GO@albani_uniform_2011. Tergantung kebutuhan, mekanisme lainnya seperti BSDF untuk memodelkan hamburan permukaan, dan lainnya dapat diintegrasikan ke dalam sistem untuk memodelkan fenomena gelombang yang berbeda.
+Pemodelan propagasi gelombang elektromagnetik didasarkan kepada Optika Geometris (_Geometrical Optics_/GO) berupa pendekatan asimtotik terhadap persamaan Maxwell yang memperlakukan gelombang elektromagnetik sebagi sinar-sinar dan dapat menjadi mekanisme yang menjelaskan refleksi dan refraksi.
+_Geometric theory of diffraction_ (GTD) dikembangkan untuk menjelaskan difraksi@keller_geometrical_1962, dan kemudian _uniform theory of diffraction_ (UTD), yang bekerja menggunakan prinsip Optika Fisik (_Physical Optics_/PO) berupa perkembangan selanjutnya dari GO dengan mempertimbangkan sifat gelombang dari sinar dan dapat menjelaskan interferensi, difraksi, polarisasi, dan lainnya yang tidak dapat dijelaskan oleh GO@albani_uniform_2011. Tergantung kebutuhan, mekanisme lainnya seperti BSDF untuk memodelkan hamburan permukaan, dan lainnya dapat diintegrasikan ke dalam sistem untuk memodelkan fenomena gelombang yang berbeda.
 
 == Persamaan-Persamaan Maxwell
 
-Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) = hat(bup(x))x + hat(bup(y))y + hat(bup(z))z in Gamma$, dengan $Gamma subset RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya.
+Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan induksi magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) = hat(bup(x))x + hat(bup(y))y + hat(bup(z))z in Gamma$, dengan $Gamma subset.eq RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya.
 
 #[
   #set math.equation(numbering: none)
   #set par(justify: false, leading: 1em)
   #figure(
     table(
-      columns: (80pt, auto, auto),
+      columns: (30%, 50%),
       align: (left + horizon, center + horizon, center + horizon),
-      table.header([*Hukum*], [*Bentuk Diferensial*], [*Bentuk Integral*]),
-      [Hukum Gauss], [$ nabla dot bup(E) = rho / epsilon_0 $], [$ integral.surf_(diff Omega) bup(E) dot d bup(S) = Q/epsilon_0 $],
-      [Hukum Magnet Gauss], [$ nabla dot bup(B) = 0 $], [$ integral.surf_(diff Omega) bup(B) dot d bup(S) = 0 $],
-      [Hukum Induksi Faraday], [$ nabla times bup(E) = - (diff bup(B)) / (diff t) $], [$ integral.cont_(diff Sigma) bup(E) dot d bup(cal(l)) = - upright(d) / (upright(d) t) bup(Phi)_B  $],
-      [Hukum Ampère], [$ nabla times bup(B) = mu_0(bup(J) + epsilon_0 (diff bup(E)) / (diff t)) $], [$ integral.cont_(diff Sigma) bup(B) dot d bup(cal(l)) = mu_0 (I + epsilon_0 upright(d)/(upright(d) t) bup(Phi)_E) $]
+      table.header([*Hukum*], [*Formulasi* (Bentuk Diferensial)]),
+      [Hukum Gauss], [$ nabla dot bup(E) = rho / epsilon_0 $],
+      [Hukum Magnet Gauss], [$ nabla dot bup(B) = 0 $],
+      [Hukum Induksi Faraday], [$ nabla times bup(E) = - (diff bup(B)) / (diff t) $],
+      [Hukum Ampère], [$ nabla times bup(B) = mu_0(bup(J) + epsilon_0 (diff bup(E)) / (diff t)) $],
     ),
     caption: [Persamaan-persamaan Maxwell],
   )
 
-  di mana
+  \
 
-  $
-    Q = integral.triple_Omega rho space d V
-  $
-
-  adalah total muatan listrik yang dilingkupi oleh suatu volume tertutup $Omega$,
-
-  $
-    bup(Phi)_B = integral.double_Sigma bup(B) dot d bup(S)
-  $
-
-  adalah fluks magnetik berupa medan magnet $bup(B)$ yang melalui suatu permukaan tertutup $Sigma$,
-
-  $
-    bup(Phi)_E = integral.double_Sigma bup(E) dot d bup(S)
-  $
-
-  adalah fluks listrik berupa medan listrik $bup(E)$ yang melalui $Sigma$, dan
-
-  $
-    I = integral.double_Sigma bup(J) dot d bup(S)
-  $
-
-  adalah arus listrik berupa kerapatan arus listrik $bup(J)$ yang melalui $Sigma$.
-
-  Medan listrik juga dapat direpresentasikan sebagai medan induksi listrik $bup(D)$, di mana pada ruang tanpa sumber medan listrik memiliki hubungan
+  Selain itu, medan listrik juga dapat direpresentasikan sebagai medan perpindahan listrik $bup(D)$, di mana pada ruang tanpa sumber medan listrik memiliki hubungan
 
   $ bup(D) = epsilon bup(E) $
 
-  dan medan magnet juga dapat direpresentasikan melalui medan magnetisasi $bup(H)$, yang pada ruang tanpa sumber medan magnet
+  dan medan magnet juga dapat direpresentasikan melalui medan magnet $bup(H)$, yang pada ruang tanpa sumber medan magnet
 
-  $ bup(H) = 1/mu_0 bup(B) $
+  $ bup(H) = 1/mu bup(B) $
 ]
 
 \
 
 Persamaan-persamaan Maxwell ini dapat dijabarkan dalam bentuk integral maupun diferensial, di mana bentuk integral dari persamaan-persamaan ini dapat menjelaskan perilaku medan listrik dan magnet pada suatu area pada ruang sementara itu bentuk diferensialnya membantu dalam menjelaskan perilaku medan listrik dan medan magnet lokal pada suatu titik.
+
+Pada bab ini, akan digunakan bentuk diferensial untuk memberikan dasar matematis dari beberapa konsep _ray tracing_ (RT).
 
 === Hukum Gauss
 
@@ -100,7 +82,8 @@ Sementara persamaan pertama dan kedua dari persamaan-persamaan Maxwell menunjukk
 
 === Hukum Ampère
 
-Persamaan terakhir dari persamaan Maxwell berkorelasi dengan hukum Ampère yang menunjukkan bahwa perubahan medan listrik juga dapat menimbulkan medan magnet. Bentuk integral dari persamaan ini menunjukkan bahwa fluks magnet melingkar akar terbentuk pada suatu lingkaran tertutup (_loop_) ketika pada permukaan yang dilingkupi oleh lingkaran tertutup tersebut dilewati oleh muatan listrik dan/atau terjadi perubahan medan magnet. Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di suatu titik terdapat kerapatan arus dan/atau perubahan medan listrik, maka akan timbul medan magnet melingkar di titik tersebut (_curl_). @ampereimg menunjukkan efek dari hukum ini di mana ketika arus melewati sebuah kawat, maka akan terbentuk medan magnet melingkar di sekitarnya.
+Persamaan terakhir dari persamaan Maxwell berkorelasi dengan hukum Ampère yang menunjukkan bahwa perubahan medan listrik juga dapat menimbulkan medan magnet. Bentuk integral dari persamaan ini menunjukkan bahwa fluks magnet melingkar akar terbentuk pada suatu lingkaran tertutup (_loop_) ketika pada permukaan yang dilingkupi oleh lingkaran tertutup tersebut dilewati oleh muatan listrik dan/atau terjadi perubahan medan magnet.
+Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di suatu titik terdapat kerapatan arus dan/atau perubahan medan listrik, maka akan timbul medan magnet melingkar di titik tersebut (_curl_). @ampereimg menunjukkan efek dari hukum ini di mana ketika arus melewati sebuah kawat, maka akan terbentuk medan magnet melingkar di sekitarnya.
 
 #figure(
   image("assets/ampereimg.png", width: 80%),
@@ -269,7 +252,8 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
 
 \
 
-Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Gradien eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $sigma$. Jika titik-titik pada sinar-sinar cahaya yang memiliki nilai $sigma$ yang sama disambungkan, akan didapatkan permukaan yang menggambarkan muka gelombang. Dengan kata lain, muka gelombang adalah permukaan ketinggian (_level surface_) dari dari fungsi gelombang. @wavefront mengilustrasikan garis hijau yang menyambungkan titik-titik pada sinar (_light rays_) yang memiliki nilai $sigma$ yang sama, yang membentuk muka gelombang (_wavefronts_).
+Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Gradien eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $sigma$.
+Jika titik-titik pada sinar-sinar cahaya yang memiliki nilai $sigma$ yang sama disambungkan, akan didapatkan permukaan yang menggambarkan muka gelombang. Dengan kata lain, muka gelombang adalah permukaan ketinggian (_level surface_) dari dari fungsi gelombang. @wavefront mengilustrasikan garis hijau yang menyambungkan titik-titik pada sinar (_light rays_) yang memiliki nilai $sigma$ yang sama, yang membentuk muka gelombang (_wavefronts_).
 
 #figure(
   image("assets/wavefront.png", width: 60%),
@@ -364,8 +348,8 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
 
   $
     angle.l bup(S) angle.r &= 1/(2 mu_0) cal(Re)[bup(E) times dash(bup(B))] \
-    &= 1/(2mu_0)cal(Re)[eo(E) times (nabla ps times dash(eo(E)))] \
-    &= 1/(2mu_0))cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
+    &= 1/(2mu_0)cal(Re)[eo(E) times 1/c (nabla ps times dash(eo(E)))] \
+    &= 1/(2 c mu_0)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
   $ <poynting1>
 
   Persamaan @pseoiszero membuat suku kedua dari @poynting1 bernilai nol, sedangkan $nabla ps$ adalah riil, selain itu
@@ -375,7 +359,8 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
   adalah kerapatan energi listrik rata-rata, sehingga
 
   $
-    angle.l bup(S) angle.r &= 2/(mu_0 epsilon_0) angle.l w_e angle.r nabla ps
+    angle.l bup(S) angle.r &= 2/(c mu_0 epsilon_0) angle.l w_e angle.r nabla ps \
+    &= 2c angle.l w_e angle.r nabla ps
   $ <finalpoynting>
 ]
 
@@ -385,13 +370,13 @@ Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vek
 
 == Atenuasi Ruang
 
-Karena $n = c/v$ dan $mu epsilon = 1/v^2$ serta suatu vektor unit $hat(bup(s)) $ dapat didefinisikan sebagai $(nabla phi.alt(bup(r)))/(norm(nabla phi.alt(bup(r)))) = (nabla phi.alt(bup(r)))/n$, maka persamaan @finalpoynting dapat ditulis sebagai
+Jika suatu vektor unit $hat(bup(s)) $ dapat didefinisikan sebagai $(nabla phi.alt(bup(r)))/(norm(nabla phi.alt(bup(r)))) = (nabla phi.alt(bup(r)))/n$, maka persamaan @finalpoynting dapat ditulis sebagai
 
-$ angle.l bup(S) angle.r = 2 v angle.l w_e angle.r hat(bup(s)) $
+$ angle.l bup(S) angle.r = 2 c angle.l w_e angle.r hat(bup(s)) $
 
 sehingga intensitas gelombang elektromagnetik $I$ dapat didefinisikan sebagai nilai mutlak dari vektor Poynting rata-rata@born_principles_1999 dan dapat ditulis sebagai
 
-$ I = abs(angle.l bup(S) angle.r) = 2 v angle.l w_e angle.r $ <poyntintent>
+$ I = abs(angle.l bup(S) angle.r) = 2 c angle.l w_e angle.r $ <poyntintent>
 
 \
 
@@ -399,7 +384,7 @@ Sementara itu, daya total $P$ yang dipancarkan oleh suatu sumber dapat didefinis
 
 $ P = integral bup(I)(bup(r)) dot d bup(A) $ <power>
 
-di mana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran intensitas dan $bup(A)$ suatu permukaan tertutup yang mencakup suatu sumber. Pada gelombang planar, persamaan ini tidak relevan karena sumber gelombang berupa bidang tak hingga sehingga P hanya berlaku pada suatu permukaan $cal(A) in bup(A)$. Tetapi, pada suatu sumber non-planar seperti sumber titik, gelombang yang dihasilkan adalah gelombang bola (_spherical_). Pada bentuk gelombang ini, persamaan @power menjadi
+di mana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran intensitas dan $bup(A)$ suatu permukaan tertutup yang mencakup suatu sumber. Pada gelombang planar, persamaan ini tidak relevan karena sumber gelombang berupa bidang tak hingga sehingga P hanya berlaku pada suatu permukaan $cal(A) in bup(A)$. Tetapi, pada suatu sumber non-planar seperti sumber titik, gelombang yang dihasilkan adalah gelombang bulat (_spherical_). Pada bentuk gelombang ini, persamaan @power menjadi
 
 #[
   #set math.equation(number-align: bottom)
@@ -426,7 +411,7 @@ sehingga dari persamaan tersebut, persamaan @finalpoynting, persaamaan @poyntint
 
 $
   abs(bup(E)) prop 1/r
-$
+$ <epropir>
 
 \
 
@@ -435,7 +420,7 @@ $
   caption: [Muka gelombang dan sinar pada gelombang lingkaran],
 ) <spherical>
 
-@spherical menunjukkan muka gelombang sebuah gelombang lingkaran (irisan 2 dimensi dari gelombang bola), di mana muka gelombang $sigma_0$ pada waktu $t$ memiliki jari-jari $rho_0$ dan kemudian $rho_0 + Delta rho$ setelah $Delta t$. Karena $P$ konstan, maka
+@spherical menunjukkan muka gelombang sebuah gelombang lingkaran (irisan 2 dimensi dari gelombang bulat), di mana muka gelombang $sigma_0$ pada waktu $t$ memiliki jari-jari $rho_0$ dan kemudian $rho_0 + Delta rho$ setelah $Delta t$. Karena $P$ konstan, maka
 
 $ (abs(bup(E)(rho_0)))/(abs(bup(E)(rho_0 + Delta rho))) = (rho_0+Delta rho)/rho_0 $ <intencratio>
 
@@ -443,25 +428,50 @@ dan jika perhitungan dimulai dari sumber ($rho_0 = 0$) dan permukaan yang berjar
 
 $ abs(bup(E)(rho_0 + Delta rho)) = 1/r abs(bup(E)(rho_0)) $
 
-sehingga $1/r$ adalah koefisien atenuasi ruang $A(r)$ pada jarak $r$ dari sumber.
+sehingga $1/r$ adalah koefisien atenuasi ruang $A(r)$ pada jarak $r$ dari sumber, sesuai dengan persamaan @epropir.
 
 == Refleksi dan Transmisi
 
-=== Kondisi Antarmuka Pada Persamaan Maxwell
+=== Kondisi Antarmuka Pada Persamaan-Persamaan Maxwell
 
 #figure(
-  image("assets/interface.jpg", width: 60%),
+  [
+    #set math.equation(numbering: none)
+    #cetz.canvas({
+      import cetz.draw: *
+        line((-3, -1), (3, -1), mark: (start: "stealth", end: "stealth"))
+        content((), $ z $, anchor: "west")
+        line((0, -3), (0, 3), mark: (start: "stealth", end: "stealth"))
+        content((), $ x $, anchor: "south")
+
+        circle((0,-1), radius: 0.15)
+        circle((0,-1), radius: 0.05, fill: black)
+        content((0.25, -1.25), $ y $)
+
+        line((-0.5,2),(0.5,2))
+        line((-0.5,0),(0.5,0))
+        line((-0.5,2),(-0.5,0))
+        line((0.5,2),(0.5,0))
+
+        mark((-0.5,1), (-0.5,-2), symbol: "triangle", fill: black)
+        mark((0.5,1), (0.5, 2), symbol: "triangle", fill: black)
+        content((0.25, 2.25), $ delta $)
+        content((0.75, 1), $ cal(l) $)
+
+        content((-2, -2), $ n_1 $)
+        content((2, -2), $ n_2 $)
+    })
+  ],
   caption: [Ilustrasi sebuah segmen pada perbatasan medium]
 ) <interface>
 
-
-Misakan $Sigma$ adalah sebuah persegi dalam sebuah _loop_ disepanjang batas medium dengan panjang sejajar batas $cal(l)$ dan lebar $delta$ seperti pada @interface, persamaan Faraday @faradarorig menjelaskan hubungan medan magnet dan listrik yang berada di dalam _loop_ tersebut.
+Misakan $Sigma$ adalah sebuah persegi dalam sebuah _loop_ disepanjang batas medium (bidang $x y$) dengan panjang sejajar batas $cal(l)$ dan lebar $delta$ seperti pada @interface, persamaan Faraday @faradarorig menjelaskan hubungan medan magnet dan listrik yang berada di dalam _loop_ tersebut.
 
 $ integral.cont_(diff Sigma) bup(E) dot d bup(cal(l)) = - upright(d) / (upright(d) t) integral.double_Sigma bup(B) dot d bup(S) $ <faradarorig>
 
 \
 
-Jika $delta$ mendekati 0, maka luas $S$ juga mendekati 0 sehingga sisi kanan persamaan tersebut menjadi 0, sedangkan sisi kiri tidak terpengaruh:
+Jika $delta$ mendekati 0, maka luas $S$ juga mendekati 0 sehingga sisi kanan persamaan tersebut menjadi 0:
 
 #[
   #set math.equation(number-align: bottom)
@@ -471,15 +481,19 @@ Jika $delta$ mendekati 0, maka luas $S$ juga mendekati 0 sehingga sisi kanan per
   $
 ]
 
-\
+dan karena segmen membagi ruang pada medium 1 dan medium 2 serta medan listrik yang terdapat di masing-masing potongan, maka
 
-Karena $cal(l)$ dimasing-masing sisi medium memiliki arah yang berbeda dan cukup kecil sehingga $bup(E)$ konstan, maka
+$ integral_(n_1) bup(E) dot d bup(cal(l)) + integral_(n_2) bup(E) dot d bup(cal(l)) = 0 $
+
+Karena $cal(l)$ dimasing-masing sisi medium memiliki arah yang berbeda yang cukup kecil sehingga $bup(E)$ konstan, maka
 
 $ (bup(E)_2 - bup(E)_1) dot bup(t) = 0 $
 
-dengan $bup(t)$ vektor tangensial dari medium, yang berada pada bidang medium. Agar medan listrik kontinyu, maka komponen normal dari antarmuka tersebut harus bernilai 0 sehingga
+dengan $bup(t)$ vektor tangensial dari medium, yang berada pada bidang antarmuka. Karena vektor $bup(t)$ dapat  berupa vektor mana saja pada bidang antarmuka, maka persamaan tersebut juga dapat ditulis sebagai
 
 $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
+
+dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
 === Koefisien Refleksi dan Transmisi
 
@@ -494,7 +508,7 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
   Medan listrik dari sebuah gelombang elektromagnetik datang ke sebuah perbatasan medium yang bergerak pada bidang $x z$ seperti pada @reftrans dapat diformulasikan sebagai
 
   $
-    bup(E)_i = un(y)E_0 e^(-j bup(k)_i dot r)
+    bup(E)_i = un(y)E_0 e^(-j bup(k)_i dot bup(r))
   $ <harm2>
 
   di mana $E_0 e^(-j bup(k)_i dot r) : RR^3 arrow RR$ sedangkan medan akibat refleksi $bup(E)_r$ dan transmisi $bup(E)_t$ pada perbatasan medium adalah
@@ -535,7 +549,7 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
   yang menunjukkan hukum refleksi
 
-  $ theta_i = theta_r $
+  $ sin theta_i = sin theta_r $
 
   dan hukum Snellius
 
@@ -551,7 +565,7 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
   yang menunjukkan hubungan koefisien refleksi dan transmisi.
 
-  === Refleksi dan Transmisi Gelombang Elektromagnetik
+  === Persamaan Fresnel
 
   Jika kembali diperhatikan persamaan gelombang listrik harmonik dengan sembarang arah osilasi
 
@@ -576,13 +590,11 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
       &= sqrt(mu epsilon) hat(bup(k)) times bup(E)
     $
 
-    atau juga dapat ditulis dalam
+    atau juga dapat ditulis dalam medan magnet $bup(H) = bup(B) slash mu$:
 
     $ bup(H) = (hat(bup(k)) times bup(E)) / eta $
 
     di mana $eta = sqrt(mu/epsilon)$ impedansi medium.
-
-    \
 
     Mengaplikasikan persamaan tersebut ke persamaan @harm2 hingga @trans1 memberikan
 
@@ -614,23 +626,21 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
     \
 
-    Dengan @refltrans, maka didapatkan
+    Dengan persamaan @refltrans, maka didapatkan koefisien refleksi dan transmisi dengan medan listrik tegak lurus bidang refleksi sebagai persamaan Fresnel berupa
 
     $
-      Gamma = (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t)
+      Gamma_perp = (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t)
     $ <gammafin>
 
     dan
 
     $
-      T = (2 eta_2 cos theta_i)/(eta_2 cos theta_i + eta_1 cos theta_t)
+      T_perp = (2 eta_2 cos theta_i)/(eta_2 cos theta_i + eta_1 cos theta_t)
     $ <tfin>
 
     \
 
-    Kedua koefisien berlaku ketika medan listrik tegak lurus dengan bidang refleksi, sehingga $Gamma = Gamma_perp$ dan $T = T_perp$ untuk persamaan @gammafin dan @tfin.
-
-    Dengan cara yang sama, tetapi dengan memutar $bup(E)$ dan $bup(H)$ sehingga $bup(E)$ pada bidang refleksi dan $bup(B)$ tegak lurus, didapatkan
+    Dengan cara yang sama, tetapi dengan memutar polarisasi $bup(E)$ dan $bup(H)$ sehingga $bup(E)$ pada bidang refleksi dan $bup(B)$ tegak lurus, didapatkan
 
     $
       Gamma_parallel = (eta_2 cos theta_t - eta_1 cos theta_i)/(eta_2 cos theta_t + eta_1 cos theta_i)
@@ -646,40 +656,32 @@ $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
 == Difraksi
 
-Difraksi adalah perubahan arah gelombang disekitar celah atau objek penghambat. Difraksi merupakan fenomena gelombang yang tidak dapat dijelaskan oleh _geometrical optics_ murni karena didasarkan oleh sifat gelombang dari radiasi elektromagnetik. Oleh karena itu, _geometric theory of diffraction_ (GTD) dikembangkan untuk menyertakan difraksi sudut pada GO. Seperti halnya GO, GTD memodelkan gelombang sebagai eikonal dari sinar-sinar yang bergerak pada medium. Difraksi terjadi ketika suatu sinar mengenai sudut penghambat. Pada GTD, titik difraksi menjadi sumber dari sinar-sinar baru sebagai model dari perubahan arah gelombang akibat difraksi.
+Difraksi merupakan fenomena gelombang berupa terjadinya penyebaran atau pembelokan muka gelombang di sekitar suatu penghalang. Dalam fisika klasik, hal ini dapat dijelaskan sebagai implikasi dari prinsip Huygens-Fresnel, dimana setiap titik pada muka gelombang merupakan sumber gelombang bulat sekunder yang kemudian berinterferensi satu sama lainnya membentuk muka gelombang sebenarnya, seperti yang diilustrasikan pada @huygenswf. Oleh karena itu, difraksi mengakibatkan adanya medan propagasi pada ruang bayangan yang ditimbulkan pada ruang NLOS oleh suatu benda yang berada di jalur propagasi gelombang.
 
 #figure(
-  image("assets/diffr.png", width: 60%),
-  caption: [Difraksi sudut dan wilayah-wilayahnya]
-) <diffr>
+  image("assets/huygens.png", width: 60%),
+  caption: [Pembentukan muka gelombang berdasarkan prinsip Huygens-Fresnel]
+) <huygenswf>
 
-Hal yang perlu diperhatikan bahwa medan elektromagnetik hasil difraksi tidak mungkin lebih besar dari medan yang datang. @diffr menunjukkan beberapa ruang difraksi yang dibatasi oleh batas refleksi (antara ruang I dan II) dan batas bayangan (antara ruang II dan III). Jika medan magnet total yang mengenai sudut dari sumber $S$ adalah $bup(E)_"total"$, maka
+Dapat dicermati bahwa difraksi sebagai fenomena gelombang menjadi batasan dari metode GO yang mengabaikan sifat gelombang dan menggambarkannya sebagai sinar-sinar diskrit sebagai jalur propagasi muka gelombang. @shadow mengilustrasikan adanya batas bayangan (_shadow boundary_) ketika sinar mengenai suatu objek penghalang pada titik difraksi. Batas bayangan sendiri berupa diskontinuitas antara ruang LOS dan ruang bayangan yang mana pada GO, tidak terdapat sinar yang berpropagasi ke ruang tersebut. Hal ini terjadi karena formulasi GO tidak memberikan mekanisme yang menjelaskan perilaku gelombang dari sinar di sekitar titik-titik difraksi tersebut.
 
-$
-  bup(E)_"total" = cases(
-    bup(E)_i + bup(E)_r + bup(E)_d " " &"ruang I",
-    bup(E)_i _ bup(E)_d " " &"ruang II",
-    bup(E)_d " " &"ruang III"
-  )
-$
+#figure(
+  image("assets/shadow.jpg", width: 80%),
+  caption: [Difraksi oleh beberapa bentuk penghalang]
+) <shadow>
 
-di mana
+== Lintasan Propagasi
 
-$ bup(E)_d = F E_0 e^(-j k s) $
+$ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
 
-dengan $D$ adalah koefisien difraksi yang berupa@keller_geometrical_1962
+$ E_"total" = sum_i E_R[i] $
 
-$ D(phi, phi') = -(e^(-j pi/4))/(2 sqrt(2 pi k)) [1/cos((phi - phi')/2) minus.plus 1/cos((phi + phi')/2)] $
-
-== Elektromagnetika Komputasional
+== Komputasi Elektromagnetik
 
 === _Ray Tracing_
 
 === _Shooting and Bouncing Rays_
 
-$ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
-
-$ E_"total" = sum_i E_R[i] $
 
 $ "RSSI" = 10 log_(10) abs(bup(E)_"total")^2/(1 "mW") space "dBm"  $
 
