@@ -1,7 +1,7 @@
 #import "@preview/lovelace:0.3.0": *
 #import "@preview/codly:1.1.1": *
 #import "@preview/codly-languages:0.1.1": *
-#import "@preview/fletcher:0.5.3" as fletcher: diagram, node, edge, shapes
+#import "@local/fletcher:0.5.3" as fletcher: diagram, node, edge, shapes
 
 #show: codly-init.with()
 #codly(languages: codly-languages)
@@ -17,7 +17,7 @@
 
 #figure(
   [
-    #scale(75%, reflow: true)[
+    #scale(60%, reflow: true)[
       #diagram(
         spacing: (4em, 2em),
         node-stroke: black,
@@ -120,7 +120,71 @@ Perangkat lunak lainnya yang digunakan adalah editor teks.
 == Konfigurasi dan Algoritma SBR
 
 #figure(
-  image("assets/prog.png"),
+  [
+    #set par(leading: 0.65em)
+    #scale(50%, reflow: true)[
+      #diagram(
+        spacing: (2em, 2em),
+        node-stroke: black,
+        {
+          let g = green.lighten(70%)
+          let r = blue.lighten(70%)
+          let sp = shapes.parallelogram
+          let sd = shapes.diamond
+          (
+            node((0, -1), [Mulai], shape: shapes.pill),
+            node((0, 1), [Memuat denah \ ruangan], shape: sp, fill: g),
+            node((0, 2), [Membaca \ parameter simulasi], shape: sp, fill: g),
+            node((0, 3), [Membaca input \ posisi Rx dan Tx], shape: sp, fill: g),
+            node((0, 4), [*SBR*], extrude: (-3,0), inset: 10pt, fill: g),
+            node((0, 5), [Batas iterasi \ tercapai?], shape: sd, inset: 8pt, fill: g)
+          ).intersperse(edge("-|>")).join()
+          edge((0, 5), "-|>", (0, 7), [Ya])
+          edge((0, 5), "r,u,l","-|>", [Tidak])
+          node((0, 7), [Menyaring sinar-sinar \ valid], fill: r)
+          edge((0, 7), "d,l,d", "-|>")
+          edge((0, 7), "d,r,d", "-|>")
+          node((-1, 9), [Menghitung RSSI], fill: r)
+          node((1, 9), [Menghitung \ rugi jalur], fill: r)
+          edge((-1, 9), "d,r,d", "-|>")
+          edge((1, 9), "d,l,d", "-|>")
+          (
+            node((0, 11), [Menampilkan \ hasil perhitungan], fill: r),
+            node((0, 12), [Selesai], shape: shapes.pill)
+          ).intersperse(edge("-|>")).join()
+
+          (
+            node((3, -1), [*SBR*], extrude: (-3,0), inset: 10pt),
+            node((3, 0), [Mulai], shape: shapes.pill),
+            node((3, 1), [Menentukan \ sudut sinar], fill: g),
+            node((3, 2), [Menentukan \ titik potong \ sinar-reflektor], fill: g),
+            node((3, 3), [Sinar \ memotong \ reflektor?], shape: sd, fill: g)
+          ).intersperse(edge("-|>")).join()
+          edge("-|>", [Ya])
+          node((3,5), [Mengenai \ sudut?], shape: sd, inset: 8pt, fill: r)
+          edge("-|>", corner: left, [Tidak])
+          node((2,7), [Sinar \ refleksi?], shape: sd, fill: r)
+          edge((2,7), corner: right, "-|>", (3,10), [Tidak])
+          edge("-|>", [Ya])
+          node((2,9), [Menghitung \ sudut refleksi], fill: g)
+          edge("-|>")
+          node((2,10), [Menghitung \ koefisien refleksi \ $Gamma$], fill: r)
+          node((3,10), [Menghitung \ koefisien transmisi \ $T$], fill: r)
+          edge("-|>")
+          edge((2,10), "d,r")
+          node((3,12), [Menghitung jarak \ sinar dengan \ penerima], fill: g)
+          edge((3,5), corner: right, "-|>", (4,8), [Ya])
+          node((4,8), [*Pemodelan* \ *difraksi*], extrude: (-3,0), fill: r)
+          edge("-|>")
+          node((4,10), [Menghitung \ koefisien difraksi \ $D$], fill: r)
+          edge((4,10), "d,l")
+          edge((3,12), "-|>", (3,14))
+          edge((3,3), "r,r,d,d,d,d,d,d,d,d,d,d,l,l", [Tidak], label-pos: 0.05)
+          node((3,14), [Selesai], shape: shapes.pill)
+        }
+      )
+    ]
+  ],
   caption: [Diagram alir algoritma program secara umum. Instruksi hijau adalah tahap pertama (dasar algoritma dan SBR)]
 ) <prog>
 

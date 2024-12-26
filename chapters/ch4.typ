@@ -2,9 +2,9 @@
 
 Simulasi
 
-== Uji Simulasi Pada _Floorplan_ Dengan Geometri Sederhana
+== Uji Simulasi Pada Denah Ruang Dengan Geometri Sederhana
 
-== Simulasi Pada _Floorplan_ Nyata
+== Simulasi Pada Denah Ruang Nyata
 
 == Perbandingan Dengan Program Komersial (Altair FEKO)
 

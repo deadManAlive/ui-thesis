@@ -123,10 +123,10 @@
   show heading.where(level: 1): set heading(
     numbering: (..nums) => "Bab " + str(nums.pos().first())
   )
-  
+
   set par(justify: true, first-line-indent: 2em, leading: 1.5em)
   set block(spacing: 1.5em)
-  set heading(numbering: "1.1.1.")
+  set heading(numbering: "1.1.1.", supplement: [])
   set text(lang: "id")
   show heading: set block(spacing: 1.5em)
 

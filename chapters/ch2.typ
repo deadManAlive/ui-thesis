@@ -31,23 +31,21 @@ Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan d
     ),
     caption: [Persamaan-persamaan Maxwell],
   )
-
-  \
-
-  Selain itu, medan listrik juga dapat direpresentasikan sebagai medan perpindahan listrik $bup(D)$, di mana pada ruang tanpa sumber medan listrik memiliki hubungan
-
-  $ bup(D) = epsilon bup(E) $
-
-  dan medan magnet juga dapat direpresentasikan melalui medan magnet $bup(H)$, yang pada ruang tanpa sumber medan magnet
-
-  $ bup(H) = 1/mu bup(B) $
 ]
+
+Dimana $rho$ adalah kerapatan muatan listrik, $epsilon_0$ permitivitas vakum, $mu_0$ permeabilitas vakum, dan $bup(J)$ kerapatan arus. Selain itu, medan listrik juga dapat direpresentasikan sebagai medan perpindahan listrik $bup(D)$, di mana pada ruang tanpa sumber medan listrik memiliki hubungan
+
+$ bup(D) = epsilon bup(E) $
+
+dan medan magnet juga dapat direpresentasikan melalui medan magnet $bup(H)$, yang pada ruang tanpa sumber medan magnet
+
+$ bup(H) = 1/mu bup(B) $
 
 \
 
 Persamaan-persamaan Maxwell ini dapat dijabarkan dalam bentuk integral maupun diferensial, di mana bentuk integral dari persamaan-persamaan ini dapat menjelaskan perilaku medan listrik dan magnet pada suatu area pada ruang sementara itu bentuk diferensialnya membantu dalam menjelaskan perilaku medan listrik dan medan magnet lokal pada suatu titik.
 
-Pada bab ini, akan digunakan bentuk diferensial untuk memberikan dasar matematis dari beberapa konsep _ray tracing_ (RT).
+Pada bab ini, bentuk diferensial dari persamaan-persamaan Maxwell menjadi dasar dari beberapa konsep _ray tracing_ (RT) yang akan dikembangkan.
 
 === Hukum Gauss
 
@@ -85,7 +83,7 @@ Sementara persamaan pertama dan kedua dari persamaan-persamaan Maxwell menunjukk
 === Hukum Ampère
 
 Persamaan terakhir dari persamaan Maxwell berkorelasi dengan hukum Ampère yang menunjukkan bahwa perubahan medan listrik juga dapat menimbulkan medan magnet. Bentuk integral dari persamaan ini menunjukkan bahwa fluks magnet melingkar akar terbentuk pada suatu lingkaran tertutup (_loop_) ketika pada permukaan yang dilingkupi oleh lingkaran tertutup tersebut dilewati oleh muatan listrik dan/atau terjadi perubahan medan magnet.
-Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di suatu titik terdapat kerapatan arus dan/atau perubahan medan listrik, maka akan timbul medan magnet melingkar di titik tersebut (_curl_). @ampereimg menunjukkan efek dari hukum ini di mana ketika arus melewati sebuah kawat, maka akan terbentuk medan magnet melingkar di sekitarnya.
+Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di suatu titik terdapat kerapatan arus dan/atau perubahan medan listrik, maka akan timbul medan magnet melingkar di titik tersebut. @ampereimg menunjukkan efek dari hukum ini di mana ketika arus melewati sebuah kawat, maka akan terbentuk medan magnet melingkar di sekitarnya.
 
 #figure(
   image("assets/ampereimg.png", width: 80%),
@@ -131,7 +129,7 @@ $ diff^2/(diff t^2)bup(B) = c^2 nabla^2 bup(B) $
 
 === Persamaan Helmholtz
 
-Persamaan-persamaan @gaussvacuum sampai @binvacuum juga dapat dijabarkan ke dalam domain frekuensi dengan bantuan transformasi Fourier $cal(F)[bup(F)(bup(r), t)] = tilde(bup(F))(bup(r), omega)$:
+Persamaan-persamaan @gaussvacuum sampai @binvacuum juga dapat dijabarkan ke dalam domain frekuensi dengan bantuan transformasi Fourier temporal $cal(F)[bup(F)(bup(r), t)] = tilde(bup(F))(bup(r), omega)$:
 
 $ nabla dot tilde(bup(E)) = 0 $  <fourb>
 $ nabla dot tilde(bup(B)) = 0 $
@@ -238,18 +236,36 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
 
     ex sn 1/jw [(nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2) \
     - j(k en nabla^2 phi.alt(bup(r)) + 2k (nabla phi.alt(bup(r)) dot nabla) en)] &= 0
-  $ <lkexpanded>
+  $ 
 
-\
+  \
 
-  Agar persamaan @lkexpanded benar untuk $omega$ yang sangat besar, maka suku riil dan imajiner dari persamaan tersebut harus sama dengan 0.
+  Untuk $omega$ yang sangat besar, maka hanya orda $i = 0$ yang signifikan sehingga persamaan tersebut menjadi
+
+  #let e0 = [$tilde(bup(E))_0 (bup(r))$]
 
   $
-    nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2 &= 0 \
-    k^2 en (nabla phi.alt(bup(r)))^2 &= nabla^2 en + nr k^2 en \
-    (nabla phi.alt(bup(r)))^2 &= (nabla^2 en)/(k^2 en) + nr \
-    norm(nabla phi.alt(bup(r))) &= n(bup(r))
+    ex [(nabla^2 e0 + nr k^2 e0 - k^2 e0 (nabla phi.alt(bup(r)))^2) \
+    - j(k e0 nabla^2 phi.alt(bup(r)) + 2k (nabla phi.alt(bup(r)) dot nabla) e0)] &= 0
+  $ <lkexpanded>
+
+  \
+
+  Agar persamaan @lkexpanded benar, maka suku riil dan imajiner dari persamaan tersebut harus bernilai 0. Mengevaluasi bagian riil didapatkan
+
+  $
+    nabla^2 e0 + nr k^2 e0 - k^2 e0 (nabla phi.alt(bup(r)))^2 &= 0 \
+    k^2 e0 (nabla phi.alt(bup(r)))^2 &= nabla^2 e0 + nr k^2 e0 \
+    (nabla phi.alt(bup(r)))^2 &= (nabla^2 e0)/(k^2 e0) + nr \
+  $
+
+  atau dapat disederhanakan menjadi
+
+  $
+    norm(nabla phi.alt(bup(r))) = n(bup(r))
   $ <eikonal>
+
+  karena pada frekuensi yang sangat besar, $n^2(bup(r)) >> abs((nabla^2 e0)/(k^2 e0))$.
 ]
 
 \
@@ -372,7 +388,7 @@ Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vek
 
 == Atenuasi Ruang
 
-=== Daya dan Intensitas Gelombang Elektromagnetik
+=== Daya dan Intensitas Gelombang Elektromagnetik <sphint>
 
 Jika suatu vektor unit $hat(bup(s)) $ dapat didefinisikan sebagai $(nabla phi.alt(bup(r)))/(norm(nabla phi.alt(bup(r)))) = (nabla phi.alt(bup(r)))/n$, maka persamaan @finalpoynting dapat ditulis sebagai
 
@@ -440,19 +456,109 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
 
 #[
   #set math.equation(number-align: bottom)
-  #let en = [$tilde(bup(E))_i (bup(r))$]
+  #let e0 = [$tilde(bup(E))_0 (bup(r))$]
+  #let er(r) = [$tilde(bup(E))_0 (#r)$]
   #let pr = [$phi.alt(bup(r))$]
 
+  #figure(
+    image("assets/gc.jpg", width: 80%),
+    caption: [Dua permukaan gelombang sebagai lengkungan Gauss],
+  ) <gausscurv>
+
   $
-    en nabla^2 pr &= -2 (nabla pr dot nabla) en
+    e0 nabla^2 pr = -2 (nabla pr dot nabla) e0
   $
   
-]
+  \
 
-#figure(
-  image("assets/gc.jpg", width: 80%),
-  caption: [Dua permukaan gelombang sebagai lengkungan Gauss],
-) <gausscurv>
+  $(nabla pr dot nabla)e0$ merupakan aplikasi suatu operator diferensial (turunan direksional) yang menunjukkan turunan $e0$ pada arah $nabla pr$. Karena arah propagasi $e0$ adalah $nabla pr$ itu sendiri, maka operasi tersebut dapat juga ditulis sebagai $norm(nabla pr)d/(d s) e0$ dengan $s$ jalur propagasi, sehingga didapatkan
+
+  $
+    e0 nabla^2 pr &= -2 norm(pr) d / (d s) e0 \
+    (d e0) / e0 &= - (nabla^2 pr) / (2 norm(pr))d s
+  $
+
+  dan jika persamaan tersebut diintegrasikan diantara dua posisi berbeda pada ruang, $rho_0$ dan $rho_0 + Delta$, maka
+
+  $
+    integral^er(rho_0 + Delta rho)_er(rho_0) (d e0) / e0 &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
+    ln er(rho_0 + Delta rho) - ln er(rho_0) &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
+    ln er(rho_0 + Delta rho) / er(rho_0) &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
+    er(rho_0 + Delta rho) / er(rho_0) &= exp(- integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s) \
+    er(rho_0 + Delta rho) &= er(rho_0) exp(- integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s) \
+  $ <direxpand>
+
+  atau juga dapat ditulis
+
+  $
+    tilde(bup(E))_0^2 (rho_0 + Delta rho) = tilde(bup(E))_0^2 (rho_0) exp(- integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (norm(pr)) d s)
+  $ <direxp>
+
+  \
+
+  Muka gelombang dapat diinterpretasikan sebagai lengkungan Gauss, yaitu sebuah permukaan yang terbentuk dari dua lengkungan utama. @gausscurv mengilustrasikan dua muka gelombang $cal(A)$ dan proyeksinya $cal(B)$ pada jarak $s$, masing-masing memiliki kelengkungan
+  
+  
+  $  K_cal(A) = 1/(rho_1 rho_2) $
+  $  K_cal(B) &= 1/((rho_1 + s)(rho_2 + 2)) $
+
+  \
+
+  Misalkan unit vektor $hat(bup(t)) = (nabla pr) / norm(nabla pr) = (nabla pr) / n(bup(r))$ merupakan vektor unit yang menunjukkan arah propagasi pada suatu titik di muka gelombang, serta vektor $bup(u)$ dan $bup(v)$ yang menunjukkan pergerakan di sepanjang masing-masing kelengkungan muka gelombang, maka divergensi dari $hat(bup(t))$ dapat dijabarkan sebagai penjumlahan dari turunan direksional setiap basis sebarang non-ortonormal yang menyusunnya, dalam hal ini, digunakan $(bup(t), bup(u), bup(v))$, sehingga
+
+  $
+    nabla dot hat(bup(t)) = nabla_bup(t) dot hat(bup(t)) + nabla_bup(u) dot hat(bup(t)) + nabla_bup(v) dot hat(bup(t)) space "dimana" space nabla_bup(g) dot bup(F) = hat(bup(g)) dot (partial bup(F))/(partial bup(g))
+  $
+
+  \
+
+  Turunan direksional vektor unit terhadap arahnya sendiri adalah $0$ $(hat(bup(t)) dot hat(bup(t)) = 1 arrow.double.l.r partial_bup(t)(hat(bup(t)) dot hat(bup(t))) = 0 arrow.double.l.r 2hat(bup(t)) dot partial_bup(t) hat(bup(t)) = 0 arrow.double.l.r hat(bup(t)) dot partial_bup(t) hat(bup(t)) = 0)$. Selain itu, turunan direksional terhadap $bup(u)$ dan $bup(v)$ terkait dengan perubahan kelengkungan permukaan Gauss terhadap masing-masing kelengkungan utama dan $sigma$ perubahan terhadap $s$, sehingga 
+
+  $
+    nabla dot hat(bup(t)) = 1/(rho_1 + sigma) + 1/(rho_2 + sigma)
+  $
+
+  atau karena $hat(bup(t)) = (nabla pr) / norm(nabla pr)$, juga dapat ditulis
+
+  $
+    nabla dot (nabla pr) / norm(nabla pr) = (nabla^2 pr)/norm(nabla pr) &= 1/(rho_1 + sigma) + 1/(rho_2 + sigma) \
+  $
+  
+  yang mana sisi kiri dari persamaan dapat dibuat sama dengan suku eksponensial dari persamaan @direxp dengan melakukan integrasi, negasi, dan eksponensiasi:
+
+  $
+    (nabla^2 pr)/norm(nabla pr) &= 1/(rho_1 + sigma) + 1/(rho_2 + sigma) \
+    integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma &=  integral ^s_0 (d sigma)/(rho_1 + sigma) + integral^s_0 (d sigma)/(rho_2 + sigma) \
+    -integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma &=  -integral^s_0 (d sigma)/(rho_1 + sigma) - integral^s_0 (d sigma)/(rho_2 + sigma) \
+    exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma) &=  exp(-integral ^s_0 (d sigma)/(rho_1 + sigma)) exp(- integral^s_0 (d sigma)/(rho_2 + sigma)) \
+  $
+
+  dengan asumsi muka gelombang $cal(A)$ berada pada $s = 0$. Kemudian, dengan melakukan integrasi pada sisi kanan persamaan, didapatkan
+
+  $
+    exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d s) &=  exp(-integral ^s_0 (d sigma)/(rho_1 + s)) exp(- integral^s_0 (d sigma)/(rho_2 + sigma)) \
+    &= exp(- ln (rho_1 + sigma) bar^s_0) exp(- ln(rho_2 + sigma) |^s_0) \
+    &= (rho_1/(rho_1 + s))(rho_2/(rho_2 + s)) \
+    &= (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
+  $
+
+  sehingga persaamaan @direxp dapat ditulis menjadi
+
+  $
+    tilde(bup(E))_0^2 (s) &= tilde(bup(E))_0^2 (0) (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
+    tilde(bup(E))_0 (s) &= tilde(bup(E))_0 (0) sqrt( (rho_1 rho_2)/((rho_1 + s)(rho_2 + s))) \
+  $
+
+  yang menunjukkan atenuasi ruang pada jarak $s$ dari sumber. Pada sumber gelombang bulat, maka $rho_1 = rho_2 = r$, sehingga
+
+  $ 
+    A(s) &= sqrt( (r^2)/((r + s)^2)) \
+    &= r/(r + s) \
+    &= 1/s quad (r << s)
+  $
+
+  yang senada dengan penurunan atenuasi ruang via vektor Poynting pada subsubbab @sphint di atas.
+]
 
 == Refleksi dan Transmisi
 
