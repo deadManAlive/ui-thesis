@@ -825,14 +825,14 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
       bup(E)_i + bup(E)_d &pi - pa' < pa < pi + pa' quad &"(II)",
       bup(E)_d &pi + pa' < pa < n pi &"(III)"
     )
-  $
+  $ <diftot>
 
   dimana $bup(E)_r$ adalah medan listrik refraksi, $bup(E)_i$ medan listrik LOS, dan $bup(E)_d$ medan listrik difraksi.
 
   Seperti halnya sinar refleksi dan transmisi, kekuatan medan yang direpresentasikan oleh suatu sinar difraksi juga dijelaskan oleh suatu koefisien, yaitu koefisien refraksi $D$. Penelitian Keller terhadap GTD memberikan
 
   $ 
-    D_(s,h)(pa - pa') &= (e^(-j pi / 4))/(n sqrt(2 pi k)) sin(pi/n) \ 
+    D_(s,h)(pa,pa') &= (e^(-j pi / 4))/(n sqrt(2 pi k)) sin(pi/n) \ 
     &times [1/(cos(pi/n)-cos((pa - pa')/n)) minus.plus 1/(cos(pi/n)+cos((pa - pa')/n))]
   $ <kellerd>
 
@@ -876,17 +876,50 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
   $
     F(x) = 2 j sqrt(x) e^(j x) integral^infinity_sqrt(x) e^(j t^2) d t
   $
+
+  === Difraksi Oleh Objek Dielektrik
+
+  Satu hal yang perlu diperhatikan dari GTD dan UTD adalah bahwa digunakan asumsi bahwa materi dari objek penghalang adalah PEC sehingga menyederhanakan banyak parameter dalam interaksi antara medan dan materi, terutama dalam hal lokalitas dimana pada frekuensi tinggi dan objek PEC, refleksi, transmisi, dan bahkan difraksi adalah fenomena lokal. 
+  
+  Pada objek dielektrik, interaksi gelombang dengan materi lebih rumit pada batas medium sehingga asumsi lokalitas pada GTD dan UTD tidak berlaku. Pada kondisi demikian, umumnya metode _physical optics_ (PO) dan _physical theory of diffraction_ (PTD) lebih tepat digunakan karena mempertimbangkan distribusi medan disepanjang permukaan objek, atau metode _full-wave_ lainnya.
+
+  #figure(
+    image("assets/dieslab.jpg", width: 60%),
+    caption: [Difraksi oleh lempeng dielektrik tipis.]
+  ) <dieslab>
+
+  Meskipun demikian, UTD masih dapat dikembangkan, dengan berbagai asumsi, untuk memberikan perkiraan terhadap berbagai situasi difraksi. Sebagai contoh, suatu sinar baru yaitu sinar gelombang permukaan bisa diperkenalkan pada situasi objek memiliki impedansi permukaan@rojas_electromagnetic_1988. Contoh lainnya adalah pada kondisi objek penghalang berupa lapisan dielektrik seperti pada @dieslab, sehingga komponen medan transmisi perlu ditambahkan pada persaamaan @diftot sehingga persamaan tersebut menjadi
+
+  $ 
+    bup(E)_"total" = cases(
+      bup(E)_r + bup(E)_i + bup(E)_d quad &0 < pa < pi - pa' &"(I)",
+      bup(E)_i + bup(E)_d &pi - pa' < pa < pi + pa' quad &"(II)",
+      bup(E)_d + bup(E)_t &pi + pa' < pa < n pi &"(III)"
+    )
+  $
+
+  dengan $bup(E)_t$ medan transmisi. Pada kondisi tersebut, koefisien difraksi $D$ dapat diestimasikan sebagai@burnside_high_1983
+
+  $
+    D_(s,h)(pa, pa') = [(1-T)D(pa - pa') + Gamma D(pa + pa')]
+  $
+
+  dengan
+
+  $
+    D(pa minus.plus pa') = (-e^(-j pi / 4))/(2 sqrt(2 pi k)) (F[k L a(pa minus.plus pa')])/cos((pa minus.plus pa')/2)
+  $
 ]
 
-== Lintasan Propagasi
-
-$ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
-
-$ E_"total" = sum_i E_R[i] $
+=== Lintasan Propagasi
 
 == Komputasi Elektromagnetik
 
 === _Ray Tracing_
+
+$ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+
+$ E_"total" = sum_i E_R[i] $
 
 === _Shooting and Bouncing Rays_
 
