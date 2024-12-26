@@ -446,7 +446,7 @@ $ (abs(bup(E)(rho_0)))/(abs(bup(E)(rho_0 + Delta rho))) = (rho_0+Delta rho)/rho_
 
 dan jika perhitungan dimulai dari sumber ($rho_0 = 0$) dan permukaan yang berjarak $r$ dari sumber, maka
 
-$ abs(bup(E)(rho_0 + Delta rho)) = 1/r abs(bup(E)(rho_0)) $
+$ abs(bup(E)(rho_0 + Delta rho)) = 1/r abs(bup(E)(rho_0)) $ <atten>
 
 sehingga $1/r$ adalah koefisien atenuasi ruang $A(r)$ pada jarak $r$ dari sumber, sesuai dengan persamaan @epropir.
 
@@ -557,7 +557,7 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
     &= 1/s quad (r << s)
   $
 
-  yang senada dengan penurunan atenuasi ruang via vektor Poynting pada subsubbab @sphint di atas.
+  yang senada dengan persamaan @atten dari penurunan atenuasi ruang via vektor Poynting pada subsubbab @sphint di atas.
 ]
 
 == Refleksi dan Transmisi
@@ -786,25 +786,97 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
 == Difraksi
 
-Difraksi merupakan fenomena gelombang berupa terjadinya penyebaran atau pembelokan muka gelombang di sekitar suatu penghalang. Dalam fisika klasik, hal ini dapat dijelaskan sebagai implikasi dari prinsip Huygens-Fresnel, dimana setiap titik pada muka gelombang merupakan sumber gelombang bulat sekunder yang kemudian berinterferensi satu sama lainnya membentuk muka gelombang sebenarnya, seperti yang diilustrasikan pada @huygenswf. Oleh karena itu, difraksi mengakibatkan adanya medan propagasi pada ruang bayangan yang ditimbulkan pada ruang NLOS oleh suatu benda yang berada di jalur propagasi gelombang.
+#[
+  #let pa = [$phi.alt$]
 
-$
-  #box
-$
+  Difraksi merupakan fenomena gelombang berupa terjadinya penyebaran atau pembelokan muka gelombang di sekitar suatu penghalang. Dalam fisika klasik, hal ini dapat dijelaskan sebagai implikasi dari prinsip Huygens-Fresnel, dimana setiap titik pada muka gelombang merupakan sumber gelombang bulat sekunder yang kemudian berinterferensi satu sama lainnya membentuk muka gelombang sebenarnya, seperti yang diilustrasikan pada @huygenswf. Oleh karena itu, difraksi mengakibatkan adanya medan propagasi pada ruang bayangan yang ditimbulkan pada ruang NLOS oleh suatu benda yang berada di jalur propagasi gelombang.
 
-#figure(
-  image("assets/huygens.png", width: 60%),
-  caption: [Pembentukan muka gelombang berdasarkan prinsip Huygens-Fresnel]
-) <huygenswf>
+  #figure(
+    image("assets/huygens.png", width: 60%),
+    caption: [Pembentukan muka gelombang berdasarkan prinsip Huygens-Fresnel]
+  ) <huygenswf>
 
-Dapat dicermati bahwa difraksi sebagai fenomena gelombang menjadi batasan dari metode GO yang mengabaikan sifat gelombang dan menggambarkannya sebagai sinar-sinar diskrit sebagai jalur propagasi muka gelombang. @shadow mengilustrasikan adanya batas bayangan (_shadow boundary_) ketika sinar mengenai suatu objek penghalang pada titik difraksi. Batas bayangan sendiri berupa diskontinuitas antara ruang LOS dan ruang bayangan yang mana pada GO, tidak terdapat sinar yang berpropagasi ke ruang tersebut. Hal ini terjadi karena formulasi GO tidak memberikan mekanisme yang menjelaskan perilaku gelombang dari sinar di sekitar titik-titik difraksi tersebut.
+  Dapat dicermati bahwa difraksi sebagai fenomena gelombang menjadi batasan dari metode GO yang mengabaikan sifat gelombang dan menggambarkannya sebagai sinar-sinar diskrit sebagai jalur propagasi muka gelombang. @shadow mengilustrasikan adanya batas bayangan (_shadow boundary_) ketika sinar mengenai suatu objek penghalang pada titik difraksi. Batas bayangan sendiri berupa diskontinuitas antara ruang LOS dan ruang bayangan yang mana pada GO, tidak terdapat sinar yang berpropagasi ke ruang tersebut. Hal ini terjadi karena formulasi GO tidak memberikan mekanisme yang menjelaskan perilaku gelombang dari sinar di sekitar titik-titik difraksi tersebut.
 
-#figure(
-  image("assets/shadow.jpg", width: 80%),
-  caption: [Difraksi oleh beberapa bentuk penghalang]
-) <shadow>
+  #figure(
+    image("assets/shadow.jpg", width: 80%),
+    caption: [Difraksi oleh beberapa bentuk penghalang]
+  ) <shadow>
 
-_Geometric theory of diffraction_ (GTD) kemudian dikembangkan oleh J. B. Keller yang mengintegrasikan difraksi kedalam GO. GTD menambahkan jenis sinar baru pada GO disamping sinar refleksi dan transmisi, yaitu sinar difraksi yang berupa solusi atas masalah batas dan sinar-sinar tersebut haruslah memenuni prinsip Fermat@keller_geometrical_1962. Implikasi dari teori tersebut adalah bahwa difraksi dapat dimodelkan seperti refleksi dan transmisi, yaitu dapat dimodelkan dengan sinar dan berupa fenomena lokal yang hanya bergantung pada geometri penghalang dan parameter-parameter gelombang dari sinar datang@balanis_balanis_2024.
+  === _Geometric Theory of Diffraction_
+
+  _Geometric theory of diffraction_ (GTD) kemudian dikembangkan oleh J. B. Keller yang mengintegrasikan difraksi kedalam GO. GTD menambahkan jenis sinar baru pada GO disamping sinar refleksi dan transmisi, yaitu sinar difraksi yang berupa solusi atas masalah batas dan sinar-sinar tersebut haruslah memenuni prinsip Fermat@keller_geometrical_1962. Implikasi dari teori tersebut adalah bahwa difraksi dapat dimodelkan seperti refleksi dan transmisi, yaitu fenomena yang dapat dimodelkan dengan sinar dan berupa fenomena lokal yang hanya bergantung pada geometri penghalang dan parameter-parameter gelombang dari sinar datang@balanis_balanis_2024.
+
+  #figure(
+    image("assets/diffr.jpg", width: 60%),
+    caption: []
+  ) <difbound>
+
+  GTD didasarkan kepada usaha mengatasi keberadaan diskontinuitas yang terjadi ketika sebuah sinar mengenai sebuah penghalang yang seharusnya tidak terjadi karena gelombang, yang direpresentasikan oleh sinar itu sendiri, tidak menghasilkan diskontinuitas ketika berpropagasi melewati suatu objek penghalang.
+
+  @difbound mengilustrasikan tiga wilayah yang terbentuk akibat diskontinuitas oleh adanya penghalang berbentuk sudut. Dengan menggunakan GO saja, maka wilayah I berada pada LOS dari sumber $bup(S)$ sehingga dapat menerima sinar langsung dan refleksi, wilayah II yang masih terdapat pada LOS sumber hanya memungkinkan sinar langsung, dan tidak terdapat sinar pada wilayah III.
+
+  Tidak adanya suatu jenis sinar pada wilayah yang berbatasan memberikan diskontinuitas, yang pertama berupa batas bayangan pantul (_reflection shadow bounday_/RSB) antara wilayah I dan II, serta batas bayangan datang (_incident shadow boundary_/ISB) antara wilayah II dan III. Memperkenalkan sinar difraksi untuk mengeliminasi diskontinuitas tersebut karena sinar difraksi menyebar ke segala arah dari titik difraksi, memberikan suatu komponen medan kontinyu pada medan total. Misal $bup(E)_"total"$ adalah medan listrik yang berasal dari sumber, maka
+
+
+  $ 
+    bup(E)_"total" = cases(
+      bup(E)_r + bup(E)_i + bup(E)_d quad &0 < pa < pi - pa' &"(I)",
+      bup(E)_i + bup(E)_d &pi - pa' < pa < pi + pa' quad &"(II)",
+      bup(E)_d &pi + pa' < pa < n pi &"(III)"
+    )
+  $
+
+  dimana $bup(E)_r$ adalah medan listrik refraksi, $bup(E)_i$ medan listrik LOS, dan $bup(E)_d$ medan listrik difraksi.
+
+  Seperti halnya sinar refleksi dan transmisi, kekuatan medan yang direpresentasikan oleh suatu sinar difraksi juga dijelaskan oleh suatu koefisien, yaitu koefisien refraksi $D$. Penelitian Keller terhadap GTD memberikan
+
+  $ 
+    D_(s,h)(pa - pa') &= (e^(-j pi / 4))/(n sqrt(2 pi k)) sin(pi/n) \ 
+    &times [1/(cos(pi/n)-cos((pa - pa')/n)) minus.plus 1/(cos(pi/n)+cos((pa - pa')/n))]
+  $ <kellerd>
+
+  dimana terdapat dua jenis difraksi, yaitu $s$ yang terjadi ketika gelombang yang datang memiliki polarisasi TM, dan $h$ sebaliknya.
+
+  === _Uniform (Geometric) Theory of Diffraction_
+
+  Meskipun GTD mampu mengintegrasikan difraksi pada GO dengan memperkenalkan sinar-sinar difraksi yang bersumber dari titik difraksi dan membuat medan-medan pada ketiga wilayah difraksi kontinyu, dari persaamaan koefisien difraksi @kellerd dapat dilihat adanya singularitas ketika $pa + pa' = pi$ dan $pa - pa' = pi$ dimana $D$ akan bernilai tak hingga. Dapat dilihat bahwa masing-masing kondisi tersebut terjadi pada ISB dan RSB, sehingga meskipun GTD terlihat dapat mengatasi diskontinuitas pada medan-medan disekitar objek, masih terdapat diskontinuitas pada perbatasan wilayah.
+
+  Untuk itu, R. G. Kouyoumjian dan P. H. Pathak mengembangkan GTD menjadi _uniform (geometric) theory of diffraction_ (UTD) dengan melihat wilayah-wilayah bayangan disekitar objek sebagai wilayah transisi medan antara ISB dan ISR@balanis_balanis_2024, yang dilakukan dengan cara memperkenalkan suatu fungsi transisi $F$ pada GTD@paknys_applied_2016, dan didapatkan koefisien difraksi
+
+  $
+    D_(s,h) &= (-e^(-j pi / 4))/(2n sqrt(2 pi k)) \
+    &times [cot((pi + (pa - pa'))/2n) F(k L a^+(pa - pa')) \
+    &+ cot((pi - (pa - pa'))/2n) F(k L a^-(pa - pa')) \
+    &minus.plus {cot((pi + (pa + pa'))/2n) F(k L a^+(pa + pa')) \
+    &+ cot((pi - (pa + pa'))/2n)F(k L a^-(pa + pa'))}]
+  $
+
+  dimana parameter jarak $L$ adalah
+
+  $
+    L = cases(
+      rho &"gelombang planar",
+      (rho rho')/(rho + rho') &"gelombang silindris"
+    )
+  $
+
+  kemudian
+
+  $
+    a^plus.minus(theta) = 2 cos((2 n pi N^plus.minus - theta)/2)
+  $
+
+  dengan $N^plus.minus$ adalah bilangan bulat yang memenuhi
+
+  $ 2 pi n N^+ - theta = pi "dan" 2 pi n N^- - theta = - pi $
+
+  dan fungsi transisi $F$ merupakan fungsi transisi Fresnel berupa
+
+  $
+    F(x) = 2 j sqrt(x) e^(j x) integral^infinity_sqrt(x) e^(j t^2) d t
+  $
+]
 
 == Lintasan Propagasi
 
