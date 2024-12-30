@@ -12,7 +12,7 @@ Hal sebaliknya terjadi ketika koneksi nirkabel dibutuhkan pada situs yang komple
 
 Dalam kondisi-kondisi tersebut, adanya ruang tanpa jangkauan di wilayah yang tidak diinginkan atau sekedar kekuatan sinyal yang tidak mencukupi dapat membuat pemanfaatan jaringan pada bangunan menjadi suboptimal, terutama jika terjadi di lingkungan komersial. Oleh karena itu, dibutuhkan penempatan titik akses yang terencana bahkan hal tersebut dapat menjadi salah satu acuan dalam tahap desain konstruksi bangunan.
 
-Terdapat berbagai macam cara yang dapat dilakukan untuk perencanaan tersebut, contoh yang sederhana adalah menggunakan model empiris, seperti dalam kondisi _indoor_ di antaranya ITU-R P.1238-9 (pemodelan propagasi dalam ruangan) dan model _log-distance path loss_. Kedua model tersebut memperkirakan _path loss_ sebagai fungsi dari jarak, frekuensi, dan sebagainya. Meskipun dapat memberikan estimasi awal kinerja suatu channel dengan cukup akurat dan kalkulasi yang sederhana, model empiris memiliki keterbatasan dalam hal suatu model hanya valid untuk lingkungan yang spesifik serta mengabaikan berbagai faktor eksternal yang dapat mempengaruhi propagasi gelombang@yun_ray_2015.
+Terdapat berbagai macam cara yang dapat dilakukan untuk perencanaan tersebut, contoh yang sederhana adalah menggunakan model empiris, seperti dalam kondisi _indoor_ di antaranya ITU-R P.1238-9 (pemodelan propagasi dalam ruangan) dan model _log-distance path loss_. Kedua model tersebut memperkirakan _path loss_ sebagai fungsi dari jarak, frekuensi, dan sebagainya. Meskipun dapat memberikan estimasi awal kinerja suatu channel dengan cukup akurat dan kalkulasi yang sederhana, model empiris memiliki keterbatasan dalam hal suatu model hanya valid untuk lingkungan yang spesifik serta mengabaikan berbagai faktor eksternal yang dapat mempengaruhi propagasi gelombang@yun_ray_2015@faruk_study_2013.
 
 Metode yang umum digunakan untuk memodelkan propagasi gelombang radio adalah melakukan komputasi numerik  terhadap persamaan Maxwell untuk mengalkulasi medan listrik $bold(upright(E))$ dan medan magnet $bold(upright(B))$, melalui penyelesaian numerik dari bentuk integral persamaan Maxwell seperti _Method of Moments_ (MoM) dan _Fast Multi-pole Method_ (FMM) ataupun dari bentuk diferensial seperti _Finite-Difference Time-Domain_ (FDTD) dan _Finite Element Method_ (FEM).
 Karena bekerja secara langsung terhadap persamaan Maxwell yang menjelaskan perilaku medan listrik dan magnet, metode-metode _computational electromagnetic_ (CEM) ini memiliki kelebihan dalam perihal akurasi dan domain permasalahan yang lebih beragam dari pemodelan empiris.
@@ -27,7 +27,7 @@ Pada laporan skripsi ini, akan dirancang sebuah aplikasi, dari algoritma di bali
 
 Beberapa perihal yang mendasari penelitian ini adalah:
 
-+ Bagaimana metode _ray tracing_ yang memodelkan gelombang sebagai _beam_ sinar dapat memodelkan propagasi gelombang elektromagnetik pada ruang?
++ Bagaimana metode _ray tracing_ yang memodelkan gelombang sebagai sinar dapat memodelkan propagasi gelombang elektromagnetik pada ruang?
 
 + Bagaimana menerapkan metode _ray tracing_ ke dalam bentuk algoritma program untuk melakukan perhitungan daya yang diterima dan rugi jalur dari suatu sumber pada ruang 2 dimensi?
 

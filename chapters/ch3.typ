@@ -73,35 +73,41 @@ Pemilihan _environment_ pemrograman dilakukan untuk mempertimbangkan bagaimana a
 @benchies menunjukkan perbandingan performa antara beberapa bahasa pemrograman untuk mengimplementasikan algoritma _shooting and bouncing rays_ sederhana dari @pseudosbr.
 Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rerata yang sedikit lebih baik dari C. Sisi performa dari Rust menjadi salah satu dari beberapa justifikasi untuk menulis program di bahasa tersebut, disamping _type safety_, _memory safety_, dan _developer experience_ yang akan sangat membantu dalam penyusunan program.
 
-#figure(
-    [
-        #set math.equation(numbering: none)
-        #set align(left)
-        #pseudocode-list(indentation: 2em)[
-        - *variabel*:
-        + $W subset RR^2 times RR^2$
-        + $n in NN$
-        + $bup(o)_0 in RR^2$
-        + $bup(d)_0 in RR^2$
-        - *SBR*:
-        + *for each* $i = 1,2,...,n$ *do*
-            + *for each* $(bup(s), bup(e)) in W$
-                + $bup(w) = bup(e) - bup(s)$
-                + $bup(p)_1 = bup(s) - bup(o)_(i-1)$
-                + $bup(p)_2 = -bup(d)_(i-1)$
-                + $bup(p)_3 = "Rot"_(pi slash 2)(bup(w))$
-                + $bup(o)_i = bup(s) + norm(bup(p)_2 times bup(p)_1)/(bup(p)_2 dot bup(p)_3) dot bup(w)$
-                + $bup(d)_i = "Refl"_(angle bup(w))(bup(d)_(i-1))$
+#[
+    #show figure: it => align(left)[
+        #it.body  
+    ]
+    #figure(
+        [
+            #set math.equation(numbering: none)
+            #pseudocode-list(
+                indentation: 2em,
+                booktabs: true,
+                numbered-title: [_Shooting and Bouncing Rays_])[
+            - *variable*:
+            + $W subset RR^2 times RR^2$
+            + $n in NN$
+            + $bup(o)_0 in RR^2$
+            + $bup(d)_0 in RR^2$
+            - *SBR*:
+            + *for each* $i = 1,2,...,n$ *do*
+                + *for each* $(bup(s), bup(e)) in W$
+                    + $bup(w) = bup(e) - bup(s)$
+                    + $bup(p)_1 = bup(s) - bup(o)_(i-1)$
+                    + $bup(p)_2 = -bup(d)_(i-1)$
+                    + $bup(p)_3 = "Rot"_(pi slash 2)(bup(w))$
+                    + $bup(o)_i = bup(s) + norm(bup(p)_2 times bup(p)_1)/(bup(p)_2 dot bup(p)_3) dot bup(w)$
+                    + $bup(d)_i = "Refl"_(angle bup(w))(bup(d)_(i-1))$
+                + *end*
             + *end*
-        + *end*
-        + $S = union.big_(i in Q) (bup(o)_i, bup(d)_i)$
-        ]
-    ],
-    supplement: [Algoritma],
-    caption: [Psudokode algoritma perulangan SBR sederhana yang dikembangkan. Dengan himpunan segmen garis dinding penghalang $W$, jumlah iterasi $n$, titik awal segmen sinar $bup(o)_n$, arah sinar $bup(d)_n$, vektor penghalang $bup(w)$, dan himpunan sinar hasil $S$],
-    kind: "Algorithm",
-    outlined: false, placement: auto,
-) <pseudosbr>
+            + return $S = union.big_(i in Q) (bup(o)_i, bup(d)_i)$
+            ]
+        ],
+        supplement: [Algoritma],
+        kind: "algorithm",
+        outlined: false, placement: auto,
+    ) <pseudosbr>
+]
 
 Algoritma tersebut, bersama program akhir dikembangkan dan dijalankan pada komputer/laptop dengan spesifikasi berikut:
 - CPU: Intel Core i5-8300H (4 _cores_, 8 _threads_) \@ 2.3 GHz.
@@ -455,6 +461,14 @@ Secara umum, algoritma ini merupakan implementasi konkrit dari @sbrtec. Potongan
 ) <bouncing>
 
 == Pemodelan Interaksi Sinar
+
+Untuk dapat melakukan kalkulasi _ray tracing_, informasi-informasi gelombang dapat diintegrasikan kepada objek sinar, sehingga suatu segmen sinar pada program dapat direpresentasikan sebagai
+
+$ bup(R) = (bup(o), bup(d), bup(Gamma), bup(T), bup(D), s) $
+
+dimana vektor $bup(o),bup(d) in RR^2$ masing-masing adalah vektor yang menunjuk titik awal sinar dan arah dari sinar, $bup(Gamma)$ adalah koefisien refleksi, $bup(T)$ adalah koefisien transmisi, $bup(D)$ adalah koefisien difraksi, dan $s$ panjang segmen.
+
+=== Refleksi
 
 === Transmisi
 

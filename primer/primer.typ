@@ -109,7 +109,7 @@
   show heading.where(level: 1): head => context [
     #counter(figure.where(kind: image)).update(0)
     #counter(figure.where(kind: table)).update(0)
-    #counter(figure.where(kind: "Algorithm")).update(0)
+    #counter(figure.where(kind: "algorithm")).update(0)
     #counter(math.equation).update(0)
 
     #set align(center)
@@ -129,6 +129,9 @@
   set heading(numbering: "1.1.1.", supplement: [])
   set text(lang: "id")
   show heading: set block(spacing: 1.5em)
+  show table.cell: set par(leading: 0.65em, justify: false)
+  show figure: set math.equation(numbering: none)
+  set table(inset: (x: 8pt, y: 6pt))
 
   body
 }

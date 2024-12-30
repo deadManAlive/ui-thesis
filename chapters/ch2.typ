@@ -17,11 +17,9 @@ Selain itu juga terdapat konsep _physical optics_ (PO) sebagai alternatif dari G
 Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan induksi magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) = hat(bup(x))x + hat(bup(y))y + hat(bup(z))z in Gamma$, dengan $Gamma subset.eq RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya.
 
 #[
-  #set math.equation(numbering: none)
-  #set par(justify: false, leading: 1em)
   #figure(
     table(
-      columns: (30%, 50%),
+      columns: (1fr, 2fr),
       align: (left + horizon, center + horizon, center + horizon),
       table.header([*Hukum*], [*Formulasi* (Bentuk Diferensial)]),
       [Hukum Gauss], [$ nabla dot bup(E) = rho / epsilon_0 $],
@@ -904,18 +902,115 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
     D_(s,h)(pa, pa') = [(1-T)D(pa - pa') + Gamma D(pa + pa')]
   $
 
-  dengan
+  dengan koefisien refleksi total $R$
+
+  $
+    R = R_(perp, parallel) = (R_(1(perp,parallel))(1-P_d^2 P_a))/(1-R^2_(1,(perp,parallel))P_d^2 P_a)
+  $
+
+  koefisien transmisi total $T$
+
+  $
+    T = T_(perp, parallel) = ((1 - R_(1(perp,parallel)))P_d^2 P_t)/(1-R^2_(1,(perp,parallel))P_d^2 P_a)
+  $
+
+  dan
 
   $
     D(pa minus.plus pa') = (-e^(-j pi / 4))/(2 sqrt(2 pi k)) (F[k L a(pa minus.plus pa')])/cos((pa minus.plus pa')/2)
   $
-]
 
-=== Lintasan Propagasi
+  dimana
+
+  $
+    P_d = exp(-j k' d/(cos theta_t))
+  $
+  $
+    P_a = exp(j k 2 d/(cos(theta_r)) sin(theta_t) sin(theta_i))
+  $
+  $
+    P_t = exp(j k d/(cos(theta_t)) cos(theta_i - theta_t))
+  $
+
+  dengan $k$ konstanta propagasi pada ruang bebas, $k'$ konstanta propagasi pada dielektrik, dan $d$ ketebalan dielektrik.
+]
 
 == Komputasi Elektromagnetik
 
+#figure(
+  image("assets/compem.png", width: 80%),
+  caption: [Pembagian komputasi elektromagnetik]
+) <cemdiag>
+
+Komputasi elektromagnetik (_computational electromagnetics_) atau CEM dapat didefinisikan sebagai cabang dari elektromagnetika yang memanfaatkan komputer digital terotomasi untuk memperoleh suatu nilai-nilai angka@miller_selective_1988, meskipun pada hakikatnya komputasi sendiri (dari Latin _computo_, menghitung) tidak terbatas pada pemanfaatan komputer dan termasuk kepada perhitungan dengan tangan solusi secara analitik maupun numerik terhadap persamaan-persamaan Maxwell, atau hukum-hukum fisika lainnya secara umum pada komputasi fisika (_computational physics_).
+
+Salah satu aplikasi utama dari CEM adalah pemodelan propagasi yang memprediksi perilaku gelombang elektromagnetik di situasi lingkungan yang beragam, yang sebagai contoh sangat berguna dalam perencanaan infrastruktur jaringan.
+Secara konsep, CEM dapat dibagi menjadi dua: pemodelan empiris dan pemodelan deterministik. Pemodelan empiris bergantung kepada pengamatan dan hasil pengukuran dan memberikan persaamaan berupa fungsi aljabar sederhana atas frekuensi, jarak, gain, dan sebagainya untuk mengestimasi perilaku gelombang dalam kondisi-kondisi spesifik.
+
+Berbeda dengan metode-metode empirik, metode deterministik mensimulasikan propagasi gelombang elektromagnetik berdasarkan hukum-hukum fisika dan formulasi matematika terkait untuk memprediksi kuat sinyal pada suatu titik@abhayawardhana_comparison_2005. Pemodelan deterministik dapat bekerja secara _full-wave_, dimana metode numerik digunakan untuk mengaproksimasi solusi dari persamaan-persamaan Maxwell.
+Berdasarkan bentuk persamaan Maxwell yang digunakan, metode _full-wave_ terbagi atas metode-metode berbasis persamaan diferensial dan metode-metode berbasis persamaan integral. Selain itu, metode _full-wave_ juga dapat dilakukan pada domain waktu maupun frekuensi.
+
+Metode asimtotik atau metode frekuensi tinggi, yang berdasarkan kepada asumsi-asumsi atau ekspansi asimtotik tertentu terhadap solusi persamaan-persamaan Maxwell tersebut. Metode ini berguna sebagai alternatif dari metode _full-wave_ karena pada frekuensi tinggi, metode tersebut memberikan sistem persamaan linear yang sangat besar dan akan sangat membebani dalam perihal komputasi@stutzman_antenna_2013.
+Metode asimtotik sederhananya memberikan aproksimasi atas solusi dari persaamaan-persamaan Maxwell dengan asumsi/hipotesis yang berlaku ketika panjang gelombang cukup kecil dibanding dengan ukuran geometri objek@pelosi_brief_2021. Secara garis besar, metode asimtotik ini terbagi atas _geometric optics_ (GO) dan _physical optics_ (PO).
+
+
+=== Pemodelan Empiris Rugi Jalur
+
+Rugi jalur (_path loss_) merupakan karakteristik gelombang dimana gelombang akan mengalami atenuasi atau pengurangan daya selama propagasinya dari satu titik ke titik lain. Rugi jalur dapat terjadi karena berbagai macam hal seperti akibat sifat alami gelombang yang menyebar, hamburan akibat difraksi, penyerapan dan distorsi oleh medium, refleksi oleh suatu objek, _fading_, dan lain sebagainya. Oleh karena itu, akan cukup sulit untuk memprediksi rugi jalur secara tepat tanpa memperhitungkan semua faktor lingkungan tersebut.
+
+Masalahnya adalah bahwa prediksi rugi jalur merupakan salah satu hal yang penting untuk diperhitungkan dalam penyusunan _link budget_, yang menentukan konfigurasi struktur pendukung dalam suatu sistem telekomunikasi. Oleh karena itu, muncullah model-model empiris yang dapat digunakan untuk memprediksi rugi jalur dengan cara mengintegrasikan parameter lingkungan hasil pengukuran dan pengamatan@abhayawardhana_comparison_2005. @empire menunjukkan beberapa contoh model empirik untuk situasi-situasi yang berbeda.
+
+#figure(
+  [
+    #set math.equation(numbering: none)
+    #table(
+      columns: (auto,1fr,auto),
+      table.header([*Model*],[*Formulasi*],[*Keterangan*]),
+      align: (left, center + horizon, left),
+
+      [Rugi Jalur Ruang Bebas \ (FSPL)],
+      [$ P_r/P_t = D_t D_r (lambda/(4 pi d))^2 $],
+      [
+        - $P_(r,t)$ daya
+        - $D_(r,t)$ direktivitas
+        - $lambda$ panjang \ gelombang
+        - $d$ jarak antena
+      ],
+
+      [Model Medan Egli],
+      [$ P_r/P_t = G_B G_M ((h_B h_M)/d^2)^2 (40/f)^2 $],
+      [
+        - $G_(B,M)$ gain \ _base_/_mobile_
+        - $h_(B,M)$ ketinggian \ _base_/_mobile_
+        - $f$ frekuensi
+      ],
+
+      [Model Young (untuk \ komunikasi seluler \ di kota besar)],
+      [$ P_r/P_t = G_B G_M ((h_B h_M)/d^2)^2 beta $],
+      [
+        - $beta$ faktor kebisingan
+      ],
+
+      [Model dalam ruang \ ITU],
+      [$ L_"dB" = 20 log_10 f + N log_10 d \ + P_f (n) - 28 $],
+      [
+        - $N$ koefisien rugi \ jarak
+        - $n$ jumlah lantai \ antar terminal
+        - $P_f$ fungsi faktor \ penetrasi
+      ]
+    )
+  ],
+  caption: [Beberapa contoh model empirik rugi jalur untuk kondisi-kondisi yang berbeda],
+  placement: auto,
+) <empire>
+
+Dapat dilihat bahwa model empiris, meskipun dapat memprediksi kinerja suatu kanal secara umum dengan cepat dan dengan hasil yang cukup meyakinkan dalam merepresentasikan keadaan yang sebenarnya, memiliki keterbatasan dalam perihal akurasi, karena suatu model hanya valid untuk lingkungan yang spesifik dan juga abai terhadap fenomena dan kondisi, termasuk geometri, spesifik dari lingkungan pengukuran. Ketika akurasi dan informasi yang lebih spesifik dibutuhkan, model deterministik akan lebih tepat untuk digunakan.
+
 === _Ray Tracing_
+
+_Ray tracing_ (RT) secara umum didasarkan kepada representasi aliran radiasi energi dalam bentuk sinar-sinar@robinson_basic_2017 sehingga tidak terbatas pada pemodelan gelombang elektromagnetik saja. Dalam elektromagnetika atau CEM sendiri, RT memiliki basis pada GO sebagai landasan yang menjelaskan perilaku sinar sebagai representasi propagasi gelombang dan interaksinya dengan objek-objek dalam ruangan. Oleh karena itu, RT termasuk ke dalam metode deterministik asimtotik (frekuensi tinggi) dalam CEM, seperi yang dapat dilihat pada @cemdiag.
+
+
 
 $ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
 
@@ -929,28 +1024,34 @@ $ "RSSI" = 10 log_(10) abs(bup(E)_"total")^2/(1 "mW") space "dBm"  $
 #page(flipped: true)[
   #set par(leading: 1em)
   #show figure: set block(breakable: true)
-  == Tabel Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
+  == Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
 
   #figure(
     table(
       columns: (auto, auto, auto, auto, auto, auto),
       align: left,
-      table.header([Aspek], [*Ray Tracing*], [*Geometrical Optics*], [*Physical Optics*], [*Geometric Theory \ of Diffraction*], [*Uniform Theory \ of Diffraction*]),
+      table.header(
+        [Aspek],
+        [*_Ray Tracing_*],
+        [*_Geometric Optics_*],
+        [*_Geometrical Theory \ of Diffraction_*],
+        [*_Uniform Theory \ of Diffraction_*],
+        [*_Shooting and \ Bouncing \ Rays_*]),
 
       [Definisi],
       [Istilah umum yang merujuk kepada metode perhitungan jalur gelombang atau pun partikel pada suatu sistem dengan mempertimbangkan berbagai interaksi antara sinar sebagai representasi jalur dengan sistem.],
       [Pemodelan propagasi gelombang elektromagnetik ke dalam bentuk sinar-sinar yang bergerak lurus pada medium homogen. Pemodelan ini dapat menjelaskan refleksi dan refraksi.],
-      [Metode pemodelan gelombang elektromagnetik yang juga berbasis kepada representasi sinar dari gelombang elektromagnetik, tetapi juga mempertimbangkan sifat-sifat gelombang dari propagasi elektromagnetik. Dapat memodelkan interferensi, difraksi, dan polarisasi.],
       [Ekstensi dari _Geometrical Optics_ yang menyertakan pemodelan difraksi. GTD memodelkan difraksi dengan mengasumsikan suatu sumber sekunder dari gelombang elektromagnetik pada titik difraksi sudut.],
-      [Penyempurnaan terhadap GTD yang gagal mengkalkulasi beberapa sudut pada difraksi. UTD menyertakan prinsip-prinsip PO untuk memodelkan difraksi secara lebih akurat.],
+      [Penyempurnaan terhadap GTD yang mampu menjelaskan singularitas pada ISB dan RSB.],
+      [],
 
       [Dasar Teori],
-      [Tergantung bidang aplikasinya, RT dapat didasarkan kepada _geometrical optics_, _geometrical acoustics_, seismologi, relativitas umum, dan sebagainya],
-      [Persamaan eikonal dari persamaan gelombang elektromagnetik dan ekspansi Luneberg-Kline.],
-      [Persamaan-persamaan Maxwell, persamaan Gelombang, prinsip Huygens, dsb.],
-      [_Geometrical optics_, dengan pemodelan difraksi.],
-      [Dengan memasukkan prinsip _physical optics_ ke GTD, maka diskontinuitas pada pemodelan GTD dapat diatasi.]
+      [Tergantung bidang aplikasinya, RT dapat didasarkan kepada _geometrical optics_, _geometrical acoustics_@krautkramer_geometrical_1990, teori sinar seismik@cerveny_seismic_2001, bahkan dalam relativitas umum@macpherson_cosmological_2022, dan lain sebagainya yang memungkinkan representasi sinar terhadap suatu fenomena fisika.],
+      [Persamaan eikonal dari persamaan gelombang elektromagnetik dan ekspansi Luneberg-Kline. Juga dapat dilihat sebagai aplikasi dari prinsip Fermat.],
+      [_Geometrical optics_, dengan pemodelan difraksi, dimana titik difraksi diasumsikan sebagai sumber sinar sekunder.],
+      [UTD memperkenalkan fungsi transisi Fresnel $F$ kepada GTD, yang membuat wilayah-wilayah difraksi sebagai wilayah transisi dari batas-batas bayangan yang sebelumnya memunculkan singularitas pada GTD.],
+      [],
     ),
-    caption: [Perbandingan RT, GO, PO, GTD, UTD],
+    caption: [Perbandingan RT, GO, GTD, UTD, dan SBR],
   )
 ]

@@ -9,10 +9,10 @@
   time     : "Agustus 2024",
   degree   : "Sarjana Teknik",
   advisors : (
-    "Prof. Dr. Ir. Eko Tjipto Rahardjo, M.Sc.",
+    "Prof. Dr. Ir. Eko Tjipto Rahardjo, M.Sc",
   ),
   examiners: (
-    "Mr. Mr.",
-    "Mme. Webb"
+    "Prof. Dr. Ir. Fitri Yulia Zulkifli, S.T., M.Sc",
+    "Dr. Ir. Catur Apriono, S.T., M.T., Ph.D",
   )
 )
