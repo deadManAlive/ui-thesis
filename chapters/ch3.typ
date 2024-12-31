@@ -84,7 +84,7 @@ Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rera
                 indentation: 2em,
                 booktabs: true,
                 numbered-title: [_Shooting and Bouncing Rays_])[
-            - *variable*:
+            - *variables*:
             + $W subset RR^2 times RR^2$
             + $n in NN$
             + $bup(o)_0 in RR^2$
@@ -461,6 +461,8 @@ Secara umum, algoritma ini merupakan implementasi konkrit dari @sbrtec. Potongan
 ) <bouncing>
 
 == Pemodelan Interaksi Sinar
+
+$ bup(R) = (bup(o), bup(d)) $
 
 Untuk dapat melakukan kalkulasi _ray tracing_, informasi-informasi gelombang dapat diintegrasikan kepada objek sinar, sehingga suatu segmen sinar pada program dapat direpresentasikan sebagai
 

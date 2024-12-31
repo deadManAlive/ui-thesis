@@ -49,12 +49,13 @@ Pada bab ini, bentuk diferensial dari persamaan-persamaan Maxwell menjadi dasar 
 
 Persamaan pertama dari persamaan Maxwell menggambarkan hukum Gauss terkait perilaku medan listrik di sekitar muatan listrik. Bentuk integral persamaan ini menyatakan bahwa fluks listrik yang melewati suatu permukaan tertutup sebanding dengan muatan yang dilingkupi oleh permukaan tersebut. Sementara itu, bentuk diferensial dari persamaan ini menunjukkan adanya monopol-monopol muatan (positif dan negatif) yang besarnya sebanding dengan kerapatan muatan pada titik-titik monopol tersebut.
 
-@gaussimg mengilustrasikan muatan yang menghasilkan fluks listrik pada kondisi terlingkupi (kiri) dan tidak terlingkupi (kanan). Menurut hukum Gauss, fluks listrik total pada kondisi pertama sebanding dengan muatan, sedangkan fluks listrik total pada permukaan kedua adalah nol karena total fluks yang keluar dan masuk pada permukaan adalah sama.
-
 #figure(
   image("assets/gaussian.png", width: 60%),
   caption: [Muatan dan fluks listrik yang dihasilkannya melalui suatu permukaan],
 ) <gaussimg>
+
+@gaussimg mengilustrasikan muatan yang menghasilkan fluks listrik pada kondisi terlingkupi (kiri) dan tidak terlingkupi (kanan). Menurut hukum Gauss, fluks listrik total pada kondisi pertama sebanding dengan muatan, sedangkan fluks listrik total pada permukaan kedua adalah nol karena total fluks yang keluar dan masuk pada permukaan adalah sama.
+
 
 === Hukum Magnet Gauss
 
@@ -80,13 +81,14 @@ Sementara persamaan pertama dan kedua dari persamaan-persamaan Maxwell menunjukk
 
 === Hukum Ampère
 
-Persamaan terakhir dari persamaan Maxwell berkorelasi dengan hukum Ampère yang menunjukkan bahwa perubahan medan listrik juga dapat menimbulkan medan magnet. Bentuk integral dari persamaan ini menunjukkan bahwa fluks magnet melingkar akar terbentuk pada suatu lingkaran tertutup (_loop_) ketika pada permukaan yang dilingkupi oleh lingkaran tertutup tersebut dilewati oleh muatan listrik dan/atau terjadi perubahan medan magnet.
-Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di suatu titik terdapat kerapatan arus dan/atau perubahan medan listrik, maka akan timbul medan magnet melingkar di titik tersebut. @ampereimg menunjukkan efek dari hukum ini di mana ketika arus melewati sebuah kawat, maka akan terbentuk medan magnet melingkar di sekitarnya.
-
 #figure(
   image("assets/ampereimg.png", width: 80%),
   caption: [Pola pada serbuk besi di sekitar kawat yang dialiri arus listrik],
 ) <ampereimg>
+
+Persamaan terakhir dari persamaan Maxwell berkorelasi dengan hukum Ampère yang menunjukkan bahwa perubahan medan listrik juga dapat menimbulkan medan magnet. Bentuk integral dari persamaan ini menunjukkan bahwa fluks magnet melingkar akar terbentuk pada suatu lingkaran tertutup (_loop_) ketika pada permukaan yang dilingkupi oleh lingkaran tertutup tersebut dilewati oleh muatan listrik dan/atau terjadi perubahan medan magnet.
+Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di suatu titik terdapat kerapatan arus dan/atau perubahan medan listrik, maka akan timbul medan magnet melingkar di titik tersebut. @ampereimg menunjukkan efek dari hukum ini di mana ketika arus melewati sebuah kawat, maka akan terbentuk medan magnet melingkar di sekitarnya.
+
 
 == Gelombang Elektromagnetik dan Optika Geometris
 
@@ -268,13 +270,14 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
 
 \
 
-Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Gradien eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $sigma$.
-Jika titik-titik pada sinar-sinar cahaya yang memiliki nilai $sigma$ yang sama disambungkan, akan didapatkan permukaan yang menggambarkan muka gelombang. Dengan kata lain, muka gelombang adalah permukaan ketinggian (_level surface_) dari dari fungsi gelombang. @wavefront mengilustrasikan garis hijau yang menyambungkan titik-titik pada sinar (_light rays_) yang memiliki nilai $sigma$ yang sama, yang membentuk muka gelombang (_wavefronts_).
-
 #figure(
   image("assets/wavefront.png", width: 60%),
   caption: [Sinar (merah) dan muka gelombang (hijau) pada sinar 2 dimensi],
 ) <wavefront>
+
+Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Gradien eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $sigma$.
+Jika titik-titik pada sinar-sinar cahaya yang memiliki nilai $sigma$ yang sama disambungkan, akan didapatkan permukaan yang menggambarkan muka gelombang. Dengan kata lain, muka gelombang adalah permukaan ketinggian (_level surface_) dari dari fungsi gelombang. @wavefront mengilustrasikan garis hijau yang menyambungkan titik-titik pada sinar (_light rays_) yang memiliki nilai $sigma$ yang sama, yang membentuk muka gelombang (_wavefronts_).
+
 
 === Vektor Poynting
 
@@ -344,11 +347,11 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
 
   $
     nabla ps dot eo(E) = 0
-  $
+  $ <pseoiszero>
 
   $
     nabla ps dot eo(B) = 0
-  $ <pseoiszero>
+  $ 
 
   $
     nabla ps times eo(E) = c eo(B)
@@ -382,7 +385,7 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
 
 \
 
-Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vektor yang menunjukkan arah energi dari gelombang elektromagnetik, memiliki arah yang sama dengan momentum optik $nabla phi.alt (bup(r))$. Implikasi dari hal ini adalah bahwa propagasi gelombang sebagai aliran energi dapat direpresentasikan sebagai garis-garis sinar. Hal inilah yang mendasari GO sebagai analisis propagasi gelombang elektromagnetik dalam bentuk representasi sinar-sinar.
+Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vektor yang menunjukkan arah energi dari gelombang elektromagnetik, memiliki arah yang sama dengan eikonal $nabla phi.alt (bup(r))$. Implikasi dari hal ini adalah bahwa propagasi gelombang sebagai aliran energi dapat direpresentasikan sebagai garis-garis sinar. Hal inilah yang mendasari GO sebagai analisis propagasi gelombang elektromagnetik dalam bentuk representasi sinar-sinar.
 
 == Atenuasi Ruang
 
@@ -787,30 +790,32 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 #[
   #let pa = [$phi.alt$]
 
-  Difraksi merupakan fenomena gelombang berupa terjadinya penyebaran atau pembelokan muka gelombang di sekitar suatu penghalang. Dalam fisika klasik, hal ini dapat dijelaskan sebagai implikasi dari prinsip Huygens-Fresnel, dimana setiap titik pada muka gelombang merupakan sumber gelombang bulat sekunder yang kemudian berinterferensi satu sama lainnya membentuk muka gelombang sebenarnya, seperti yang diilustrasikan pada @huygenswf. Oleh karena itu, difraksi mengakibatkan adanya medan propagasi pada ruang bayangan yang ditimbulkan pada ruang NLOS oleh suatu benda yang berada di jalur propagasi gelombang.
-
   #figure(
     image("assets/huygens.png", width: 60%),
     caption: [Pembentukan muka gelombang berdasarkan prinsip Huygens-Fresnel]
   ) <huygenswf>
 
-  Dapat dicermati bahwa difraksi sebagai fenomena gelombang menjadi batasan dari metode GO yang mengabaikan sifat gelombang dan menggambarkannya sebagai sinar-sinar diskrit sebagai jalur propagasi muka gelombang. @shadow mengilustrasikan adanya batas bayangan (_shadow boundary_) ketika sinar mengenai suatu objek penghalang pada titik difraksi. Batas bayangan sendiri berupa diskontinuitas antara ruang LOS dan ruang bayangan yang mana pada GO, tidak terdapat sinar yang berpropagasi ke ruang tersebut. Hal ini terjadi karena formulasi GO tidak memberikan mekanisme yang menjelaskan perilaku gelombang dari sinar di sekitar titik-titik difraksi tersebut.
+  Difraksi merupakan fenomena gelombang berupa terjadinya penyebaran atau pembelokan muka gelombang di sekitar suatu penghalang. Dalam fisika klasik, hal ini dapat dijelaskan sebagai implikasi dari prinsip Huygens-Fresnel, dimana setiap titik pada muka gelombang merupakan sumber gelombang bulat sekunder yang kemudian berinterferensi satu sama lainnya membentuk muka gelombang sebenarnya, seperti yang diilustrasikan pada @huygenswf. Oleh karena itu, difraksi mengakibatkan adanya medan propagasi pada ruang bayangan yang ditimbulkan pada ruang NLOS oleh suatu benda yang berada di jalur propagasi gelombang.
+
 
   #figure(
     image("assets/shadow.jpg", width: 80%),
     caption: [Difraksi oleh beberapa bentuk penghalang]
   ) <shadow>
 
+  Dapat dicermati bahwa difraksi sebagai fenomena gelombang menjadi batasan dari metode GO yang mengabaikan sifat gelombang dan menggambarkannya sebagai sinar-sinar diskrit sebagai jalur propagasi muka gelombang. @shadow mengilustrasikan adanya batas bayangan (_shadow boundary_) ketika sinar mengenai suatu objek penghalang pada titik difraksi. Batas bayangan sendiri berupa diskontinuitas antara ruang LOS dan ruang bayangan yang mana pada GO, tidak terdapat sinar yang berpropagasi ke ruang tersebut. Hal ini terjadi karena formulasi GO tidak memberikan mekanisme yang menjelaskan perilaku gelombang dari sinar di sekitar titik-titik difraksi tersebut.
+
+
   === _Geometric Theory of Diffraction_
 
   _Geometric theory of diffraction_ (GTD) kemudian dikembangkan oleh J. B. Keller yang mengintegrasikan difraksi kedalam GO. GTD menambahkan jenis sinar baru pada GO disamping sinar refleksi dan transmisi, yaitu sinar difraksi yang berupa solusi atas masalah batas dan sinar-sinar tersebut haruslah memenuni prinsip Fermat@keller_geometrical_1962. Implikasi dari teori tersebut adalah bahwa difraksi dapat dimodelkan seperti refleksi dan transmisi, yaitu fenomena yang dapat dimodelkan dengan sinar dan berupa fenomena lokal yang hanya bergantung pada geometri penghalang dan parameter-parameter gelombang dari sinar datang@balanis_balanis_2024.
+
+  GTD didasarkan kepada usaha mengatasi keberadaan diskontinuitas yang terjadi ketika sebuah sinar mengenai sebuah penghalang yang seharusnya tidak terjadi karena gelombang, yang direpresentasikan oleh sinar itu sendiri, tidak menghasilkan diskontinuitas ketika berpropagasi melewati suatu objek penghalang.
 
   #figure(
     image("assets/diffr.jpg", width: 60%),
     caption: []
   ) <difbound>
-
-  GTD didasarkan kepada usaha mengatasi keberadaan diskontinuitas yang terjadi ketika sebuah sinar mengenai sebuah penghalang yang seharusnya tidak terjadi karena gelombang, yang direpresentasikan oleh sinar itu sendiri, tidak menghasilkan diskontinuitas ketika berpropagasi melewati suatu objek penghalang.
 
   @difbound mengilustrasikan tiga wilayah yang terbentuk akibat diskontinuitas oleh adanya penghalang berbentuk sudut. Dengan menggunakan GO saja, maka wilayah I berada pada LOS dari sumber $bup(S)$ sehingga dapat menerima sinar langsung dan refleksi, wilayah II yang masih terdapat pada LOS sumber hanya memungkinkan sinar langsung, dan tidak terdapat sinar pada wilayah III.
 
@@ -958,8 +963,6 @@ Metode asimtotik sederhananya memberikan aproksimasi atas solusi dari persaamaan
 
 Rugi jalur (_path loss_) merupakan karakteristik gelombang dimana gelombang akan mengalami atenuasi atau pengurangan daya selama propagasinya dari satu titik ke titik lain. Rugi jalur dapat terjadi karena berbagai macam hal seperti akibat sifat alami gelombang yang menyebar, hamburan akibat difraksi, penyerapan dan distorsi oleh medium, refleksi oleh suatu objek, _fading_, dan lain sebagainya. Oleh karena itu, akan cukup sulit untuk memprediksi rugi jalur secara tepat tanpa memperhitungkan semua faktor lingkungan tersebut.
 
-Masalahnya adalah bahwa prediksi rugi jalur merupakan salah satu hal yang penting untuk diperhitungkan dalam penyusunan _link budget_, yang menentukan konfigurasi struktur pendukung dalam suatu sistem telekomunikasi. Oleh karena itu, muncullah model-model empiris yang dapat digunakan untuk memprediksi rugi jalur dengan cara mengintegrasikan parameter lingkungan hasil pengukuran dan pengamatan@abhayawardhana_comparison_2005. @empire menunjukkan beberapa contoh model empirik untuk situasi-situasi yang berbeda.
-
 #figure(
   [
     #set math.equation(numbering: none)
@@ -985,10 +988,14 @@ Masalahnya adalah bahwa prediksi rugi jalur merupakan salah satu hal yang pentin
         - $f$ frekuensi
       ],
 
-      [Model Young (untuk \ komunikasi seluler \ di kota besar)],
-      [$ P_r/P_t = G_B G_M ((h_B h_M)/d^2)^2 beta $],
+      [Model Hata-Okumura \ untuk wilayah perkotaan],
+      [$
+        L &= 69.55 + 26.16 log_10 f \
+        &- 13.82 h_B - alpha(h_m) \
+        &+(44.9 - 6.55 log_10 h_B) log d
+      $],
       [
-        - $beta$ faktor kebisingan
+        - $alpha$ fungsi faktor \ koreksi \ ketinggian
       ],
 
       [Model dalam ruang \ ITU],
@@ -1004,22 +1011,45 @@ Masalahnya adalah bahwa prediksi rugi jalur merupakan salah satu hal yang pentin
   placement: auto,
 ) <empire>
 
+Masalahnya adalah bahwa prediksi rugi jalur merupakan salah satu hal yang penting untuk diperhitungkan dalam penyusunan _link budget_, yang menentukan konfigurasi struktur pendukung dalam suatu sistem telekomunikasi. Oleh karena itu, muncullah model-model empiris yang dapat digunakan untuk memprediksi rugi jalur dengan cara mengintegrasikan parameter lingkungan hasil pengukuran dan pengamatan@abhayawardhana_comparison_2005. @empire menunjukkan beberapa contoh model empirik untuk situasi-situasi yang berbeda.
+
+
 Dapat dilihat bahwa model empiris, meskipun dapat memprediksi kinerja suatu kanal secara umum dengan cepat dan dengan hasil yang cukup meyakinkan dalam merepresentasikan keadaan yang sebenarnya, memiliki keterbatasan dalam perihal akurasi, karena suatu model hanya valid untuk lingkungan yang spesifik dan juga abai terhadap fenomena dan kondisi, termasuk geometri, spesifik dari lingkungan pengukuran. Ketika akurasi dan informasi yang lebih spesifik dibutuhkan, model deterministik akan lebih tepat untuk digunakan.
 
 === _Ray Tracing_
 
-_Ray tracing_ (RT) secara umum didasarkan kepada representasi aliran radiasi energi dalam bentuk sinar-sinar@robinson_basic_2017 sehingga tidak terbatas pada pemodelan gelombang elektromagnetik saja. Dalam elektromagnetika atau CEM sendiri, RT memiliki basis pada GO sebagai landasan yang menjelaskan perilaku sinar sebagai representasi propagasi gelombang dan interaksinya dengan objek-objek dalam ruangan. Oleh karena itu, RT termasuk ke dalam metode deterministik asimtotik (frekuensi tinggi) dalam CEM, seperi yang dapat dilihat pada @cemdiag.
+_Ray tracing_ (RT) merupakan salah satu dari CEM sebagai metode numerik yang digunakan untuk memperkirakan solusi dari persaamaan Maxwell pada frekuensi tinggi. RT dapat memberikan beberapa prediksi dalam perihal rugi jalur, sudut kedatangan, dan waktu tunda@yun_ray_2015. RT secara umum didasarkan kepada representasi aliran radiasi energi dalam bentuk sinar-sinar@robinson_basic_2017 sehingga tidak terbatas pada pemodelan gelombang elektromagnetik saja.
 
+Dalam elektromagnetika atau CEM sendiri, RT berbasis pada GO yang memberikan landasan representasi sinar untuk menjelaskan propagasi gelombang dan interaksinya dengan objek-objek dalam ruangan. Oleh karena itu, RT termasuk ke dalam metode deterministik asimtotik (frekuensi tinggi) dalam CEM, seperi yang dapat dilihat pada @cemdiag.
 
+Dalam implementasinya, pemodelan propagasi dengan RT terdiri atas 2 tahap:
++ Penentuan sinar jalur, dalam hal ini digunakan untuk menentukan jalur-jalur yang menghubungkan sumber dengan penerima atau suatu titik ukur pada ruang. Terdapat dua metode utama yang dapat digunakan:
+  - Metode bayangan (_image_), dimana pencerminan bayangan dilakukan untuk setiap bidang refleksi untuk menentukan jalur-jalur tepat antara pemancar dan penerima. Kelebihan metode ini adalah akurasi terhadap jalur yang didapatkan. Karena transformasi dilakukan pada setiap $N$ reflektor untuk setiap $m$ refleksi, algoritma ini memiliki kompleksitas kuadrat $cal(O)(N^m)$ yang tidak efisien dan memberikan beban komputasi yang besar dengan semakin rumitnya geometri ruangan. Kekurangan lainnya adalah bahwa setiap transformasi oleh reflektor hanya memungkinkan satu bayangan sehingga pemodelan transmisi dan tentu saja difraksi tidak dapat dilakukan dengan metode ini.
+    #figure(
+      image("assets/image.jpg", width: 80%),
+      caption: [Metode bayangan]
+    )
 
-$ E_R = E_0 [product_i A_i R_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+  - Metode _shooting and bouncing rays_ (SBR), dimana sinar-sinar diluncurkan dari sumber ke segala arah dan setiap sinar dibiarkan berinteraksi dengan objek-objek di lingkungan. Kemudian, sinar-sinar yang valid (mengenai penerima) didapatkan dengan melakukan seleksi dengan kriteria tertentu dari sinar-sinar yang telah diluncurkan. Meskipun metode ini memperkenalkan penyimpangan fasa karena jalur yang tidak tepat seperti metode bayangan, algoritma memiliki kompleksitas $cal(O)(m N)$ sehingga akan jauh lebih efisien seiring geometri ruangan yang semakin rumit, disamping SBR juga memungkinkan pemodelan transmisi dan difraksi. Tidak terdapat aturan spesifik terkair kriteria sinar valid meskipun beberapa sumber memberikan jari-jari lingkaran penerima (_reception sphere_) $r$, dimana sinar akan valid jika beririsan dengan ruang tersebut, sebagai fungsi dari sudut antara sinar yang dipancarkan $alpha$ dan panjang total sinar dari sumber $s$
+  $ r = (alpha s)/sqrt(3) $
+    #figure(
+      image("assets/sbr.jpg", width: 80%),
+      caption: [Metode SBR]
+    )
++ #par[
+    Pengukuran, dimana dalam propagasinya, masing-masing sinar mengalami atenuasi akibat refleksi, transmisi, dan difraksi berupa koefisien Fresnel dan GTD/UTD, sehingga medan hasil dari tiap sinar berupa
 
-$ E_"total" = sum_i E_R[i] $
+    $ E_R = E_0 [product_i A_i Gamma_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
 
-=== _Shooting and Bouncing Rays_
+    dimana $E_R$ merupakan medan pada penerima yang dihasilkan oleh suatu sinar, $E_0$ adalah magnitudo awal medan, $A$ adalah faktor persebaran atau atenuasi ruang pada setiap interaksi sinar, $Gamma$ adalah koefisien refleksi, $T$ adalah koefisien transmisi, dan $D$ adalah koefisien difraksi, sementara $s$ adalah jarak total yang telah ditempuh sinar. Selain itu, karena sifat linear dari persamaan Maxwell, medan total pada titik penerima merupakan superposisi dari masing-masing sinar@kasdorf_advancing_2021, sehingga medan total $E_"total"$ adalah
 
+    $ E_"total" = sum_i E_R[i] $
 
-$ "RSSI" = 10 log_(10) abs(bup(E)_"total")^2/(1 "mW") space "dBm"  $
+    dan rugi jalur
+
+    $ L = -20 log_10 (E_"total"/E_0) $
+
+  ]
 
 #page(flipped: true)[
   #set par(leading: 1em)
@@ -1053,5 +1083,10 @@ $ "RSSI" = 10 log_(10) abs(bup(E)_"total")^2/(1 "mW") space "dBm"  $
       [],
     ),
     caption: [Perbandingan RT, GO, GTD, UTD, dan SBR],
+  )
+
+  #figure(
+    image("assets/venn.png", width: 80%),
+    caption: [Hubungan beberapa topik dalam _ray tracing_]
   )
 ]
