@@ -393,11 +393,11 @@ Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vek
 
 Jika suatu vektor unit $hat(bup(s)) $ dapat didefinisikan sebagai $(nabla phi.alt(bup(r)))/(norm(nabla phi.alt(bup(r)))) = (nabla phi.alt(bup(r)))/n$, maka persamaan @finalpoynting dapat ditulis sebagai
 
-$ angle.l bup(S) angle.r = 2 c angle.l w_e angle.r hat(bup(s)) $
+$ angle.l bup(S) angle.r = 2 v angle.l w_e angle.r hat(bup(s)) $
 
-sehingga intensitas gelombang elektromagnetik $I$ dapat didefinisikan sebagai nilai mutlak dari vektor Poynting rata-rata@born_principles_1999 dan dapat ditulis sebagai
+sehingga intensitas atau rapat daya gelombang elektromagnetik $I$ dapat didefinisikan sebagai nilai mutlak dari vektor Poynting rata-rata@born_principles_1999 dan dapat ditulis sebagai
 
-$ I = abs(angle.l bup(S) angle.r) = 2 c angle.l w_e angle.r $ <poyntintent>
+$ I = abs(angle.l bup(S) angle.r) = 2 v angle.l w_e angle.r $ <poyntintent>
 
 \
 
@@ -410,8 +410,7 @@ di mana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran 
 #[
   #set math.equation(number-align: bottom)
   $
-    P &= I dot 4 pi r^2 \
-    I &= P/(4 pi r^2)
+    P &= I dot 4 pi r^2 <=> I &= P/(4 pi r^2)
   $ <sphintent>
 ]
 
@@ -433,23 +432,6 @@ sehingga dari persamaan tersebut, persamaan @finalpoynting, persaamaan @poyntint
 $
   abs(bup(E)) prop 1/r
 $ <epropir>
-
-\
-
-#figure(
-  image("assets/spherical.jpg", width: 60%),
-  caption: [Muka gelombang dan sinar pada gelombang lingkaran],
-) <spherical>
-
-@spherical menunjukkan muka gelombang sebuah gelombang lingkaran (irisan 2 dimensi dari gelombang bulat), di mana muka gelombang $sigma_0$ pada waktu $t$ memiliki jari-jari $rho_0$ dan kemudian $rho_0 + Delta rho$ setelah $Delta t$. Karena $P$ konstan, maka
-
-$ (abs(bup(E)(rho_0)))/(abs(bup(E)(rho_0 + Delta rho))) = (rho_0+Delta rho)/rho_0 $ <intencratio>
-
-dan jika perhitungan dimulai dari sumber ($rho_0 = 0$) dan permukaan yang berjarak $r$ dari sumber, maka
-
-$ abs(bup(E)(rho_0 + Delta rho)) = 1/r abs(bup(E)(rho_0)) $ <atten>
-
-sehingga $1/r$ adalah koefisien atenuasi ruang $A(r)$ pada jarak $r$ dari sumber, sesuai dengan persamaan @epropir.
 
 === Atenuasi Ruang Secara Umum
 
@@ -505,7 +487,7 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
 
   \
 
-  Misalkan unit vektor $hat(bup(t)) = (nabla pr) / norm(nabla pr) = (nabla pr) / n(bup(r))$ merupakan vektor unit yang menunjukkan arah propagasi pada suatu titik di muka gelombang, serta vektor $bup(u)$ dan $bup(v)$ yang menunjukkan pergerakan di sepanjang masing-masing kelengkungan muka gelombang, maka divergensi dari $hat(bup(t))$ dapat dijabarkan sebagai penjumlahan dari turunan direksional setiap basis sebarang non-ortonormal yang menyusunnya, dalam hal ini, digunakan $(bup(t), bup(u), bup(v))$, sehingga
+  Misalkan unit vektor $hat(bup(t)) = (nabla pr) / norm(nabla pr) = (nabla pr) / n(bup(r))$ merupakan vektor unit yang menunjukkan arah propagasi pada suatu titik di muka gelombang, serta vektor $bup(u)$ dan $bup(v)$ yang menunjukkan pergerakan di sepanjang masing-masing kelengkungan muka gelombang, maka divergensi dari $hat(bup(t))$ dapat dijabarkan sebagai penjumlahan dari turunan direksional setiap basis sebarang non-ortonormal yang menyusunnya, dalam hal ini digunakan $(bup(t), bup(u), bup(v))$, sehingga
 
   $
     nabla dot hat(bup(t)) = nabla_bup(t) dot hat(bup(t)) + nabla_bup(u) dot hat(bup(t)) + nabla_bup(v) dot hat(bup(t)) space "dimana" space nabla_bup(g) dot bup(F) = hat(bup(g)) dot (partial bup(F))/(partial bup(g))
@@ -550,15 +532,15 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
     tilde(bup(E))_0 (s) &= tilde(bup(E))_0 (0) sqrt( (rho_1 rho_2)/((rho_1 + s)(rho_2 + s))) \
   $
 
-  yang menunjukkan atenuasi ruang pada jarak $s$ dari sumber. Pada sumber gelombang bulat, maka $rho_1 = rho_2 = r$, sehingga
+  yang menunjukkan atenuasi ruang pada jarak $s$ dari sumber. Pada sumber gelombang bulat, maka $rho_1 = rho_2 = R$, sehingga
 
   $ 
-    A(s) &= sqrt( (r^2)/((r + s)^2)) \
-    &= r/(r + s) \
-    &= 1/s quad (r << s)
+    A(s) &= sqrt( (R^2)/((R + s)^2)) \
+    &= R/(R + s) \
+    &prop 1/s
   $
 
-  yang senada dengan persamaan @atten dari penurunan atenuasi ruang via vektor Poynting pada subsubbab @sphint di atas.
+  yang senada dengan persamaan @epropir dari penurunan atenuasi ruang via vektor Poynting pada subsubbab @sphint di atas.
 ]
 
 == Refleksi dan Transmisi
@@ -616,11 +598,18 @@ dan karena segmen membagi ruang pada medium 1 dan medium 2 serta medan listrik y
 
 $ integral_(n_1) bup(E) dot d bup(cal(l)) + integral_(n_2) bup(E) dot d bup(cal(l)) = 0 $
 
-Karena $cal(l)$ dimasing-masing sisi medium memiliki arah yang berbeda yang cukup kecil sehingga $bup(E)$ konstan, maka
+\
 
-$ (bup(E)_2 - bup(E)_1) dot bup(t) = 0 $
+Masing-masing $bup(E)$ pada kedua sisi antarmuka berada disepanjang $cal(l)$ dan memiliki arah yang berlawanan, maka jika $hat(bup(t))$ adalah suatu vektor unit yang bersinggungan (_tangent_) dengan garis antarmuka, maka integrasi di atas menjadi
 
-dengan $bup(t)$ vektor tangensial dari medium, yang berada pada bidang antarmuka. Karena vektor $bup(t)$ dapat  berupa vektor mana saja pada bidang antarmuka, maka persamaan tersebut juga dapat ditulis sebagai
+$
+  (bup(E)_2 dot hat(bup(t))) cal(l) - (bup(E)_1 dot hat(bup(t))) cal(l) &= 0 \
+  (bup(E)_2 - bup(E)_1) dot bup(t) &= 0
+$
+
+\
+
+Karena pada $RR^3$, vektor $bup(t)$ dapat  berupa vektor mana saja pada bidang antarmuka, maka persamaan tersebut juga dapat ditulis sebagai
 
 $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
@@ -718,8 +707,9 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
     $
       bup(B) &=(omega sqrt(mu epsilon) hat(bup(k)) times bup(E))/omega \
-      &= sqrt(mu epsilon) hat(bup(k)) times bup(E)
-    $
+      &= sqrt(mu epsilon) hat(bup(k)) times bup(E) \
+      &= 1/v hat(bup(k)) times bup(E)
+    $ <direh>
 
     atau juga dapat ditulis dalam medan magnet $bup(H) = bup(B) slash mu$:
 
@@ -1020,36 +1010,94 @@ Dapat dilihat bahwa model empiris, meskipun dapat memprediksi kinerja suatu kana
 
 _Ray tracing_ (RT) merupakan salah satu dari CEM sebagai metode numerik yang digunakan untuk memperkirakan solusi dari persaamaan Maxwell pada frekuensi tinggi. RT dapat memberikan beberapa prediksi dalam perihal rugi jalur, sudut kedatangan, dan waktu tunda@yun_ray_2015. RT secara umum didasarkan kepada representasi aliran radiasi energi dalam bentuk sinar-sinar@robinson_basic_2017 sehingga tidak terbatas pada pemodelan gelombang elektromagnetik saja.
 
-Dalam elektromagnetika atau CEM sendiri, RT berbasis pada GO yang memberikan landasan representasi sinar untuk menjelaskan propagasi gelombang dan interaksinya dengan objek-objek dalam ruangan. Oleh karena itu, RT termasuk ke dalam metode deterministik asimtotik (frekuensi tinggi) dalam CEM, seperi yang dapat dilihat pada @cemdiag.
+Dalam elektromagnetika atau CEM sendiri, RT berbasis pada GO yang memberikan landasan representasi sinar untuk menjelaskan propagasi gelombang dan interaksinya dengan objek-objek dalam ruangan. Oleh karena itu, RT termasuk ke dalam metode deterministik asimtotik (frekuensi tinggi) dalam CEM.
 
-Dalam implementasinya, pemodelan propagasi dengan RT terdiri atas 2 tahap:
-+ Penentuan sinar jalur, dalam hal ini digunakan untuk menentukan jalur-jalur yang menghubungkan sumber dengan penerima atau suatu titik ukur pada ruang. Terdapat dua metode utama yang dapat digunakan:
-  - Metode bayangan (_image_), dimana pencerminan bayangan dilakukan untuk setiap bidang refleksi untuk menentukan jalur-jalur tepat antara pemancar dan penerima. Kelebihan metode ini adalah akurasi terhadap jalur yang didapatkan. Karena transformasi dilakukan pada setiap $N$ reflektor untuk setiap $m$ refleksi, algoritma ini memiliki kompleksitas kuadrat $cal(O)(N^m)$ yang tidak efisien dan memberikan beban komputasi yang besar dengan semakin rumitnya geometri ruangan. Kekurangan lainnya adalah bahwa setiap transformasi oleh reflektor hanya memungkinkan satu bayangan sehingga pemodelan transmisi dan tentu saja difraksi tidak dapat dilakukan dengan metode ini.
-    #figure(
-      image("assets/image.jpg", width: 80%),
-      caption: [Metode bayangan]
-    )
+Dalam implementasinya, pemodelan propagasi dengan RT dilakukan dalam 2 tahap, yaitu 1) peluncuran sinar, dan 2) pengukuran. Peluncuran sinar dilakukan untuk menentukan jalur-jalur yang menghubungkan sumber dengan penerima atau suatu titik ukur pada ruang. Kemudian, informasi tentang sinar-sinar tersebut digunakan sebagai dasar dalam tahap selanjutnya, yaitu tahap pengukuran.
 
-  - Metode _shooting and bouncing rays_ (SBR), dimana sinar-sinar diluncurkan dari sumber ke segala arah dan setiap sinar dibiarkan berinteraksi dengan objek-objek di lingkungan. Kemudian, sinar-sinar yang valid (mengenai penerima) didapatkan dengan melakukan seleksi dengan kriteria tertentu dari sinar-sinar yang telah diluncurkan. Meskipun metode ini memperkenalkan penyimpangan fasa karena jalur yang tidak tepat seperti metode bayangan, algoritma memiliki kompleksitas $cal(O)(m N)$ sehingga akan jauh lebih efisien seiring geometri ruangan yang semakin rumit, disamping SBR juga memungkinkan pemodelan transmisi dan difraksi. Tidak terdapat aturan spesifik terkair kriteria sinar valid meskipun beberapa sumber memberikan jari-jari lingkaran penerima (_reception sphere_) $r$, dimana sinar akan valid jika beririsan dengan ruang tersebut, sebagai fungsi dari sudut antara sinar yang dipancarkan $alpha$ dan panjang total sinar dari sumber $s$
-  $ r = (alpha s)/sqrt(3) $
-    #figure(
-      image("assets/sbr.jpg", width: 80%),
-      caption: [Metode SBR]
-    )
-+ #par[
-    Pengukuran, dimana dalam propagasinya, masing-masing sinar mengalami atenuasi akibat refleksi, transmisi, dan difraksi berupa koefisien Fresnel dan GTD/UTD, sehingga medan hasil dari tiap sinar berupa
+#figure(
+  image("assets/image.jpg", width: 80%),
+  caption: [Metode bayangan]
+) <imgrt>
 
-    $ E_R = E_0 [product_i A_i Gamma_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+Terdapat dua metode utama yang dapat digunakan untuk meluncurkan sinar, yang pertama adalah metode bayangan (_image_). Metode bayangan menetukan jalur yang menghubungkan antara titik penerima dengan pemancar dengan cara menguraikannya sebagai kombinasi refleksi oleh dinding reflektor antara pemancar dan penerima. Oleh karena itu, jalur-jalur yang ditemukan melalui metode ini adalah jalur pasti antara kedua titik, sehingga kelebihan dari metode ini adalah akurasi terhadap jalur yang didapatkan. @imgrt mengilustrasikan metode ini.
 
-    dimana $E_R$ merupakan medan pada penerima yang dihasilkan oleh suatu sinar, $E_0$ adalah magnitudo awal medan, $A$ adalah faktor persebaran atau atenuasi ruang pada setiap interaksi sinar, $Gamma$ adalah koefisien refleksi, $T$ adalah koefisien transmisi, dan $D$ adalah koefisien difraksi, sementara $s$ adalah jarak total yang telah ditempuh sinar. Selain itu, karena sifat linear dari persamaan Maxwell, medan total pada titik penerima merupakan superposisi dari masing-masing sinar@kasdorf_advancing_2021, sehingga medan total $E_"total"$ adalah
+Sementara itu, karena transformasi dilakukan pada setiap kombinasi $N$ reflektor untuk setiap $M$ refleksi, algoritma ini memiliki kompleksitas kuadrat $cal(O)(N^M)$ yang tidak efisien dan memberikan beban komputasi yang besar dengan semakin rumitnya geometri ruangan. Kekurangan lainnya adalah bahwa setiap transformasi oleh reflektor hanya memungkinkan satu bayangan sehingga pemodelan transmisi dan tentu saja difraksi tidak dapat dilakukan dengan metode ini.
 
-    $ E_"total" = sum_i E_R[i] $
 
-    dan rugi jalur
+Sementara itu, metode _shooting and bouncing rays_ (SBR) dalam peluncuran sinar dilakukan dengan cara meluncurkan sinar-sinar dari sumber ke segala arah dan setiap sinar dibiarkan berinteraksi dengan objek-objek di lingkungan. Kemudian, sinar-sinar yang valid (mengenai penerima) didapatkan dengan melakukan seleksi dengan kriteria tertentu dari sinar-sinar yang telah diluncurkan.
 
-    $ L = -20 log_10 (E_"total"/E_0) $
+Meskipun metode ini memperkenalkan penyimpangan fasa karena jalur yang tidak tepat seperti metode bayangan, algoritma memiliki kompleksitas $cal(O)(N M)$ sehingga metode jauh lebih efisien pada geometri ruangan yang lebih rumit, disamping SBR juga memungkinkan pemodelan transmisi dan difraksi, dengan memungkinkan sumber sekunder. Tidak terdapat cara perhitungan spesifik terkait kriteria sinar valid meskipun beberapa memberikan jari-jari lingkaran penerima (_reception sphere_) $r$ untuk menyaring jalur valid
 
-  ]
+$ r = (alpha s)/sqrt(3) $
+  
+dimana $alpha$ adalah sudut antar sinar yang diluncurkan pemancar, dan $s$ panjang total sinar@schaubach_ray_1992@seidel_site-specific_1994@zhengqing_yun_development_2001.
+  
+#figure(
+  image("assets/sbr.jpg", width: 80%),
+  caption: [Metode SBR]
+)
+
+Tahap selanjutnya setelah peluncuran sinar dilakukan adalah pengukuran, dimana dalam propagasinya, masing-masing sinar mengalami atenuasi akibat refleksi, transmisi, dan difraksi berupa koefisien-koefisien Fresnel dan koefisien difraksi GTD/UTD, sehingga medan pada pemodelan dengan refleksi, transmisi, dan difraksi, medan yang dihasilkan oleh setiap sinar dapat diformulasikan ke dalam@schaubach_ray_1992@seidel_site-specific_1994@balanis_balanis_2024
+
+$ E_R = E_0 f_T f_R [product_i A_i Gamma_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+
+dimana $E_R$ merupakan medan pada penerima yang dihasilkan oleh suatu sinar, $E_0$ adalah magnitudo awal medan, $f_(T,R)$ adalah faktor pola radiasi antena, $A$ adalah faktor persebaran atau atenuasi ruang pada setiap interaksi sinar, $Gamma$ adalah koefisien refleksi, $T$ adalah koefisien transmisi, dan $D$ adalah koefisien difraksi, sementara $s$ adalah jarak total yang telah ditempuh sinar. Selain itu, karena sifat linear dari persamaan Maxwell, medan total pada titik penerima merupakan superposisi dari masing-masing sinar@kasdorf_advancing_2021, sehingga medan total $E_"total"$ adalah
+
+$ E_"total" = sum_i E_R[i] $
+
+#[
+  #set math.equation(number-align: bottom)
+
+  Kemudian dari persaamaan @direh pada ruang hampa, dan mensubstitusikannya ke persaamaan @poynting1, serta $eta_0 = sqrt(mu_0 slash epsilon_0)$, maka didapatkan
+
+  $
+    angle.l bup(S) angle.r  &= 1/(2 mu_0) cal(Re)[bup(E) times dash(bup(B))] \
+    &= 1/(2 mu_0 c) cal(Re)[bup(E) times dash(hat(bup(k)) times bup(E))] \
+    &= 1/(2 eta_0) cal(Re)[bup(E) times dash(hat(bup(k))) times dash(bup(E))] \
+  $
+
+  dengan kembali menggunakan perkalian silang tiga vektor, persaamaan tersebut menjadi
+
+  $
+    angle.l bup(S) angle.r &= 1/(2 eta_0) cal(Re)[(bup(E) dot dash(bup(E)))dash(hat(bup(k))) - (bup(E) dot dash(hat(bup(k))))dash(bup(E))]
+  $
+
+  \
+
+  Karena $bup(E)$ dan $hat(bup(k))$ saling tegak lurus sehingga perkalian titiknya nol, maka
+
+  $
+    angle.l bup(S) angle.r &= 1/(2 eta_0) cal(Re)[(bup(E) dot dash(bup(E)))dash(hat(bup(k)))] \
+  $
+
+  sehingga intensitas atau rapat daya
+
+  $
+    I = abs(angle.l bup(S) angle.r) = 1/2 abs(bup(E))^2/eta_0
+  $
+
+  \
+
+  Daya yang diterima dapat dikalkulasi dengan@stutzman_antenna_2013
+
+  $
+    P_R = I A_"em"
+  $
+
+  dimana $A_"em"$ adalah apertur efektif maksimum yang berupa@balanis_balanis_2024
+
+  $
+    A_"em" = lambda^2/(4 pi) D_0
+  $
+
+  dengan $D_0$ direktivitas maksimum. Maka dengan menggunakan medan listrik total dari tahap sebelumnya dan mengasumsikan penerima berupa antena isotropik dengan $D_0 = 1$, dan daya pada pemancar $P_0$, maka rugi jalur (linear) dapat dikalkulasi dengan
+
+  $
+    L = P_R/P_T = 1/(8 P_0) abs(bup(E)_"total")^2/eta_0 lambda^2/pi
+  $
+]
+
+
 
 #page(flipped: true)[
   #set par(leading: 1em)
