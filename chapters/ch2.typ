@@ -1106,7 +1106,7 @@ $ E_"total" = sum_i E_R[i] $
 
   #figure(
     table(
-      columns: (auto, auto, auto, auto, auto, auto),
+      columns: (80pt, auto, auto, auto, auto, auto),
       align: left,
       table.header(
         [Aspek],
@@ -1117,24 +1117,26 @@ $ E_"total" = sum_i E_R[i] $
         [*_Shooting and \ Bouncing \ Rays_*]),
 
       [Definisi],
-      [Istilah umum yang merujuk kepada metode perhitungan jalur gelombang atau pun partikel pada suatu sistem dengan mempertimbangkan berbagai interaksi antara sinar sebagai representasi jalur dengan sistem.],
+      [Metode komputasi fisika yang merepresentasikan aliran pancaran energi dalam bentuk garis-garis pada ruang@robinson_basic_2017.],
       [Pemodelan propagasi gelombang elektromagnetik ke dalam bentuk sinar-sinar yang bergerak lurus pada medium homogen. Pemodelan ini dapat menjelaskan refleksi dan refraksi.],
       [Ekstensi dari _Geometrical Optics_ yang menyertakan pemodelan difraksi. GTD memodelkan difraksi dengan mengasumsikan suatu sumber sekunder dari gelombang elektromagnetik pada titik difraksi sudut.],
       [Penyempurnaan terhadap GTD yang mampu menjelaskan singularitas pada ISB dan RSB.],
-      [],
+      [Salah satu metode peluncuran sinar dalam RT berkerja dengan cara meluncurkan sinar ke segala arah dari sumber dan membiarkan sinar-sinar tersebut berinteraksi dengan lingkungan.],
 
       [Dasar Teori],
       [Tergantung bidang aplikasinya, RT dapat didasarkan kepada _geometrical optics_, _geometrical acoustics_@krautkramer_geometrical_1990, teori sinar seismik@cerveny_seismic_2001, bahkan dalam relativitas umum@macpherson_cosmological_2022, dan lain sebagainya yang memungkinkan representasi sinar terhadap suatu fenomena fisika.],
       [Persamaan eikonal dari persamaan gelombang elektromagnetik dan ekspansi Luneberg-Kline. Juga dapat dilihat sebagai aplikasi dari prinsip Fermat.],
       [_Geometrical optics_, dengan pemodelan difraksi, dimana titik difraksi diasumsikan sebagai sumber sinar sekunder.],
       [UTD memperkenalkan fungsi transisi Fresnel $F$ kepada GTD, yang membuat wilayah-wilayah difraksi sebagai wilayah transisi dari batas-batas bayangan yang sebelumnya memunculkan singularitas pada GTD.],
-      [],
+      [Hukum snell, meskipun SBR juga dapat diintegrasikan dengan transmisi dan/atau refleksi.],
+      
+      [Fenomena yang dimodelkan],
+      [Propagasi energi secara umum.],
+      [Refleksi dan transmisi frekuensi tinggi.],
+      [Difraksi.],
+      [Difraksi.],
+      [Refleksi, dapat diintegrasikan dengan transmisi dan difraksi],
     ),
     caption: [Perbandingan RT, GO, GTD, UTD, dan SBR],
-  )
-
-  #figure(
-    image("assets/venn.png", width: 80%),
-    caption: [Hubungan beberapa topik dalam _ray tracing_]
   )
 ]

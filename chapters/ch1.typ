@@ -21,19 +21,19 @@ Karena bergantung pada diskritisasi, yaitu pemecahan sistem kontinu menjadi elem
 _Ray tracing_ (RT) sebagai pendekatan asimtotik untuk solusi persamaan Maxwell berdasarkan kepada representasi gelombang dalam bentuk sinar.
 RT belakangan menjadi metode pemodelan propagasi elektromagnetik yang populer karena algoritma yang lebih sederhana serta perkembangan teknologi _general purpose graphical processing unit_ (GPGPU) yang dapat mendukung komputasi paralel@sarestoniemi_overview_2017.
 
-Pada laporan skripsi ini, akan dirancang sebuah aplikasi, dari algoritma di baliknya hingga antarmuka GUI, untuk memodelkan propagasi gelombang untuk lingkungan _indoor_ pada _floorplan_ dua dimensi, terutama untuk  radio Wi-Fi 2.4 GHz dan 5 GHz dan digunakan metode _shooting and bouncing rays_ (SBR) untuk menemukan path yang valid, di mana interaksi sinar dan lingkungan dimodelkan oleh _geometrical optics_ dan _geometric theory of diffraction_. Kemudian dilakukan pengujian dari aplikasi yang telah dibuat terhadap hasil simulasi aplikasi komersial dan juga hasil pengukuran di lapangan.
+Pada laporan skripsi ini, akan dirancang sebuah aplikasi, dari algoritma di baliknya hingga antarmuka GUI, untuk memodelkan propagasi gelombang untuk lingkungan _indoor_ pada _floorplan_ dua dimensi, terutama untuk  radio Wi-Fi 2.4 GHz dan 5 GHz dan digunakan metode _shooting and bouncing rays_ (SBR) untuk menemukan jalur yang valid, di mana interaksi sinar dan lingkungan dimodelkan oleh _geometrical optics_ dan _geometric theory of diffraction_. Kemudian dilakukan pengujian dari aplikasi yang telah dibuat terhadap hasil simulasi aplikasi komersial dan juga hasil pengukuran di lapangan.
 
 == Rumusan Masalah
 
 Beberapa perihal yang mendasari penelitian ini adalah:
 
-+ Bagaimana metode _ray tracing_ yang memodelkan gelombang sebagai sinar dapat memodelkan propagasi gelombang elektromagnetik pada ruang?
++ Bagaimana metode _ray tracing_ dapat digunakan untuk memodelkan propagasi gelombang elektromagnetik pada ruang?
 
 + Bagaimana menerapkan metode _ray tracing_ ke dalam bentuk algoritma program untuk melakukan perhitungan daya yang diterima dan rugi jalur dari suatu sumber pada ruang 2 dimensi?
 
 + Bagaimana menyusun suatu antarmuka grafis (GUI) terhadap algoritma program yang telah disusun?
 
-+ Bagaimana pengaruh pemodelan fenomena-fenomena interaksi gelombang dengan lingkungan mempengaruhi hasil simulasi?
++ Bagaimana pengaruh pemodelan interaksi gelombang dengan lingkungan mempengaruhi hasil simulasi?
 
 == Tujuan Penulisan
 
@@ -51,9 +51,9 @@ Tujuan dari penulisan skripsi ini adalah:
 
 Pengembangan dan pengujian aplikasi ini dibatasi oleh beberapa batasan masalah:
 
-+ Lingkungan yang disimulasikan adalah lingkungan _indoor_ dengan input _floorplan_ dua dimensi.
-+ Frekuensi kerja _transmitter_ yang disimulasikan adalah standar IEEE 802.11 dengan frekuensi 2.4 GHz dan 5 GHz dengan asumsi pola radiasi omnidireksional.
-+ Simulasi dilakukan untuk menentukan RSSI dan _path loss_ antara _transmitter_ dan _receiver_.
++ Lingkungan yang disimulasikan adalah lingkungan dalam ruangan dengan input denah dua dimensi.
++ Frekuensi kerja pemancar yang disimulasikan adalah standar IEEE 802.11 dengan frekuensi 2.4 GHz dan 5 GHz dengan asumsi pola radiasi omnidireksional.
++ Simulasi dilakukan untuk menentukan daya dan rugi jalur antara pemancar dan penerima.
 + Fenomena gelombang elektromagnetik yang disimulasikan pada aplikasi adalah refleksi, transmisi, dan difraksi.
 
 == Metodologi Penelitian
@@ -96,7 +96,7 @@ Metode-metode penelitian yang digunakan dalam penyusunan laporan skripsi ini ada
     [*BAB IV*], [
       *SIMULASI DAN ANALISIS HASIL*
 
-      Bagian ini berisi tentang analisis hasil simulasi yang didapatkan oleh program dengan membandingkannya dengan simulasi _software_ komersial dan kemudian dengan hasil pengukuran.
+      Bagian ini berisi tentang analisis hasil simulasi yang didapatkan oleh program dengan membandingkannya dengan simulasi perangkat lunak komersial dan kemudian dengan hasil pengukuran.
     ],
     [*BAB V*], [
       *PENUTUP*
