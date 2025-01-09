@@ -1,20 +1,23 @@
 = Hasil dan Analisis Simulasi
 
+#show figure.where(kind: table): set figure(placement: auto) 
+
 Untuk memverifikasi algoritma program dalam memodelkan propagasi gelombang elektromagnetik, maka dilakukan serangkaian simulasi dan perbandingan, yaitu:
 + Simulasi pada denah dengan geometri sederhana.
 + Simulasi pada denah ruang nyata.
 + Perbandingan dengan simulasi aplikasi komersial (Altair FEKO) dan pengukuran.
 
-Konfigurasi Altair FEKO ProMan sebagai pembanding menggunakan pemodelan _Standard Ray Tracing_ (SRT), ketinggian panel dinding 3 meter dan tinggi titik akses 2.5 meter, dan pada kedua simulasi, digunakan sumber 2.4G dan 5G dengan daya 0.1W, dan materi objek kayu dengan parameter pada @woodpar
+Konfigurasi Altair FEKO ProMan sebagai pembanding menggunakan pemodelan _Standard Ray Tracing_ (SRT), ketinggian panel dinding 3 meter dan tinggi titik akses 2.5 meter, dan pada kedua simulasi, digunakan sumber 2.4G dan 5G dengan daya 0.1W, dan materi objek kayu dengan parameter pada @woodpar, dengan $a = 1.99$, $b = 0$, $c = 0.0047$, dan $d =1.07128$ (ITU-R P.2040-3).
 
 #figure(
   table(
-    columns: 3,
-    table.header([*Frekuensi*], [$ L_R ("dB") $], [$ L_T ("dB") $]),
-    [2.4G], [12.95], [0.87],
-    [5G], [12.95], [1.32],
+    columns: 4,
+    align: center + horizon,
+    table.header([*Frekuensi*], [$ sigma = c f_"GHz"^d ("S/m") $], [$ epsilon_r^'= a f_"GHz"^b $], [$ epsilon_r^'' = sigma / (epsilon_0 omega) $]),
+    [2.4 GHz], [0.0120], [1.99], [0.0899],
+    [5 GHz], [0.0264], [1.99], [0.0949]
   ),
-  caption: [Parameter atenuasi materi kayu (sumber: `WinProp_Materials.xls`, Altair FEKO)]
+  caption: [Parameter atenuasi materi kayu (sumber: ITU-R P.2040-3)]
 ) <woodpar>
 
 Perbandingan dilakukan dengan cara mengukur beberapa titik uji pada ruang dan membandingkan hasil kalkulasi program dengan FEKO.

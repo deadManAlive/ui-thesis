@@ -9,7 +9,9 @@
 #show heading.where(level: 2): set heading(outlined: false)
 
 #let files = (
+  "src/compute/rs",
   "src/fps.rs",
+  "src/fresnel.rs",
   "src/icon.rs",
   "src/interaction.rs",
   "src/main.rs",

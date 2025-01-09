@@ -462,26 +462,136 @@ Secara umum, algoritma ini merupakan implementasi konkrit dari @sbrtec. Potongan
 
 == Pemodelan Interaksi Sinar
 
+Pada tahap sebelumnya, suatu sinar dapat direpresentasikan secara sederhana dalam sepasang vektor $RR^3 times RR^3$ yang menunjukkan titik asal dan arah sinar.
+
 $ bup(R) = (bup(o), bup(d)) $
+
+\
 
 Untuk dapat melakukan kalkulasi _ray tracing_, informasi-informasi gelombang dapat diintegrasikan kepada objek sinar, sehingga suatu segmen sinar pada program dapat direpresentasikan sebagai
 
-$ bup(R) = (bup(o), bup(d), bup(Gamma), bup(T), bup(D), s) $
+$ bup(R) = (bup(o), bup(d), bup(Gamma), bup(T), bup(D), s) $ <packedray>
 
 dimana vektor $bup(o),bup(d) in RR^2$ masing-masing adalah vektor yang menunjuk titik awal sinar dan arah dari sinar, $bup(Gamma)$ adalah koefisien refleksi, $bup(T)$ adalah koefisien transmisi, $bup(D)$ adalah koefisien difraksi, dan $s$ panjang segmen.
 
-=== Refleksi
+=== Refleksi dan Transmisi
 
-=== Transmisi
+Pemodelan refleksi dilakukan dengan melakukan perhitungan terhadap koefisien Fresnel refleksi $Gamma$ untuk setiap interaksi dengan objek reflektor, yaitu menggunakan persamaan @gammaperp dan @gammapar. Lalu, dengan mencoba mensubstitusi indeks refraksi dengan impedansi intrinsik pada hukum refraksi ($n = eta_0 slash eta$) didapatkan
+
+$ eta_2 sin theta_i = eta_1 sin theta_t $
+
+dan kemudian
+
+$ sin theta_t = eta_2/eta_1 sin theta_i $
+
+sehingga persaamaan @gammaperp dan @gammapar dapat ditulis sebagai fungsi dari $eta_(1,2)$ dan $theta_i$ saja:
+
+$
+  Gamma_perp &= (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t) \
+  &= (eta_2 cos theta_i - eta_1 sqrt(1 - eta_2/eta_1 sin theta_i))/(eta_2 cos theta_i + eta_1 sqrt(1 - eta_2/eta_1 sin theta_i)) \
+$ <freshf>
+
+dan
+
+$
+  Gamma_parallel = (eta_2 sqrt(1 - eta_2/eta_1 sin theta_i) - eta_1 cos theta_i)/(eta_2 sqrt(1 - eta_2/eta_1 sin theta_i) + eta_1 cos theta_i)
+$
+
+\
+
+Begitu juga dengan transmisi
+
+$
+  T_perp = (2 eta_2 cos theta_i)/(eta_2 cos theta_i + eta_1 sqrt(1 - eta_2/eta_1 sin theta_i))
+$
+
+dan
+
+$
+  T_parallel = (2 eta_2 cos theta_i)/(eta_2 cos sqrt(1 - eta_2/eta_1 sin theta_i) + eta_1 cos theta_i)
+$ <freshl>
+
+\
+
+Akan tetapi, karena ruangan simulasi menggunakan material non-PEC, maka permitivitas relatif materi berupa bilangan kompleks yang menunjukkan adanya rugi materi. Program mengikuti rekomendasi ITU-R seri P propagasi gelombang radio@international_telecommunication_union_effects_2023 dimana permeabilitas material $mu$ bernilai 1 dan permitivitas material $epsilon$ dikalkulasi dengan
+
+$ epsilon = epsilon_r epsilon_0 $
+
+dimana $epsilon_r$ adalah nilai kompleks
+
+$ epsilon_r = epsilon' - j epsilon'' $
+
+dimana
+
+$ sigma = c f_"GHz"^d $
+
+$ epsilon' = Re(epsilon_r) = a f_"GHz"^b $
+
+$ epsilon'' = Im(epsilon_r) = sigma / (epsilon_0 omega) $
+
+$a,b,c,d$ adalah nilai rekomendasi ITU, dengan atenuasi materi $A$
+
+$ A = 1636 sigma/sqrt(epsilon') $
+
+oleh materi dielektrik. Dengan rincian ini, maka $eta_(1,2)$ pada persaamaan @freshf sampai @freshl dapat disubstitusi menjadi
+
+$
+  eta_(1,2) arrow 1/sqrt(epsilon' - j sigma/(epsilon_0 omega))
+$
+
+\
+
+Berbeda dengan refleksi yang mengikuti prinsip refleksi Snell, penambahan transmisi membuat sinar terbagi dua antara sinar refleksi dan transmisi pada suatu titik interaksi. Oleh karena itu, pada kode SBR, diintegrasikan mekanisme membagi dua sinar untuk disimpan sebagai informasi baru dan inisiator untuk rekursi selanjutnya pada fungsi `sbr::bouncing`. Sementara pengukuran koefisien dilakukan oleh modifikasi objek sinar, `FresnelRay` dari modul baru `fresnel`, yang menerapkan objek @packedray ke dalam program aplikasi. @fresnels menampilkan bagian dari modul `fresnel` yang mengkalkulasi refleksi dan transmisi tersebut.
+
+#figure(
+    [
+        #codly-range(10, end: 78)
+        #raw(read("../fray/src/fresnel.rs"), lang: "rs")
+    ],
+    caption: [Potongan kode dari fungsi `fresnel::FresnelRay`]
+) <fresnels>
 
 === Difraksi
 
-== _Ray Tracing_
+Sementara itu, mekanisme difraksi berbeda dari refleksi dan transmisi karena beberapa hal, yaitu
+- hanya terjadi di sekitar titik difraksi sudut (_wedge_), dan
+- bertindak sebagai sumber sekunder pada titik difraksi tersebut.
+Oleh karena itu, dibutuhkan mekanisme pengujian terhadap sinar yang mendekati sudut, dan mekanisme untuk meluncurkan sinar sebagai sumber sekunder di titik tersebut. Pada program, pengujian sinar yang mengenai titik difraksi diadaptasi dari pengujian _reception sphere_ dari penyaringan sinar valid pada tahap SBR. Karena mekanisme ini terkait dengan penambahan sinar-sinar di luar sinar sumber, maka proses ini diintegrasikan dengan tahap SBR. @wedgedet merupakan bagian dari modul `fresnel` yang melakukan fungsi pengecekan sudut.
 
-== Tampilan Aplikasi
+#figure(
+    [
+        #codly-range(207, end: 313)
+        #raw(read("../fray/src/fresnel.rs"), lang: "rs")
+    ],
+    caption: [Potongan dari modul `fresnel` untuk mengecek kedekatan sudut difraksi]
+) <wedgedet>
 
-#figure(image("assets/Picture5.png", width: 80%), placement: none, caption: [Tampilan awal aplikasi])
+Sedangkan kalkulasi koefisien difraksi dan peluncuran sinar-sinar sekunder difraksi yang berdasarkan kepada difraksi oleh lempeng dielektrik@burnside_high_1983, dilakukan pada beberapa bagian terpisah pada modul yang sama, utamanya `FresnelRay::calculate_utd_diffraction` untuk kalkulasi koefisien difraksi dan `FresnelRay::generate_diffraction_rays` untuk peluncuran sumber sekunder.
 
-#figure(image("assets/Picture6.png", width: 80%), placement: none, caption: [Tampilan aplikasi dengan sebuah konfigurasi])
+== Pengukuran
 
-#figure(image("assets/Picture7.png", width: 80%), placement: none, caption: [Tampilan dengan konfigurasi lainnya, dan titik penerima serta array penerima tampak])
+Dengan bantuan beberapa fungsi dari modul `reception_sphere`, sinar-sinar yang tersimpan pada `ray_tank` akan disaring pada fungsi `main` untuk menentukan sinar valid, seperti pada yang ditunjukkan oleh @filters.
+
+#figure(
+    [
+        #codly-range(324, end: 374)
+        #raw(read("../fray/src/main.rs"), lang: "rs")
+    ],
+    caption: [Potongan kode dari fungsi `fresnel::FresnelRay`]
+) <filters>
+
+Setelah itu, pengukuran dilakukan dengan bantuan modul `compute` dengan menginisiasi ```rs struct TotalFiel``` yang menyimpan informasi daya dan fasa saat ini. Pengukuran rugi jalur dalam bentuk linear dilakukan oleh `TotalField::loss_linear` seperti yang dapat dilihat pada @loser, yang merupakan implementasi dari persaamaan @losslin, sebelum kemudian dikonversi menjadi $"dB"$ untuk dioperasikan dengan daya sumber.
+
+#figure(
+    [
+        #codly-range(22, end: 24)
+        #raw(read("../fray/src/compute.rs"), lang: "rs")
+    ],
+    caption: [Fungsi `TotalField::loss_linear` dari modul `compute`]
+) <loser>
+
+#pagebreak(weak: true)
+
+== Kode Program
+
+Kode program tersedia di #link("https://gitlab.com/mrsvnctmn/fray")

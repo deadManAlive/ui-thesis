@@ -671,7 +671,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   $ sin theta_i = sin theta_r $
 
-  dan hukum Snellius
+  dan hukum refraksi
 
   $ n_1 sin theta_i = n_2 sin theta_t $
 
@@ -743,7 +743,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
     Karena $theta_i = theta_r$ dan pada $z=0$, fasa tiap suku adalah sama, maka
 
-    $ 1/eta_1 (Gamma - 1) cos theta_i = - T/theta_2 cos theta_t $
+    $ 1/eta_1 (Gamma - 1) cos theta_i = - T/eta_2 cos theta_t $
 
     \
 
@@ -751,7 +751,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
     $
       Gamma_perp = (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t)
-    $ <gammafin>
+    $ <gammaperp>
 
     dan
 
@@ -765,7 +765,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
     $
       Gamma_parallel = (eta_2 cos theta_t - eta_1 cos theta_i)/(eta_2 cos theta_t + eta_1 cos theta_i)
-    $
+    $ <gammapar>
 
     dan
 
@@ -1094,7 +1094,7 @@ $ E_"total" = sum_i E_R[i] $
 
   $
     L = P_R/P_T = 1/(8 P_0) abs(bup(E)_"total")^2/eta_0 lambda^2/pi
-  $
+  $ <losslin>
 ]
 
 
