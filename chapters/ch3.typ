@@ -80,6 +80,7 @@ Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rera
     #figure(
         [
             #set math.equation(numbering: none)
+            #let colred(x) = text(fill: blue.darken(30%), $#x$)
             #pseudocode-list(
                 indentation: 2em,
                 booktabs: true,
@@ -98,6 +99,8 @@ Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rera
                     + $bup(p)_3 = "Rot"_(pi slash 2)(bup(w))$
                     + $bup(o)_i = bup(s) + norm(bup(p)_2 times bup(p)_1)/(bup(p)_2 dot bup(p)_3) dot bup(w)$
                     + $bup(d)_i = "Refl"_(angle bup(w))(bup(d)_(i-1))$
+                    + $colred(Gamma\,T = "Fresnel"(eta_1, eta_2, bup(d)_(i-1)))$
+                    + $colred(D = "UTD"(bup(d)_(i-1), bup(d)_i))$
                 + *end*
             + *end*
             + return $S = union.big_(i in Q) (bup(o)_i, bup(d)_i)$
