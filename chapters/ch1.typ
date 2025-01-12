@@ -84,22 +84,22 @@ Metode-metode penelitian yang digunakan dalam penyusunan laporan skripsi ini ada
       Bagian ini berisi penjelasan umum seperti latar belakang, tujuan penulisan, batasan masalah, metodologi penulisan, serta sistematika penulisan ini sendiri.
     ],
     [*BAB II*], [
-      *DASAR TEORI*
+      *METODE _RAY TRACING_*
 
       Bagian ini berisi penjelasan tentang dasar bagaimana metode _ray tracing_ dapat memodelkan propagasi gelombang, prinsip-prinsip dasar _ray tracing_, metode _shooting and bouncing rays_, hingga prinsip _graphical optics_ dan _universal theory of diffraction_ yang mendasari kerja aplikasi yang dikembangkan dalam penelitian ini.
     ],
     [*BAB III*], [
-      *PERANCANGAN PROGRAM*
+      *METODE DAN PENULISAN PROGRAM*
 
       Bagian ini berisi penjelasan algoritma-algoritma yang digunakan pada program sebagai implementasi pemodelan _ray tracing_.
     ],
     [*BAB IV*], [
-      *SIMULASI DAN ANALISIS HASIL*
+      *HASIL DAN ANALISIS SIMULASI*
 
       Bagian ini berisi tentang analisis hasil simulasi yang didapatkan oleh program dengan membandingkannya dengan simulasi perangkat lunak komersial dan kemudian dengan hasil pengukuran.
     ],
     [*BAB V*], [
-      *PENUTUP*
+      *KESIMPULAN DAN SARAN*
 
       Bagian ini berisi penutup dan kesimpulan terhadap simulasi yang telah dilakukan oleh aplikasi yang dibuat.
     ]

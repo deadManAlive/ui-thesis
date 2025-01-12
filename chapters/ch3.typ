@@ -4,7 +4,7 @@
 #import "@local/fletcher:0.5.3" as fletcher: diagram, node, edge, shapes
 
 #show: codly-init.with()
-#codly(languages: codly-languages)
+#codly(languages: codly-languages, stroke: 1pt + black)
 
 #set raw(block: true)
 #show figure.where(kind: raw): set text(size: 10pt)
@@ -61,6 +61,8 @@ Bagian utama dari tahap pertama adalah penulisan kerangka GUI program, geometri 
 
 Tahap kedua dalam penulisan program ini berfokus kepada integrasi GTD ke dalam program untuk memodelkan difraksi gelombang. Pada tahap ini, dilakukan perhitungan terhadap koefisien refleksi, refraksi, difraksi, dan atenuasi ruang. Tahap ini kemudian akan diuji dengan validasi terhadap aplikasi komersial Altair FEKO, dan dilakukan penyesuaian model agar mencapai tingkat validasi yang mencukupi. Perbandingan dilakukan dengan cara membandingkan hasil simulasi aplikasi yang dirancang dengan simulasi FEKO pada ukuran geometri dan parameter material dan gelombang yang sama.
 
+Pada penelitian ini, pemodelan yang diimplementasikan dibataskan kepada refleksi, transmisi, dan difraksi karena ketiga fenomena tersebut merupakan beberapa fenomena yang spesifik dapat dijelaskan sebagai fenomena sinar. Hal ini akan lebih jelas pada implementasi sinar dimana koefisien-koefisien Fresnel dan difraksi berupa data yang tertanam pada sinar, seperti yang ditunjukkan oleh representasi sinar oleh persaamaan @packedray, yang memungkinkan kalkulasi seperti persaamaan @rayfield untuk dilakukan.
+
 === Perangkat Pemrograman
 
 #figure(
@@ -80,7 +82,6 @@ Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rera
     #figure(
         [
             #set math.equation(numbering: none)
-            #let colred(x) = text(fill: blue.darken(30%), $#x$)
             #pseudocode-list(
                 indentation: 2em,
                 booktabs: true,
@@ -99,8 +100,6 @@ Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rera
                     + $bup(p)_3 = "Rot"_(pi slash 2)(bup(w))$
                     + $bup(o)_i = bup(s) + norm(bup(p)_2 times bup(p)_1)/(bup(p)_2 dot bup(p)_3) dot bup(w)$
                     + $bup(d)_i = "Refl"_(angle bup(w))(bup(d)_(i-1))$
-                    + $colred(Gamma\,T = "Fresnel"(eta_1, eta_2, bup(d)_(i-1)))$
-                    + $colred(D = "UTD"(bup(d)_(i-1), bup(d)_i))$
                 + *end*
             + *end*
             + return $S = union.big_(i in Q) (bup(o)_i, bup(d)_i)$
@@ -204,11 +203,16 @@ Perangkat lunak lainnya yang digunakan adalah editor teks.
 Seperti yang telah dijelaskan sebelumnya, penulisan aplikasi hanya menggunakan library grafis, sementara berbagai macam komponen geometri dan algoritma ditulis dari nol. Kode Sumber 3.1 menunjukkan konfigurasi proyek dimana bersama beberapa dependensi berupa _library_ yang dibutuhkan oleh program. Terlihat bahwa _library_ yang dibutuhkan hanya `egui-macroquad` untuk membantu dalam menggambar antarmuka dengan pengguna, _image_ yang berguna untuk memproses gambar, dan `macroquad` sebagai _library_ utama untuk menggambar berbagai objek dalam aplikasi. `egui-macroquad` sendiri sebenarnya adalah library yang membantu dalam mengintegrasikan `egui` sebagai penyedia antarmuka pengguna (seperti tombol dan teks), dengan `macroquad`, dengan pembagian seperti pada @apppart. Bagian ```toml profile.release``` sendiri mengatur optimasi _compiler_ untuk mengompilasi kode dengan target performa tertinggi.
 
 #figure(
-    raw(read("../fray/Cargo.toml"), lang: "toml"),
+    [
+        #codly-range(1, end: 13)
+        #raw(read("../fray/Cargo.toml"), lang: "toml"),
+    ],
     caption: [Konfigurasi proyek Rust]
 )
 
-#figure(image("assets/pro1.png", width: 80%), caption: [Tampilan GUI aplikasi dengan pembagian `egui` (kotak merah terang) dengan `macroquad` (batas biru)]) <apppart>
+#figure(
+    image("assets/pro1.png", width: 80%), caption: [Tampilan GUI aplikasi dengan pembagian `egui` (kotak merah terang) dengan `macroquad` (batas biru)], placement: bottom
+) <apppart>
 
 === Inisiasi Awal Aplikasi
 
@@ -374,8 +378,10 @@ Inti dari algoritma _ray tracing_ pada aplikasi ini berada pada metode SBR yang 
 
 #figure(
     image("assets/sbr.png"),
-    caption: [Ilustrasi SBR dengan memisahkan _shooting_ dan _bouncing_.]
+    caption: [Ilustrasi SBR dengan memisahkan _shooting_ dan _bouncing_ (sumber pribadi)]
 ) <sbrtec>
+
+\
 
 @sbrtec membantu mengilustrasikan tahapan dari algoritma ini, shooting hanya akan bertanggung jawab dalam menentukan antara sinar dengan reflektor selanjutnya, dengan input sumber sinar saat ini dan sudut peluncuran sinar. Sementara itu, bouncing akan melakukan akumulasi, perhitungan sudut peluncuran, pemanggilan shooting untuk titik sumber dan sudut yang baru.
 
@@ -544,11 +550,11 @@ $
 
 \
 
-Berbeda dengan refleksi yang mengikuti prinsip refleksi Snell, penambahan transmisi membuat sinar terbagi dua antara sinar refleksi dan transmisi pada suatu titik interaksi. Oleh karena itu, pada kode SBR, diintegrasikan mekanisme membagi dua sinar untuk disimpan sebagai informasi baru dan inisiator untuk rekursi selanjutnya pada fungsi `sbr::bouncing`. Sementara pengukuran koefisien dilakukan oleh modifikasi objek sinar, `FresnelRay` dari modul baru `fresnel`, yang menerapkan objek @packedray ke dalam program aplikasi. @fresnels menampilkan bagian dari modul `fresnel` yang mengkalkulasi refleksi dan transmisi tersebut.
+Berbeda dengan refleksi yang mengikuti prinsip refleksi Snell, penambahan transmisi membuat sinar terbagi dua antara sinar refleksi dan transmisi pada suatu titik interaksi. Oleh karena itu, pada kode SBR, diintegrasikan mekanisme membagi dua sinar untuk disimpan sebagai informasi baru dan inisiator untuk rekursi selanjutnya pada fungsi `sbr::bouncing`. Sementara pengukuran koefisien dilakukan oleh modifikasi objek sinar, `FresnelRay` dari modul baru `fresnel`, yang menerapkan objek @packedray ke dalam program aplikasi. @fresnels menampilkan bagian dari modul `fresnel` yang mengkalkulasi refleksi dan transmisi tersebut, dimana fungsi `FresnelRay::calculate_coefficients` mengabungkan perhitungan $Gamma$ dan $T$ pada persaamaan @gammaperp hingga @tepar ke dalam satu fungsi.
 
 #figure(
     [
-        #codly-range(10, end: 78)
+        #codly-range(10, end: 83)
         #raw(read("../fray/src/fresnel.rs"), lang: "rs")
     ],
     caption: [Potongan kode dari fungsi `fresnel::FresnelRay`]
@@ -559,17 +565,17 @@ Berbeda dengan refleksi yang mengikuti prinsip refleksi Snell, penambahan transm
 Sementara itu, mekanisme difraksi berbeda dari refleksi dan transmisi karena beberapa hal, yaitu
 - hanya terjadi di sekitar titik difraksi sudut (_wedge_), dan
 - bertindak sebagai sumber sekunder pada titik difraksi tersebut.
-Oleh karena itu, dibutuhkan mekanisme pengujian terhadap sinar yang mendekati sudut, dan mekanisme untuk meluncurkan sinar sebagai sumber sekunder di titik tersebut. Pada program, pengujian sinar yang mengenai titik difraksi diadaptasi dari pengujian _reception sphere_ dari penyaringan sinar valid pada tahap SBR. Karena mekanisme ini terkait dengan penambahan sinar-sinar di luar sinar sumber, maka proses ini diintegrasikan dengan tahap SBR. @wedgedet merupakan bagian dari modul `fresnel` yang melakukan fungsi pengecekan sudut.
+Oleh karena itu, dibutuhkan mekanisme pengujian terhadap sinar yang mendekati sudut, dan mekanisme untuk meluncurkan sinar sebagai sumber sekunder di titik tersebut. Pada program, pengujian sinar yang mengenai titik difraksi diadaptasi dari pengujian _reception sphere_ dari penyaringan sinar valid pada tahap SBR. Karena mekanisme ini terkait dengan penambahan sinar-sinar di luar sinar sumber, maka proses ini diintegrasikan dengan tahap SBR. Struktur `fresnel::WedgePoint` dan fungsi-fungsinya merupakan implementasi dari algorima sederhana ini.
+
+Sedangkan kalkulasi koefisien difraksi dan peluncuran sinar-sinar sekunder difraksi yang berdasarkan kepada difraksi oleh lempeng dielektrik@burnside_high_1983, dilakukan pada beberapa bagian terpisah pada modul yang sama, yaitu `FresnelRay::calculate_utd_diffraction` sebagai fungsi dari `FresnelRay` yang menerima titik difraksi yang didapatkan dari tahap penyaringan di atas serta panjang gelombang untuk mendapatkan koefisien difraksi melalui pemodelan UTD pada objek dielektri tipis sebagai implementasi dari persaamaan @dieutd. Dapat dilihat dari cuplikannya pada @cutd yang seperti `FresnelRay::calculate_coefficients` di atas, digunakan untuk menanamkan data hasil kalkulasi koefisien difraksi ke struktur sinar.
 
 #figure(
     [
-        #codly-range(207, end: 313)
+        #codly-range(103, end: 137)
         #raw(read("../fray/src/fresnel.rs"), lang: "rs")
     ],
-    caption: [Potongan dari modul `fresnel` untuk mengecek kedekatan sudut difraksi]
-) <wedgedet>
-
-Sedangkan kalkulasi koefisien difraksi dan peluncuran sinar-sinar sekunder difraksi yang berdasarkan kepada difraksi oleh lempeng dielektrik@burnside_high_1983, dilakukan pada beberapa bagian terpisah pada modul yang sama, utamanya `FresnelRay::calculate_utd_diffraction` untuk kalkulasi koefisien difraksi dan `FresnelRay::generate_diffraction_rays` untuk peluncuran sumber sekunder.
+    caption: [Fungsi `FresnelRay::calculate_utd_diffraction`]
+) <cutd>
 
 == Pengukuran
 
@@ -583,18 +589,17 @@ Dengan bantuan beberapa fungsi dari modul `reception_sphere`, sinar-sinar yang t
     caption: [Potongan kode dari fungsi `fresnel::FresnelRay`]
 ) <filters>
 
-Setelah itu, pengukuran dilakukan dengan bantuan modul `compute` dengan menginisiasi ```rs struct TotalFiel``` yang menyimpan informasi daya dan fasa saat ini. Pengukuran rugi jalur dalam bentuk linear dilakukan oleh `TotalField::loss_linear` seperti yang dapat dilihat pada @loser, yang merupakan implementasi dari persaamaan @losslin, sebelum kemudian dikonversi menjadi $"dB"$ untuk dioperasikan dengan daya sumber.
+Setelah itu, pengukuran dilakukan dengan bantuan modul `compute` dengan menginisiasi ```rs struct TotalField``` yang menyimpan informasi daya dan fasa saat ini. Inisiasi `TotalField` dilakukan menggunakan fungsi `compute::calculate_total_field` seperti yang dapat dilihat pada @caltf, yang merupakan implementasi dari persaamaan @rayfield. Pengukuran rugi jalur dalam bentuk linear kemudian dilakukan oleh `TotalField::loss_linear`, yang merupakan implementasi dari persaamaan @losslin, sebelum kemudian dikonversi menjadi $"dB"$ untuk dioperasikan dengan daya sumber.
 
 #figure(
     [
-        #codly-range(22, end: 24)
+        #codly-range(27, end: 68)
         #raw(read("../fray/src/compute.rs"), lang: "rs")
-    ],
-    caption: [Fungsi `TotalField::loss_linear` dari modul `compute`]
-) <loser>
+    ]
+) <caltf>
 
 #pagebreak(weak: true)
 
 == Kode Program
 
-Kode program tersedia di #link("https://gitlab.com/mrsvnctmn/fray")
+Kode program dapat diakses di #link("https://gitlab.com/mrsvnctmn/fray")

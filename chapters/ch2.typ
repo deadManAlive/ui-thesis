@@ -7,7 +7,7 @@
 _Ray tracing_ merupakan kerangka kerja ilmiah yang hadir di berbagai bidang disiplin ilmu sebagai sebuah metode yang digunakan untuk memahami bagaimana gelombang berpropagasi dalam ruang, dan waktu. Meskipun memiliki konsep inti yang sama dalam aplikasinya di berbagai bidang, yaitu mengikuti ("_tracing_") sinar-sinar ("_rays_") untuk memodelkan interaksi dengan permukaan dan batasan, seperti simulasi cahaya pada grafika komputer, propagasi gelombang suara pada akustik, hingga propagasi gelombang seismik dalam seismologi dan dan cahaya dalam relativitas umum, prinsip-prinsip yang mendasari _ray tracing_ berbeda-beda secara signifikan satu sama lain pada bidang yang berbeda.
 Dengan kata lain, agar suatu fenomena gelombang dapat dimodelkan melalui _ray tracing_, terdapat dua hal yang perlu diperhatikan, yaitu bahwa konsep sinar sebagai representasi propagasi gelombang valid pada ruang terkait serta terdapat mekanisme-mekanisme yang menjelaskan interaksi sinar tersebut dengan lingkungan.
 
-Pemodelan propagasi gelombang elektromagnetik didasarkan kepada Optika Geometris (_Geometrical Optics_/GO) berupa pendekatan asimtotik terhadap persamaan Maxwell yang memperlakukan gelombang elektromagnetik sebagi sinar-sinar dan dapat menjadi mekanisme yang menjelaskan refleksi dan refraksi.
+Pemodelan propagasi gelombang elektromagnetik didasarkan kepada Optika Geometris (_Geometrical Optics_/GO) berupa pendekatan asimtotik terhadap persamaan Maxwell yang memperlakukan gelombang elektromagnetik sebagai sinar-sinar dan dapat menjadi mekanisme yang menjelaskan refleksi dan refraksi.
 _Geometric theory of diffraction_ (GTD) dikembangkan untuk menjelaskan difraksi@keller_geometrical_1962 yang kemudian berkembang menjadi _uniform theory of diffraction_ (UTD) untuk menjawab beberapa permasalahan pada GTD@paknys_applied_2016.
 
 Selain itu juga terdapat konsep _physical optics_ (PO) sebagai alternatif dari GO yang mempertimbangkan karakter gelombang dari propagasi dan dapat menjelaskan interferensi, difraksi, polarisasi, dan lainnya yang tidak dapat dijelaskan oleh GO@albani_uniform_2011, serta _physical theory of diffraction_ (PTD) sebagai ekuivalen dari GTD dengan basis PO yang memberikan koreksi pada difraksi di sekitar permukaan konduktif@balanis_balanis_2024. Tergantung kebutuhan, mekanisme lainnya seperti _Bidirectional Scattering Distribution Function_ (BSDF) untuk memodelkan hamburan permukaan, dan lainnya dapat diintegrasikan ke dalam sistem untuk memodelkan fenomena gelombang yang berbeda.
@@ -51,7 +51,7 @@ Persamaan pertama dari persamaan Maxwell menggambarkan hukum Gauss terkait peril
 
 #figure(
   image("assets/gaussian.png", width: 60%),
-  caption: [Muatan dan fluks listrik yang dihasilkannya melalui suatu permukaan],
+  caption: [Muatan dan fluks listrik yang dihasilkannya melalui suatu permukaan@byjus_gauss_nodate],
 ) <gaussimg>
 
 @gaussimg mengilustrasikan muatan yang menghasilkan fluks listrik pada kondisi terlingkupi (kiri) dan tidak terlingkupi (kanan). Menurut hukum Gauss, fluks listrik total pada kondisi pertama sebanding dengan muatan, sedangkan fluks listrik total pada permukaan kedua adalah nol karena total fluks yang keluar dan masuk pada permukaan adalah sama.
@@ -63,7 +63,7 @@ Persamaan kedua dari persamaan Maxwell merupakan formulasi dari hukum magnet Gau
 
 #figure(
   image("assets/gaussmag.png", width: 40%),
-  caption: [Fluks magnetik yang melewati permukaan tertutup],
+  caption: [Fluks magnetik yang melewati permukaan tertutup@george_crabb_ultimate_nodate],
 ) <gaussmag>
 
 @gaussmag mengilustrasikan implikasi dari hukum magnet Gauss, di mana fluks magnetik yang melewati suatu permukaan tertutup akan selalu bernilai nol. Pada permukaan $cal(S)_A$ hal ini terjadi karena jumlah garis fluks magnetik yang memasuki permukaan sama dengan jumlah garis fluks magnetik yang keluar dari permukaan, sedangkan pada permukaan $cal(S)_B$, semua garis medan dilingkupi oleh permukaan sehingga fluks yang melalui permukaan juga bernilai nol.
@@ -74,7 +74,7 @@ Sementara persamaan pertama dan kedua dari persamaan-persamaan Maxwell menunjukk
 
 #figure(
   image("assets/faradayinfimg.png", width: 80%),
-  caption: [Induksi EMF (gaya gerak listrik) akibat pergerakan magnet di sekitar kumparan],
+  caption: [Induksi EMF (gaya gerak listrik) akibat pergerakan magnet di sekitar kumparan@hyperphysics_faradays_nodate],
 ) <faradayimg>
 
 @faradayimg menunjukkan salah satu implikasi nyata dari hukum induksi Faraday, di mana gaya gerak listrik dihasilkan ketika magnet digerakkan di sekitar kumparan. Hal ini terjadi karena ketika magnet digerakkan, maka terjadi perubahan garis medan magnet yang melewati permukaan yang dilingkupi oleh kumparan tersebut, yang menurut hukum induksi Faraday ini, akan menghasilkan gaya gerak listrik di sepanjang kumparan.
@@ -83,7 +83,7 @@ Sementara persamaan pertama dan kedua dari persamaan-persamaan Maxwell menunjukk
 
 #figure(
   image("assets/ampereimg.png", width: 80%),
-  caption: [Pola pada serbuk besi di sekitar kawat yang dialiri arus listrik],
+  caption: [Pola pada serbuk besi di sekitar kawat yang dialiri arus listrik@nour_abdalrazaq_hassan_effect_2009],
 ) <ampereimg>
 
 Persamaan terakhir dari persamaan Maxwell berkorelasi dengan hukum Ampère yang menunjukkan bahwa perubahan medan listrik juga dapat menimbulkan medan magnet. Bentuk integral dari persamaan ini menunjukkan bahwa fluks magnet melingkar akar terbentuk pada suatu lingkaran tertutup (_loop_) ketika pada permukaan yang dilingkupi oleh lingkaran tertutup tersebut dilewati oleh muatan listrik dan/atau terjadi perubahan medan magnet.
@@ -144,8 +144,6 @@ Jika dilakukan transformasi Fourier pada persamaan @ewaveequation, akan didapatk
   #set math.equation(number-align: bottom)
 
   $
-    diff^2/(diff t^2)bup(E) &= c^2 nabla^2 bup(E) \
-    cal(F)[diff^2/(diff t^2)bup(E)] &= cal(F)[c^2 nabla^2 bup(E)] \
     -omega^2 tilde(bup(E)) &= c^2 nabla^2 tilde(bup(E)) \
     (nabla^2 + k^2) tilde(bup(E)) &= 0
   $ <helmholtz>
@@ -171,8 +169,6 @@ Ketika persamaan @helmholtz diaplikasikan pada gelombang yang berpropagasi pada 
   #set math.equation(number-align: bottom)
 
   $
-    (nabla^2 + omega^2/(v^2(bup(r)))) tilde(bup(E)) &= 0 \
-    (nabla^2 + n^2(bup(r)) omega^2/c^2) tilde(bup(E)) &= 0 \
     (nabla^2 + n^2(bup(r)) k^2) tilde(bup(E)) &= 0 \
   $ <nhhelmholtz>
 ]
@@ -187,7 +183,7 @@ $ <lkexpansion>
 
 di mana $phi.alt (bup(r))$ adalah fungsi fasa dan $tilde(bup(E))_i (bup(r))$ adalah vektor amplitudo untuk komponen orde ke-$i$ dari ekspansi asimtotik tersebut.
 
-Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
+Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka akan didapatkan:
 
 #[
   #set math.equation(number-align: bottom)
@@ -198,9 +194,6 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
   #let nr = [$n^2(bup(r))$]
 
   $
-    (nabla^2 + n^2 k^2) tilde(bup(E)) &= 0 \
-    nabla^2 tilde(bup(E)) + nr k^2 tilde(bup(E)) &= 0\
-    nabla^2 sn ex/jw en + nr k^2 sn ex/jw en &= 0 \
     sn nabla^2 ex/jw en + nr k^2 sn ex/jw en &= 0 \
   $ <a1>
 
@@ -224,16 +217,6 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
   maka
 
   $
-    sn 1/jw [-j k ex en nabla^2 phi.alt(bup(r)) - k^2 ex en (nabla phi.alt(bup(r)))^2 \
-    - 2 (j k ex nabla phi.alt(bup(r)) dot nabla) en + ex nabla^2 en \
-    + nr k^2 ex en
-    ] &= 0 \
-
-    ex sn 1/jw [-j k en nabla^2 phi.alt(bup(r)) - k^2 en (nabla phi.alt(bup(r)))^2 \
-    - 2 (j k nabla phi.alt(bup(r)) dot nabla) en + nabla^2 en \
-    + nr k^2 en
-    ] &= 0 \
-
     ex sn 1/jw [(nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2) \
     - j(k en nabla^2 phi.alt(bup(r)) + 2k (nabla phi.alt(bup(r)) dot nabla) en)] &= 0
   $ 
@@ -271,8 +254,8 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka:
 \
 
 #figure(
-  image("assets/wavefront.png", width: 60%),
-  caption: [Sinar (merah) dan muka gelombang (hijau) pada sinar 2 dimensi],
+  image("assets/wavefront.png", width: 40%),
+  caption: [Sinar (merah) dan muka gelombang (hijau) pada sinar 2 dimensi@chaves_introduction_2017],
 ) <wavefront>
 
 Persamaan @eikonal merupakan persamaan eikonal dari gelombang di medan $bup(E)$. Gradien eikonal $nabla phi.alt(bup(r))$ juga disebut sebagai momentum optik $bup(p)(bup(r))$ pada optika Lagrangian dan berupa vektor di suatu titik $bup(P)$ pada sinar yang memiliki arah yang sama dengan sinar pada titik tersebut@chaves_introduction_2017. Sementara itu, eikonal $phi.alt(bup(r))$ juga disebut sebagai panjang jalur optik (_optical path length_/OPL) $sigma$.
@@ -301,7 +284,7 @@ $
 
 \
 
-Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggunakan identitas kalkulus vektor $nabla dot (psi bup(F)) = psi nabla dot bup(F) + bup(F) dot nabla psi$ dan $nabla times (psi bup(F)) = psi (nabla times bup(F))+(nabla psi) times bup(F)$, didapatkan:
+Memasukkan kedua nilai tersebut ke persamaan @fourb (persamaan Gauss) dengan menggunakan identitas kalkulus vektor $nabla dot (psi bup(F)) = psi nabla dot bup(F) + bup(F) dot nabla psi$ dan $nabla times (psi bup(F)) = psi (nabla times bup(F))+(nabla psi) times bup(F)$, didapatkan:
 
 #[
   #set math.equation(number-align: bottom)
@@ -310,35 +293,7 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
   #let eo(f) = [$tilde(bup(#f))_0(bup(r))$]
 
   $
-    nabla dot tilde(bup(E)) &= 0 \
-    nabla dot (eo(E) ex) &= 0 \
-    ex nabla dot eo(E) + eo(E) dot nabla ex &= 0 \
-    ex nabla dot eo(E) + eo(E) dot (-j k ex nabla ps) &= 0 \
-    nabla dot eo(E) - j k nabla ps dot eo(E) &= 0 \
     nabla ps dot eo(E) &= 1/(j k) nabla dot eo(E)
-  $
-
-  $
-    nabla dot tilde(bup(B)) &= 0 \
-    nabla dot (eo(B) ex) &= 0 \
-    nabla ps dot eo(B) &= 1/(j k) nabla dot eo(B)
-  $
-
-  $
-    nabla times tilde(bup(E)) &=  -j omega tilde(bup(B)) \
-    nabla times (eo(E) ex) &= -j omega eo(B) ex \
-    ex (nabla times eo(E)) + (nabla ex) times eo(E) &= -j omega eo(B) ex \
-    ex nabla times eo(E) - j k ex nabla ps times eo(E) &= -j omega eo(B) ex \
-    nabla times eo(E) - j k nabla ps times eo(E) &= -j omega eo(B) \
-    j k nabla ps times eo(E) &= j omega eo(B) + nabla times eo(E) \
-    nabla ps times eo(E) &= c eo(B) + 1/(j k) nabla times eo(E)
-  $
-
-  $
-    nabla times tilde(bup(B)) &= (j omega)/c^2 tilde(bup(E)) \
-    nabla times (eo(B) ex) &= (j omega)/c^2 eo(E) ex \
-    j k nabla ps times eo(B) &= -(j omega)/c^2 eo(E) + nabla times eo(B) \
-    nabla ps times eo(B) &= 1/c eo(E) + 1/(j k) nabla times eo(B)
   $
 
   \
@@ -349,25 +304,11 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
     nabla ps dot eo(E) = 0
   $ <pseoiszero>
 
-  $
-    nabla ps dot eo(B) = 0
-  $ 
-
-  $
-    nabla ps times eo(E) = c eo(B)
-  $
-
-  $
-    nabla ps times eo(B) = - 1/c eo(E)
-  $
-
   \
 
   Menggunakan perkalian silang tiga vektor $bup(A) times (bup(B) times bup(C)) = (bup(A) dot bup(C))bup(B) - (bup(A) dot bup(B))bup(C)$, maka
 
   $
-    angle.l bup(S) angle.r &= 1/(2 mu_0) cal(Re)[bup(E) times dash(bup(B))] \
-    &= 1/(2mu_0)cal(Re)[eo(E) times 1/c (nabla ps times dash(eo(E)))] \
     &= 1/(2 c mu_0)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
   $ <poynting1>
 
@@ -378,8 +319,7 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb hingga @foure dengan menggun
   adalah kerapatan energi listrik rata-rata, sehingga
 
   $
-    angle.l bup(S) angle.r &= 2/(c mu_0 epsilon_0) angle.l w_e angle.r nabla ps \
-    &= 2c angle.l w_e angle.r nabla ps
+    angle.l bup(S) angle.r &= 2c angle.l w_e angle.r nabla ps
   $ <finalpoynting>
 ]
 
@@ -416,7 +356,7 @@ di mana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran 
 
 #figure(
   image("assets/invsqr.png", width: 60%),
-  caption: [Ilustrasi hukum kuadrat terbalik]
+  caption: [Ilustrasi hukum kuadrat terbalik@borb_fileinverse_2008]
 ) <invsqr>
 
 di mana $I$ dan $r$ memiliki hubungan kuadrat terbalik, seperti yang diilustrasikan oleh @invsqr di mana pada jumlah fluks yang tetap akan melewati permukaan dengan rasio $n^2$ untuk setiap perubahan jarak $n$ menjauhi sumber radiasi.
@@ -445,7 +385,7 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
 
   #figure(
     image("assets/gc.jpg", width: 80%),
-    caption: [Dua permukaan gelombang sebagai lengkungan Gauss],
+    caption: [Dua permukaan gelombang sebagai lengkungan Gauss@georgia_institute_of_technology_chapter_nodate],
   ) <gausscurv>
 
   $
@@ -464,10 +404,6 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
   dan jika persamaan tersebut diintegrasikan diantara dua posisi berbeda pada ruang, $rho_0$ dan $rho_0 + Delta$, maka
 
   $
-    integral^er(rho_0 + Delta rho)_er(rho_0) (d e0) / e0 &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
-    ln er(rho_0 + Delta rho) - ln er(rho_0) &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
-    ln er(rho_0 + Delta rho) / er(rho_0) &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
-    er(rho_0 + Delta rho) / er(rho_0) &= exp(- integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s) \
     er(rho_0 + Delta rho) &= er(rho_0) exp(- integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s) \
   $ <direxpand>
 
@@ -510,25 +446,18 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
   yang mana sisi kiri dari persamaan dapat dibuat sama dengan suku eksponensial dari persamaan @direxp dengan melakukan integrasi, negasi, dan eksponensiasi:
 
   $
-    (nabla^2 pr)/norm(nabla pr) &= 1/(rho_1 + sigma) + 1/(rho_2 + sigma) \
-    integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma &=  integral ^s_0 (d sigma)/(rho_1 + sigma) + integral^s_0 (d sigma)/(rho_2 + sigma) \
-    -integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma &=  -integral^s_0 (d sigma)/(rho_1 + sigma) - integral^s_0 (d sigma)/(rho_2 + sigma) \
     exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma) &=  exp(-integral ^s_0 (d sigma)/(rho_1 + sigma)) exp(- integral^s_0 (d sigma)/(rho_2 + sigma)) \
   $
 
   dengan asumsi muka gelombang $cal(A)$ berada pada $s = 0$. Kemudian, dengan melakukan integrasi pada sisi kanan persamaan, didapatkan
 
   $
-    exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d s) &=  exp(-integral ^s_0 (d sigma)/(rho_1 + s)) exp(- integral^s_0 (d sigma)/(rho_2 + sigma)) \
-    &= exp(- ln (rho_1 + sigma) bar^s_0) exp(- ln(rho_2 + sigma) |^s_0) \
-    &= (rho_1/(rho_1 + s))(rho_2/(rho_2 + s)) \
-    &= (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
+    exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d s) &= (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
   $
 
   sehingga persaamaan @direxp dapat ditulis menjadi
 
   $
-    tilde(bup(E))_0^2 (s) &= tilde(bup(E))_0^2 (0) (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
     tilde(bup(E))_0 (s) &= tilde(bup(E))_0 (0) sqrt( (rho_1 rho_2)/((rho_1 + s)(rho_2 + s))) \
   $
 
@@ -575,7 +504,7 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
         content((2, -2), $ n_2 $)
     })
   ],
-  caption: [Ilustrasi sebuah segmen pada perbatasan medium]
+  caption: [Ilustrasi sebuah segmen pada perbatasan medium (sumber pribadi)]
 ) <interface>
 
 Misakan $Sigma$ adalah sebuah persegi dalam sebuah _loop_ disepanjang batas medium (bidang $x y$) dengan panjang sejajar batas $cal(l)$ dan lebar $delta$ seperti pada @interface, persamaan Faraday @faradarorig menjelaskan hubungan medan magnet dan listrik yang berada di dalam _loop_ tersebut.
@@ -622,7 +551,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   #figure(
     image("assets/reftran.jpg", width: 60%),
-    caption: [Refleksi dan transmisi gelombang elektromagnetik $(bup(E)_i, bup(H)_i)$ pada sebuah perbatasan medium pada bidang $x z$]
+    caption: [Refleksi dan transmisi gelombang elektromagnetik $(bup(E)_i, bup(H)_i)$ pada sebuah perbatasan medium pada bidang $x z$@balanis_balanis_2024]
   ) <reftrans>
 
   Medan listrik dari sebuah gelombang elektromagnetik datang ke sebuah perbatasan medium yang bergerak pada bidang $x z$ seperti pada @reftrans dapat diformulasikan sebagai
@@ -648,7 +577,6 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
   #[
     #set math.equation(number-align: bottom)
     $
-      un(z) times (bup(E)_i + bup(E)_r) &= un(z) times bup(E)_t |_(z=0) \
       un(z) times (un(y)E_0 e^(-j bup(k)_i dot r) + un(y) R e^(-j bup(k)_r dot bup(r))) &= un(z) times un(y) T e^(-j bup(k)_t dot bup(r)) |_(z=0) \
     $ <continuity>
   ]
@@ -696,19 +624,13 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
   #[
     #set math.equation(number-align: bottom)
     $
-       -j omega bup(B) &= nabla times bup(E) \
-       &= nabla times E_0 e^(-j bup(k) dot bup(r)) \
-       &= -j bup(k) times E_0 e^(-j bup(k) dot bup(r)) \
-       &= -j bup(k) times bup(E) \
        bup(B) &= (bup(k) times bup(E)) / omega
     $
 
     karena $bup(k) = abs(bup(k)) hat(bup(k)) = omega/v bup(hat(k)) = omega sqrt(mu epsilon) hat(bup(k))$, maka
 
     $
-      bup(B) &=(omega sqrt(mu epsilon) hat(bup(k)) times bup(E))/omega \
-      &= sqrt(mu epsilon) hat(bup(k)) times bup(E) \
-      &= 1/v hat(bup(k)) times bup(E)
+      bup(B) &= 1/v hat(bup(k)) times bup(E)
     $ <direh>
 
     atau juga dapat ditulis dalam medan magnet $bup(H) = bup(B) slash mu$:
@@ -757,7 +679,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
     $
       T_perp = (2 eta_2 cos theta_i)/(eta_2 cos theta_i + eta_1 cos theta_t)
-    $ <tfin>
+    $ <tperp>
 
     \
 
@@ -771,7 +693,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
     $
       T_parallel = (2 eta_2 cos theta_i)/(eta_2 cos theta_t + eta_1 cos theta_i)
-    $
+    $ <tepar>
   ]
 ]
 
@@ -782,7 +704,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   #figure(
     image("assets/huygens.png", width: 60%),
-    caption: [Pembentukan muka gelombang berdasarkan prinsip Huygens-Fresnel]
+    caption: [Pembentukan muka gelombang berdasarkan prinsip Huygens-Fresnel@doubtnut_discuss_nodate]
   ) <huygenswf>
 
   Difraksi merupakan fenomena gelombang berupa terjadinya penyebaran atau pembelokan muka gelombang di sekitar suatu penghalang. Dalam fisika klasik, hal ini dapat dijelaskan sebagai implikasi dari prinsip Huygens-Fresnel, dimana setiap titik pada muka gelombang merupakan sumber gelombang bulat sekunder yang kemudian berinterferensi satu sama lainnya membentuk muka gelombang sebenarnya, seperti yang diilustrasikan pada @huygenswf. Oleh karena itu, difraksi mengakibatkan adanya medan propagasi pada ruang bayangan yang ditimbulkan pada ruang NLOS oleh suatu benda yang berada di jalur propagasi gelombang.
@@ -790,7 +712,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   #figure(
     image("assets/shadow.jpg", width: 80%),
-    caption: [Difraksi oleh beberapa bentuk penghalang]
+    caption: [Difraksi oleh beberapa bentuk penghalang@stutzman_antenna_2013]
   ) <shadow>
 
   Dapat dicermati bahwa difraksi sebagai fenomena gelombang menjadi batasan dari metode GO yang mengabaikan sifat gelombang dan menggambarkannya sebagai sinar-sinar diskrit sebagai jalur propagasi muka gelombang. @shadow mengilustrasikan adanya batas bayangan (_shadow boundary_) ketika sinar mengenai suatu objek penghalang pada titik difraksi. Batas bayangan sendiri berupa diskontinuitas antara ruang LOS dan ruang bayangan yang mana pada GO, tidak terdapat sinar yang berpropagasi ke ruang tersebut. Hal ini terjadi karena formulasi GO tidak memberikan mekanisme yang menjelaskan perilaku gelombang dari sinar di sekitar titik-titik difraksi tersebut.
@@ -804,7 +726,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   #figure(
     image("assets/diffr.jpg", width: 60%),
-    caption: []
+    caption: [Wilayah-wilayah medan disekitar titik difraksi@paknys_applied_2016]
   ) <difbound>
 
   @difbound mengilustrasikan tiga wilayah yang terbentuk akibat diskontinuitas oleh adanya penghalang berbentuk sudut. Dengan menggunakan GO saja, maka wilayah I berada pada LOS dari sumber $bup(S)$ sehingga dapat menerima sinar langsung dan refleksi, wilayah II yang masih terdapat pada LOS sumber hanya memungkinkan sinar langsung, dan tidak terdapat sinar pada wilayah III.
@@ -878,7 +800,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   #figure(
     image("assets/dieslab.jpg", width: 60%),
-    caption: [Difraksi oleh lempeng dielektrik tipis.]
+    caption: [Difraksi oleh lempeng dielektrik tipis@burnside_high_1983]
   ) <dieslab>
 
   Meskipun demikian, UTD masih dapat dikembangkan, dengan berbagai asumsi, untuk memberikan perkiraan terhadap berbagai situasi difraksi. Sebagai contoh, suatu sinar baru yaitu sinar gelombang permukaan bisa diperkenalkan pada situasi objek memiliki impedansi permukaan@rojas_electromagnetic_1988. Contoh lainnya adalah pada kondisi objek penghalang berupa lapisan dielektrik seperti pada @dieslab, sehingga komponen medan transmisi perlu ditambahkan pada persaamaan @diftot sehingga persamaan tersebut menjadi
@@ -895,7 +817,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   $
     D_(s,h)(pa, pa') = [(1-T)D(pa - pa') + Gamma D(pa + pa')]
-  $
+  $ <dieutd>
 
   dengan koefisien refleksi total $R$
 
@@ -934,7 +856,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
 #figure(
   image("assets/compem.png", width: 80%),
-  caption: [Pembagian komputasi elektromagnetik]
+  caption: [Pembagian komputasi elektromagnetik@stutzman_antenna_2013]
 ) <cemdiag>
 
 Komputasi elektromagnetik (_computational electromagnetics_) atau CEM dapat didefinisikan sebagai cabang dari elektromagnetika yang memanfaatkan komputer digital terotomasi untuk memperoleh suatu nilai-nilai angka@miller_selective_1988, meskipun pada hakikatnya komputasi sendiri (dari Latin _computo_, menghitung) tidak terbatas pada pemanfaatan komputer dan termasuk kepada perhitungan dengan tangan solusi secara analitik maupun numerik terhadap persamaan-persamaan Maxwell, atau hukum-hukum fisika lainnya secara umum pada komputasi fisika (_computational physics_).
@@ -1003,7 +925,6 @@ Rugi jalur (_path loss_) merupakan karakteristik gelombang dimana gelombang akan
 
 Masalahnya adalah bahwa prediksi rugi jalur merupakan salah satu hal yang penting untuk diperhitungkan dalam penyusunan _link budget_, yang menentukan konfigurasi struktur pendukung dalam suatu sistem telekomunikasi. Oleh karena itu, muncullah model-model empiris yang dapat digunakan untuk memprediksi rugi jalur dengan cara mengintegrasikan parameter lingkungan hasil pengukuran dan pengamatan@abhayawardhana_comparison_2005. @empire menunjukkan beberapa contoh model empirik untuk situasi-situasi yang berbeda.
 
-
 Dapat dilihat bahwa model empiris, meskipun dapat memprediksi kinerja suatu kanal secara umum dengan cepat dan dengan hasil yang cukup meyakinkan dalam merepresentasikan keadaan yang sebenarnya, memiliki keterbatasan dalam perihal akurasi, karena suatu model hanya valid untuk lingkungan yang spesifik dan juga abai terhadap fenomena dan kondisi, termasuk geometri, spesifik dari lingkungan pengukuran. Ketika akurasi dan informasi yang lebih spesifik dibutuhkan, model deterministik akan lebih tepat untuk digunakan.
 
 === _Ray Tracing_
@@ -1016,7 +937,7 @@ Dalam implementasinya, pemodelan propagasi dengan RT dilakukan dalam 2 tahap, ya
 
 #figure(
   image("assets/image.jpg", width: 80%),
-  caption: [Metode bayangan]
+  caption: [Metode bayangan@remcom_ray-tracing_nodate]
 ) <imgrt>
 
 Terdapat dua metode utama yang dapat digunakan untuk meluncurkan sinar, yang pertama adalah metode bayangan (_image_). Metode bayangan menetukan jalur yang menghubungkan antara titik penerima dengan pemancar dengan cara menguraikannya sebagai kombinasi refleksi oleh dinding reflektor antara pemancar dan penerima. Oleh karena itu, jalur-jalur yang ditemukan melalui metode ini adalah jalur pasti antara kedua titik, sehingga kelebihan dari metode ini adalah akurasi terhadap jalur yang didapatkan. @imgrt mengilustrasikan metode ini.
@@ -1034,12 +955,12 @@ dimana $alpha$ adalah sudut antar sinar yang diluncurkan pemancar, dan $s$ panja
   
 #figure(
   image("assets/sbr.jpg", width: 80%),
-  caption: [Metode SBR]
+  caption: [Metode SBR@remcom_ray-tracing_nodate]
 )
 
 Tahap selanjutnya setelah peluncuran sinar dilakukan adalah pengukuran, dimana dalam propagasinya, masing-masing sinar mengalami atenuasi akibat refleksi, transmisi, dan difraksi berupa koefisien-koefisien Fresnel dan koefisien difraksi GTD/UTD, sehingga medan pada pemodelan dengan refleksi, transmisi, dan difraksi, medan yang dihasilkan oleh setiap sinar dapat diformulasikan ke dalam@schaubach_ray_1992@seidel_site-specific_1994@balanis_balanis_2024
 
-$ E_R = E_0 f_T f_R [product_i A_i Gamma_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $
+$ E_R = E_0 f_T f_R [product_i A_i Gamma_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $ <rayfield>
 
 dimana $E_R$ merupakan medan pada penerima yang dihasilkan oleh suatu sinar, $E_0$ adalah magnitudo awal medan, $f_(T,R)$ adalah faktor pola radiasi antena, $A$ adalah faktor persebaran atau atenuasi ruang pada setiap interaksi sinar, $Gamma$ adalah koefisien refleksi, $T$ adalah koefisien transmisi, dan $D$ adalah koefisien difraksi, sementara $s$ adalah jarak total yang telah ditempuh sinar. Selain itu, karena sifat linear dari persamaan Maxwell, medan total pada titik penerima merupakan superposisi dari masing-masing sinar@kasdorf_advancing_2021, sehingga medan total $E_"total"$ adalah
 
@@ -1051,9 +972,7 @@ $ E_"total" = sum_i E_R[i] $
   Kemudian dari persaamaan @direh pada ruang hampa, dan mensubstitusikannya ke persaamaan @poynting1, serta $eta_0 = sqrt(mu_0 slash epsilon_0)$, maka didapatkan
 
   $
-    angle.l bup(S) angle.r  &= 1/(2 mu_0) cal(Re)[bup(E) times dash(bup(B))] \
-    &= 1/(2 mu_0 c) cal(Re)[bup(E) times dash(hat(bup(k)) times bup(E))] \
-    &= 1/(2 eta_0) cal(Re)[bup(E) times dash(hat(bup(k))) times dash(bup(E))] \
+    angle.l bup(S) angle.r  &= 1/(2 eta_0) cal(Re)[bup(E) times dash(hat(bup(k))) times dash(bup(E))] \
   $
 
   dengan kembali menggunakan perkalian silang tiga vektor, persaamaan tersebut menjadi
