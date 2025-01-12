@@ -47,8 +47,8 @@
         counter(page).display()
       }
       // [ \ ]
-      set align(right)
-      text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
+      // set align(right)
+      // text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
     }
   )
 
