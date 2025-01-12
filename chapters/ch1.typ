@@ -75,7 +75,7 @@ Metode-metode penelitian yang digunakan dalam penyusunan laporan skripsi ini ada
   #set par(leading: 1em, first-line-indent: 0em)
 
   #grid(
-    columns: (1fr, 2fr),
+    columns: (1fr, 5fr),
     gutter: 5pt,
     inset: (y: 0.4em),
     [*BAB I*], [

@@ -1,0 +1,10 @@
+KODE SUMBER SKRIPSI MUHAMMAD RAFKY ALFARRAKHAN.S (190 638 3974)
+===============================================================
+
+Dibuat dengan Typst: https://github.com/typst/typst
+
+- file skripsi: main.typ
+- file presentasi: present.typ
+- file naskah singkat: paper.typ
+
+Kompilasi: typst compile FILE.typ

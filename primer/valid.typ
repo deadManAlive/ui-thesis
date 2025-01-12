@@ -31,7 +31,7 @@
   ]
 
   #[
-    #let dpad = (x: 4pt, y: 12pt)
+    #let dpad = (x: 4pt, y: 27pt)
     #table(
       columns: 4,
       stroke: none,
@@ -45,7 +45,7 @@
     )
   ]
 
-  #v(4em)
+  #v(2em)
 
   #table(
     columns: 2,

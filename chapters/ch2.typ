@@ -117,15 +117,9 @@ $ nabla times nabla times bup(E) = -mu_0 epsilon_0 diff^2/(diff t^2) bup(E) $ <c
 
 Salah satu identitas operator _curl_ adalah $nabla times (nabla times F) = nabla (nabla dot F)-nabla^2 F$, sedangkan pada ruang hampa tnapa sumber fluks listrik $nabla dot bup(E) = 0$, sehingga persamaan @cceinvacum menjadi:
 
-$ nabla^2 bup(E) = mu_0 epsilon_0 diff^2/(diff t^2) bup(E) $
-
-atau
-
 $ diff^2/(diff t^2)bup(E)= c^2 nabla^2 bup(E) $ <ewaveequation>
 
-yang merupakan persamaan gelombang, di mana kecepatan cahaya pada ruang hampa $c=1/sqrt(mu_0 epsilon_0)$. Persamaan @ewaveequation merupakan persamaan diferensial parsial yang menjelaskan propagasi gelombang listrik pada ruang hampa. Dengan penurunan yang sama, didapatkan persamaan gelombang magnet berupa:
-
-$ diff^2/(diff t^2)bup(B) = c^2 nabla^2 bup(B) $
+yang merupakan persamaan gelombang, di mana kecepatan cahaya pada ruang hampa $c=1/sqrt(mu_0 epsilon_0)$. Persamaan @ewaveequation merupakan persamaan diferensial parsial yang menjelaskan propagasi gelombang listrik pada ruang hampa.
 
 === Persamaan Helmholtz
 
@@ -157,13 +151,7 @@ Indeks refraksi $n$ merupakan sebuah skalar yang berupa perbandingan antara cepa
 
 $ n = c/v  = sqrt(mu epsilon)/sqrt(mu_0 epsilon_0) = sqrt(mu_r epsilon_r) $
 
-Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium juga berupa fungsi ruang:
-
-$ n(bup(r)) = c/(v (bup(r))) $
-
-\
-
-Ketika persamaan @helmholtz diaplikasikan pada gelombang yang berpropagasi pada medium non-homogen ini, maka:
+Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium juga berupa fungsi ruang $n(bup(r))$, sehingga persaamaan @helmholtz pada kondisi ini menjadi
 
 #[
   #set math.equation(number-align: bottom)
@@ -199,31 +187,7 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka akan
 
   \
 
-  Operator Laplace (Laplacian) $nabla^2$ memiliki identitas $nabla^2 (psi bup(F)) = bup(F) nabla^2 psi + 2 (nabla psi dot nabla) bup(F) + psi nabla^2 bup(F)$ dengan $psi$ medan skalar dan $bup(F)$ medan vektor, sehingga suku pertama dari persamaan @a1 dapat dikembangkan menjadi:
-
-  $
-    sn 1/jw [en nabla^2 ex  + 2 (nabla ex dot nabla) en + ex nabla^2 en] \
-    + nr k^2 sn ex/jw en = 0
-  $
-
-  dengan
-
-  $ nabla ex = -j k ex nabla phi.alt(bup(r)) $
-
-  dan
-
-  $ nabla^2 ex = -j k ex nabla^2 phi.alt(bup(r)) - k^2 ex (nabla phi.alt(bup(r)))^2 $
-
-  maka
-
-  $
-    ex sn 1/jw [(nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2) \
-    - j(k en nabla^2 phi.alt(bup(r)) + 2k (nabla phi.alt(bup(r)) dot nabla) en)] &= 0
-  $ 
-
-  \
-
-  Untuk $omega$ yang sangat besar, maka hanya orda $i = 0$ yang signifikan sehingga persamaan tersebut menjadi
+  Operator Laplace (Laplacian) $nabla^2$ memiliki identitas $nabla^2 (psi bup(F)) = bup(F) nabla^2 psi + 2 (nabla psi dot nabla) bup(F) + psi nabla^2 bup(F)$ dengan $psi$ medan skalar dan $bup(F)$ medan vektor. Sementara itu untuk $omega$ yang sangat besar, maka hanya orda $i = 0$ yang signifikan sehingga persaamaan @a1 menjadi
 
   #let e0 = [$tilde(bup(E))_0 (bup(r))$]
 
@@ -234,15 +198,14 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka akan
 
   \
 
-  Agar persamaan @lkexpanded benar, maka suku riil dan imajiner dari persamaan tersebut harus bernilai 0. Mengevaluasi bagian riil didapatkan
+  Dapat dilihat bahwa suku riil dan imajiner dari persamaan tersebut bernilai 0, sehingga
 
   $
-    nabla^2 e0 + nr k^2 e0 - k^2 e0 (nabla phi.alt(bup(r)))^2 &= 0 \
     k^2 e0 (nabla phi.alt(bup(r)))^2 &= nabla^2 e0 + nr k^2 e0 \
     (nabla phi.alt(bup(r)))^2 &= (nabla^2 e0)/(k^2 e0) + nr \
   $
 
-  atau dapat disederhanakan menjadi
+  yang dapat disederhanakan menjadi
 
   $
     norm(nabla phi.alt(bup(r))) = n(bup(r))
@@ -276,15 +239,7 @@ $
   lim_(omega arrow infinity) tilde(bup(E))(bup(r), omega) = tilde(bup(E))_0(bup(r)) e^(-j k phi.alt(bup(r)))
 $ <limelexp>
 
-yang juga berlaku untuk medan magnet
-
-$
-  lim_(omega arrow infinity) tilde(bup(B))(bup(r), omega) = tilde(bup(B))_0(bup(r)) e^(-j k phi.alt(bup(r)))
-$
-
-\
-
-Memasukkan kedua nilai tersebut ke persamaan @fourb (persamaan Gauss) dengan menggunakan identitas kalkulus vektor $nabla dot (psi bup(F)) = psi nabla dot bup(F) + bup(F) dot nabla psi$ dan $nabla times (psi bup(F)) = psi (nabla times bup(F))+(nabla psi) times bup(F)$, didapatkan:
+yang dapat disubstitusikan ke persamaan @fourb (persamaan Gauss) dan @fourfar (persamaan Faraday) serta menggunakan identitas kalkulus vektor $nabla dot (psi bup(F)) = psi nabla dot bup(F) + bup(F) dot nabla psi$ dan $nabla times (psi bup(F)) = psi (nabla times bup(F))+(nabla psi) times bup(F)$ untuk mendapatkan
 
 #[
   #set math.equation(number-align: bottom)
@@ -294,22 +249,32 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb (persamaan Gauss) dengan men
 
   $
     nabla ps dot eo(E) &= 1/(j k) nabla dot eo(E)
+  $ <eigauss>
+
+  untuk persamaan Gauss, dan
+
   $
+    nabla ps times eo(E) &= c eo(B) + 1/(j k) nabla times eo(E)
+  $ <eifaraday>
 
-  \
+  untuk persaamaan Faraday.
 
-  Karena $omega arrow infinity$ dan $k = omega / c$, maka $k arrow infinity$, sehingga
+  Karena $omega arrow infinity$ dan $k = omega / c$, maka $k arrow infinity$, sehingga @eigauss dan @eifaraday masing-masing menjadi
 
   $
     nabla ps dot eo(E) = 0
   $ <pseoiszero>
 
-  \
-
-  Menggunakan perkalian silang tiga vektor $bup(A) times (bup(B) times bup(C)) = (bup(A) dot bup(C))bup(B) - (bup(A) dot bup(B))bup(C)$, maka
+  dan
 
   $
-    &= 1/(2 c mu_0)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
+    nabla ps times eo(E) &= c eo(B)
+  $
+
+  yang dapat disubstitusikan ke @poynting0 serta menggunakan perkalian silang tiga vektor $bup(A) times (bup(B) times bup(C)) = (bup(A) dot bup(C))bup(B) - (bup(A) dot bup(B))bup(C)$ untuk mendapatkan
+
+  $
+    angle.l bup(S) angle.r &= 1/(2 c mu_0)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
   $ <poynting1>
 
   Persamaan @pseoiszero membuat suku kedua dari @poynting1 bernilai nol, sedangkan $nabla ps$ adalah riil, selain itu
@@ -325,55 +290,11 @@ Memasukkan kedua nilai tersebut ke persamaan @fourb (persamaan Gauss) dengan men
 
 \
 
-Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vektor yang menunjukkan arah energi dari gelombang elektromagnetik, memiliki arah yang sama dengan eikonal $nabla phi.alt (bup(r))$. Implikasi dari hal ini adalah bahwa propagasi gelombang sebagai aliran energi dapat direpresentasikan sebagai garis-garis sinar. Hal inilah yang mendasari GO sebagai analisis propagasi gelombang elektromagnetik dalam bentuk representasi sinar-sinar.
-
-== Atenuasi Ruang
-
-=== Daya dan Intensitas Gelombang Elektromagnetik <sphint>
-
-Jika suatu vektor unit $hat(bup(s)) $ dapat didefinisikan sebagai $(nabla phi.alt(bup(r)))/(norm(nabla phi.alt(bup(r)))) = (nabla phi.alt(bup(r)))/n$, maka persamaan @finalpoynting dapat ditulis sebagai
-
-$ angle.l bup(S) angle.r = 2 v angle.l w_e angle.r hat(bup(s)) $
-
-sehingga intensitas atau rapat daya gelombang elektromagnetik $I$ dapat didefinisikan sebagai nilai mutlak dari vektor Poynting rata-rata@born_principles_1999 dan dapat ditulis sebagai
-
-$ I = abs(angle.l bup(S) angle.r) = 2 v angle.l w_e angle.r $ <poyntintent>
+Persamaan @finalpoynting menunjukkan bahwa vektor Poynting $bup(S)$, sebagai vektor yang menunjukkan arah energi dari gelombang elektromagnetik, memiliki arah yang sama dengan eikonal $nabla phi.alt (bup(r))$ sebagai vektor yang menunjukkan arah propagasi suatu titik di muka gelombang. Implikasi dari hal ini adalah bahwa propagasi gelombang sebagai aliran energi dapat direpresentasikan sebagai garis-garis sinar. Hal inilah yang mendasari GO sebagai analisis propagasi gelombang elektromagnetik dalam bentuk representasi sinar-sinar.
 
 \
 
-Sementara itu, daya total $P$ yang dipancarkan oleh suatu sumber dapat didefinisikan sebagai
-
-$ P = integral bup(I)(bup(r)) dot d bup(A) $ <power>
-
-di mana $bup(I)(bup(r))$ adalah fungsi vektor yang menjelaskan arah dan besaran intensitas dan $bup(A)$ suatu permukaan tertutup yang mencakup suatu sumber. Pada gelombang planar, persamaan ini tidak relevan karena sumber gelombang berupa bidang tak hingga sehingga P hanya berlaku pada suatu permukaan $cal(A) in bup(A)$. Tetapi, pada suatu sumber non-planar seperti sumber titik, gelombang yang dihasilkan adalah gelombang bulat (_spherical_). Pada bentuk gelombang ini, persamaan @power menjadi
-
-#[
-  #set math.equation(number-align: bottom)
-  $
-    P &= I dot 4 pi r^2 <=> I &= P/(4 pi r^2)
-  $ <sphintent>
-]
-
-#figure(
-  image("assets/invsqr.png", width: 60%),
-  caption: [Ilustrasi hukum kuadrat terbalik@borb_fileinverse_2008]
-) <invsqr>
-
-di mana $I$ dan $r$ memiliki hubungan kuadrat terbalik, seperti yang diilustrasikan oleh @invsqr di mana pada jumlah fluks yang tetap akan melewati permukaan dengan rasio $n^2$ untuk setiap perubahan jarak $n$ menjauhi sumber radiasi.
-
-Kemudian, karena $c dash(c) = abs(c)^2$ dengan $c in CC$, maka persaamaan @elintencity juga dapat ditulis sebagai
-
-$
-  angle.l w_e angle.r = 1/4 epsilon abs(bup(E))^2
-$
-
-sehingga dari persamaan tersebut, persamaan @finalpoynting, persaamaan @poyntintent, dan persamaan @sphintent dapat dilihat bahwa
-
-$
-  abs(bup(E)) prop 1/r
-$ <epropir>
-
-=== Atenuasi Ruang Secara Umum
+== Atenuasi Ruang
 
 Suku imajiner dari persamaan @lkexpanded akan memberikan
 
@@ -467,9 +388,7 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
     A(s) &= sqrt( (R^2)/((R + s)^2)) \
     &= R/(R + s) \
     &prop 1/s
-  $
-
-  yang senada dengan persamaan @epropir dari penurunan atenuasi ruang via vektor Poynting pada subsubbab @sphint di atas.
+  $ <fsat2>
 ]
 
 == Refleksi dan Transmisi
@@ -560,14 +479,14 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
     bup(E)_i = un(y)E_0 e^(-j bup(k)_i dot bup(r))
   $ <harm2>
 
-  di mana $E_0 e^(-j bup(k)_i dot r) : RR^3 arrow RR$ sedangkan medan akibat refleksi $bup(E)_r$ dan transmisi $bup(E)_t$ pada perbatasan medium adalah
+  di mana $E_0$ amplitudo medan listrik awal sedangkan medan akibat refleksi $bup(E)_r$ dan transmisi $bup(E)_t$ pada perbatasan medium adalah
 
   $
-    bup(E)_r = un(y) Gamma e^(-j bup(k)_r dot bup(r))
+    bup(E)_r = un(y) Gamma E_0 e^(-j bup(k)_r dot bup(r))
   $ <refl1>
 
   $
-    bup(E)_r = un(y) T e^(-j bup(k)_t dot bup(r))
+    bup(E)_t = un(y) T E_0 e^(-j bup(k)_t dot bup(r))
   $ <trans1>
 
   di mana $Gamma$ dan $T$ adalah koefisien refleksi dan transmisi.
@@ -577,7 +496,7 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
   #[
     #set math.equation(number-align: bottom)
     $
-      un(z) times (un(y)E_0 e^(-j bup(k)_i dot r) + un(y) R e^(-j bup(k)_r dot bup(r))) &= un(z) times un(y) T e^(-j bup(k)_t dot bup(r)) |_(z=0) \
+      un(z) times (un(y)E_0 e^(-j bup(k)_i dot bup(r)) + un(y) R E_0 e^(-j bup(k)_r dot bup(r))) &= un(z) times un(y) T E_0 e^(-j bup(k)_t dot bup(r)) |_(z=0) \
     $ <continuity>
   ]
 
@@ -962,7 +881,7 @@ Tahap selanjutnya setelah peluncuran sinar dilakukan adalah pengukuran, dimana d
 
 $ E_R = E_0 f_T f_R [product_i A_i Gamma_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $ <rayfield>
 
-dimana $E_R$ merupakan medan pada penerima yang dihasilkan oleh suatu sinar, $E_0$ adalah magnitudo awal medan, $f_(T,R)$ adalah faktor pola radiasi antena, $A$ adalah faktor persebaran atau atenuasi ruang pada setiap interaksi sinar, $Gamma$ adalah koefisien refleksi, $T$ adalah koefisien transmisi, dan $D$ adalah koefisien difraksi, sementara $s$ adalah jarak total yang telah ditempuh sinar. Selain itu, karena sifat linear dari persamaan Maxwell, medan total pada titik penerima merupakan superposisi dari masing-masing sinar@kasdorf_advancing_2021, sehingga medan total $E_"total"$ adalah
+dimana $E_R$ merupakan medan pada penerima yang dihasilkan oleh suatu sinar, $E_0$ adalah magnitudo awal medan, $f_(T,R)$ adalah faktor pola radiasi antena yang bernilai 1 pada antena isotropik, $A$ adalah faktor persebaran atau atenuasi ruang pada setiap interaksi sinar, $Gamma$ adalah koefisien refleksi, $T$ adalah koefisien transmisi, dan $D$ adalah koefisien difraksi, sementara $1/s$ adalah faktor atenuasi ruang bebas sebagai implikasi dari @fsat2. Selain itu, karena sifat linear dari persamaan Maxwell, medan total pada titik penerima merupakan superposisi dari masing-masing sinar@kasdorf_advancing_2021, sehingga medan total $E_"total"$ adalah
 
 $ E_"total" = sum_i E_R[i] $
 

@@ -1,6 +1,6 @@
 #let cfg = (
   title    : [Pengembangan Aplikasi Pemodelan Propagasi Gelombang Radio Di Lingkungan Dalam Ruang Menggunakan Metode _Ray Tracing_ Untuk Perencanaan Penempatan Titik Akses Wi-Fi],
-  title_en : [Development of A Ray Tracing-Based Radio Wave Propagation Modeling Application in Indoor Environments for Wi-Fi Access Point Placement Planning],
+  title_en : [Development of A Ray Tracing-Based Radio Wave Propagation Modeling Application in Indoor Environments for Wi-Fi Access Point],
   name     : "Muhammad Rafky Alfarrakhan.S",
   npm      : "190 638 3974",
   faculty  : "Fakultas Teknik",

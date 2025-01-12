@@ -409,11 +409,11 @@ Inti dari algoritma _ray tracing_ pada aplikasi ini berada pada metode SBR yang 
 
 #let bud(r) = [$dash(bup(#r))$]
 
-_Method_ `intersect` dari struktur `objects::Ray` yang digunakan untuk menemukan titik perpotongan antara suatu sinar dan segmen reflektor bekerja menggunakan operasi vektor, secara umum berupa implementasi dari @pseudosbr. Misalkan sinar suatu sinar didefinisikan sebagai
+_Method_ `intersect` dari struktur `objects::Ray` yang digunakan untuk menemukan titik perpotongan antara suatu sinar dan segmen reflektor bekerja menggunakan operasi vektor, secara umum berupa implementasi dari @pseudosbr. Dalam formulasi algoritma tersebut, suatu sinar didefinisikan sebagai fungsi parametrik
 
 $ bud(r)(t) = bup(o) + t bup(d), quad t>= 0 $
 
-dimana $bup(o)$ vektor yang menunjukkan titik asal sinar dan $bup(d)$ vektor yang menunjukkan arah sinar. Sedangkan sebuah reflektor, berupa segmen garis didefinisikan sebagai
+dimana $bup(o)$ vektor yang menunjukkan titik asal sinar dan $bup(d)$ vektor yang menunjukkan arah sinar. Sedangkan sebuah reflektor, berupa segmen garis jugs didefinisikan sebagai fungsi parametrik
 
 $ bud(w)(t) = (1-t)bup(s) + t bup(e), quad 0 <= t <= 1 $
 
@@ -571,7 +571,7 @@ Sedangkan kalkulasi koefisien difraksi dan peluncuran sinar-sinar sekunder difra
 
 #figure(
     [
-        #codly-range(103, end: 137)
+        #codly-range(103, end: 133)
         #raw(read("../fray/src/fresnel.rs"), lang: "rs")
     ],
     caption: [Fungsi `FresnelRay::calculate_utd_diffraction`]
@@ -595,11 +595,14 @@ Setelah itu, pengukuran dilakukan dengan bantuan modul `compute` dengan menginis
     [
         #codly-range(27, end: 68)
         #raw(read("../fray/src/compute.rs"), lang: "rs")
-    ]
+    ],
+    caption: [Fungsi `calculate_total_field` dari modul `compute`]
 ) <caltf>
+
+\
 
 #pagebreak(weak: true)
 
 == Kode Program
 
-Kode program dapat diakses di #link("https://gitlab.com/mrsvnctmn/fray")
+Kode program dapat diakses di #link("https://gitlab.com/mrsvnctmn/fray").
