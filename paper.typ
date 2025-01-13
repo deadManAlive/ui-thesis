@@ -49,7 +49,7 @@ In computational electromagnetics (CEM) itself, ray tracing is based on the prin
 
 $ hat(bup(E))(bup(r), omega) = e^(-j k phi.alt(bup(r))) sum_(i in NN) (hat(bup(E))_i (bup(r)))/(j omega)^n $ <paper:lkexp>
 
-where a $hat(bup(E)) : RR^3 times RR arrow CC^3$ is electrical field $bup(E) : RR^3 times RR_+ arrow RR^3$ in frequency domain, $phi.alt(bup(r))$ is phase function, and $hat(bup(E))_i : RR^3 arrow CC^3$ is the $i$-th order component of the asymptotic expansion. Substituting @paper:lkexp to the Helmholtz equation of the electromagnetical wave with the form
+where a $hat(bup(E)) : RR^3 times RR arrow CC^3$ is electrical field $bup(E) : RR^3 times RR_+ arrow RR^3$ in frequency domain, $phi.alt : RR^3 -> RR$ is phase function, and $hat(bup(E))_i : RR^3 arrow CC^3$ is the $i$-th order component of the asymptotic expansion. Substituting @paper:lkexp to the Helmholtz equation of the electromagnetical wave with the form
 
 $ (nabla^2 + n^2k^2)hat(bup(E))(bup(r), omega) = 0 $
 
