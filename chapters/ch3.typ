@@ -61,7 +61,7 @@ Bagian utama dari tahap pertama adalah penulisan kerangka GUI program, geometri 
 
 Tahap kedua dalam penulisan program ini berfokus kepada integrasi GTD ke dalam program untuk memodelkan difraksi gelombang. Pada tahap ini, dilakukan perhitungan terhadap koefisien refleksi, refraksi, difraksi, dan atenuasi ruang. Tahap ini kemudian akan diuji dengan validasi terhadap aplikasi komersial Altair FEKO, dan dilakukan penyesuaian model agar mencapai tingkat validasi yang mencukupi. Perbandingan dilakukan dengan cara membandingkan hasil simulasi aplikasi yang dirancang dengan simulasi FEKO pada ukuran geometri dan parameter material dan gelombang yang sama.
 
-Pada penelitian ini, pemodelan yang diimplementasikan dibataskan kepada refleksi, transmisi, dan difraksi karena ketiga fenomena tersebut merupakan beberapa fenomena yang spesifik dapat dijelaskan sebagai fenomena sinar. Hal ini akan lebih jelas pada implementasi sinar dimana koefisien-koefisien Fresnel dan difraksi berupa data yang tertanam pada sinar, seperti yang ditunjukkan oleh representasi sinar oleh persaamaan @packedray, yang memungkinkan kalkulasi seperti persaamaan @rayfield untuk dilakukan.
+Pada penelitian ini, pemodelan yang diimplementasikan dibataskan kepada refleksi, transmisi, dan difraksi karena ketiga fenomena tersebut merupakan beberapa fenomena yang spesifik dapat dijelaskan sebagai fenomena sinar. Hal ini akan lebih jelas pada implementasi sinar dimana koefisien-koefisien Fresnel dan difraksi berupa data yang tertanam pada sinar, seperti yang ditunjukkan oleh representasi sinar oleh persamaan @packedray, yang memungkinkan kalkulasi seperti persamaan @rayfield untuk dilakukan.
 
 === Perangkat Pemrograman
 
@@ -493,7 +493,7 @@ dan kemudian
 
 $ sin theta_t = eta_2/eta_1 sin theta_i $
 
-sehingga persaamaan @gammaperp dan @gammapar dapat ditulis sebagai fungsi dari $eta_(1,2)$ dan $theta_i$ saja:
+sehingga persamaan @gammaperp dan @gammapar dapat ditulis sebagai fungsi dari $eta_(1,2)$ dan $theta_i$ saja:
 
 $
   Gamma_perp &= (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t) \
@@ -542,7 +542,7 @@ $a,b,c,d$ adalah nilai rekomendasi ITU, dengan atenuasi materi $A$
 
 $ A = 1636 sigma/sqrt(epsilon') $
 
-oleh materi dielektrik. Dengan rincian ini, maka $eta_(1,2)$ pada persaamaan @freshf sampai @freshl dapat disubstitusi menjadi
+oleh materi dielektrik. Dengan rincian ini, maka $eta_(1,2)$ pada persamaan @freshf sampai @freshl dapat disubstitusi menjadi
 
 $
   eta_(1,2) arrow 1/sqrt(epsilon' - j sigma/(epsilon_0 omega))
@@ -550,7 +550,7 @@ $
 
 \
 
-Berbeda dengan refleksi yang mengikuti prinsip refleksi Snell, penambahan transmisi membuat sinar terbagi dua antara sinar refleksi dan transmisi pada suatu titik interaksi. Oleh karena itu, pada kode SBR, diintegrasikan mekanisme membagi dua sinar untuk disimpan sebagai informasi baru dan inisiator untuk rekursi selanjutnya pada fungsi `sbr::bouncing`. Sementara pengukuran koefisien dilakukan oleh modifikasi objek sinar, `FresnelRay` dari modul baru `fresnel`, yang menerapkan objek @packedray ke dalam program aplikasi. @fresnels menampilkan bagian dari modul `fresnel` yang mengkalkulasi refleksi dan transmisi tersebut, dimana fungsi `FresnelRay::calculate_coefficients` mengabungkan perhitungan $Gamma$ dan $T$ pada persaamaan @gammaperp hingga @tepar ke dalam satu fungsi.
+Berbeda dengan refleksi yang mengikuti prinsip refleksi Snell, penambahan transmisi membuat sinar terbagi dua antara sinar refleksi dan transmisi pada suatu titik interaksi. Oleh karena itu, pada kode SBR, diintegrasikan mekanisme membagi dua sinar untuk disimpan sebagai informasi baru dan inisiator untuk rekursi selanjutnya pada fungsi `sbr::bouncing`. Sementara pengukuran koefisien dilakukan oleh modifikasi objek sinar, `FresnelRay` dari modul baru `fresnel`, yang menerapkan objek @packedray ke dalam program aplikasi. @fresnels menampilkan bagian dari modul `fresnel` yang mengkalkulasi refleksi dan transmisi tersebut, dimana fungsi `FresnelRay::calculate_coefficients` mengabungkan perhitungan $Gamma$ dan $T$ pada persamaan @gammaperp hingga @tepar ke dalam satu fungsi.
 
 #figure(
     [
@@ -567,7 +567,7 @@ Sementara itu, mekanisme difraksi berbeda dari refleksi dan transmisi karena beb
 - bertindak sebagai sumber sekunder pada titik difraksi tersebut.
 Oleh karena itu, dibutuhkan mekanisme pengujian terhadap sinar yang mendekati sudut, dan mekanisme untuk meluncurkan sinar sebagai sumber sekunder di titik tersebut. Pada program, pengujian sinar yang mengenai titik difraksi diadaptasi dari pengujian _reception sphere_ dari penyaringan sinar valid pada tahap SBR. Karena mekanisme ini terkait dengan penambahan sinar-sinar di luar sinar sumber, maka proses ini diintegrasikan dengan tahap SBR. Struktur `fresnel::WedgePoint` dan fungsi-fungsinya merupakan implementasi dari algorima sederhana ini.
 
-Sedangkan kalkulasi koefisien difraksi dan peluncuran sinar-sinar sekunder difraksi yang berdasarkan kepada difraksi oleh lempeng dielektrik@burnside_high_1983, dilakukan pada beberapa bagian terpisah pada modul yang sama, yaitu `FresnelRay::calculate_utd_diffraction` sebagai fungsi dari `FresnelRay` yang menerima titik difraksi yang didapatkan dari tahap penyaringan di atas serta panjang gelombang untuk mendapatkan koefisien difraksi melalui pemodelan UTD pada objek dielektri tipis sebagai implementasi dari persaamaan @dieutd. Dapat dilihat dari cuplikannya pada @cutd yang seperti `FresnelRay::calculate_coefficients` di atas, digunakan untuk menanamkan data hasil kalkulasi koefisien difraksi ke struktur sinar.
+Sedangkan kalkulasi koefisien difraksi dan peluncuran sinar-sinar sekunder difraksi yang berdasarkan kepada difraksi oleh lempeng dielektrik@burnside_high_1983, dilakukan pada beberapa bagian terpisah pada modul yang sama, yaitu `FresnelRay::calculate_utd_diffraction` sebagai fungsi dari `FresnelRay` yang menerima titik difraksi yang didapatkan dari tahap penyaringan di atas serta panjang gelombang untuk mendapatkan koefisien difraksi melalui pemodelan UTD pada objek dielektri tipis sebagai implementasi dari persamaan @dieutd. Dapat dilihat dari cuplikannya pada @cutd yang seperti `FresnelRay::calculate_coefficients` di atas, digunakan untuk menanamkan data hasil kalkulasi koefisien difraksi ke struktur sinar.
 
 #figure(
     [
@@ -589,7 +589,7 @@ Dengan bantuan beberapa fungsi dari modul `reception_sphere`, sinar-sinar yang t
     caption: [Potongan kode dari fungsi `fresnel::FresnelRay`]
 ) <filters>
 
-Setelah itu, pengukuran dilakukan dengan bantuan modul `compute` dengan menginisiasi ```rs struct TotalField``` yang menyimpan informasi daya dan fasa saat ini. Inisiasi `TotalField` dilakukan menggunakan fungsi `compute::calculate_total_field` seperti yang dapat dilihat pada @caltf, yang merupakan implementasi dari persaamaan @rayfield. Pengukuran rugi jalur dalam bentuk linear kemudian dilakukan oleh `TotalField::loss_linear`, yang merupakan implementasi dari persaamaan @losslin, sebelum kemudian dikonversi menjadi $"dB"$ untuk dioperasikan dengan daya sumber.
+Setelah itu, pengukuran dilakukan dengan bantuan modul `compute` dengan menginisiasi ```rs struct TotalField``` yang menyimpan informasi daya dan fasa saat ini. Inisiasi `TotalField` dilakukan menggunakan fungsi `compute::calculate_total_field` seperti yang dapat dilihat pada @caltf, yang merupakan implementasi dari persamaan @rayfield. Pengukuran rugi jalur dalam bentuk linear kemudian dilakukan oleh `TotalField::loss_linear`, yang merupakan implementasi dari persamaan @losslin, sebelum kemudian dikonversi menjadi $"dB"$ untuk dioperasikan dengan daya sumber.
 
 #figure(
     [
