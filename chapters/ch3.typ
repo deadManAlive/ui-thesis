@@ -51,9 +51,9 @@
   ],
   caption: [Diagram alur perancangan program],
   placement: none,
-)
+) <proflow>
 
-Secara garis besar, perancangan aplikasi ini terdiri dari dua tahap, yaitu 1.) penyusunan kerangka aplikasi bersama kerangka algoritma SBR, serta 2.) pemodelan interaksi gelombang lebih lanjut dan validasi. Pembagian ke dalam tahap-tahap tersebut dilakukan karena terdapat tingkat kesulitan dalam implementasi dan perbedaan dalam topik pembahasan secara umum. Secara kronologis, perancangan aplikasi dimulai dari studi literatur, kemudian penulisan kerangka pemrograman, penulisan pemodelan lebih lanjut, dan diakhiri dengan validasi.
+@proflow menggambarkan secara garis besar bahwa perancangan aplikasi ini terdiri dari dua tahap, yaitu 1.) penyusunan kerangka aplikasi bersama kerangka algoritma SBR, serta 2.) pemodelan interaksi gelombang lebih lanjut dan validasi. Pembagian ke dalam tahap-tahap tersebut dilakukan karena terdapat tingkat kesulitan dalam implementasi dan perbedaan dalam topik pembahasan secara umum. Secara kronologis, perancangan aplikasi dimulai dari studi literatur, kemudian penulisan kerangka pemrograman, penulisan pemodelan lebih lanjut, dan diakhiri dengan validasi.
 
 Studi literatur dilakukan pertama kali untuk hal terkait teori dasar yang mendasari propagasi gelombang, metode sinar sebagai pendekatan solusi propagasi gelombang, serta fenomena-fenomena gelombang yang dapat dimodelkan dengan metode sinar. Selain itu, studi literatur juga dilakukan dalam mempersiapkan _environment_ pemrograman diantaranya adalah pemrograman grafis, pemodelan geometri dalam pemrograman, dasar pemrograman itu sendiri, dan sebagainya.
 
@@ -373,7 +373,7 @@ Dari @updatefunc dapat dilihat bahwa fungsi update dimulai dengan menginisiasi s
 
 Inti dari algoritma _ray tracing_ pada aplikasi ini berada pada metode SBR yang digunakan untuk meluncurkan sinar dan mengalkulasi parameter pada setiap insiden. SBR, sebagaimana telah dijelaskan sebelumnya, merupakan metode _ray tracing_ dimana sinar yang diluncurkan dari sumber dibiarkan berinteraksi dengan lingkungan melalui fenomena seperti refleksi, refraksi, difraksi, atau pun fenomena lainnya yang dapat dimodelkan oleh program. SBR, terutama dalam kasus ini, penulis temukan dapat dibagi menjadi dua algoritma independen, yaitu:
 
-+ *Shooting*: Yang berfungsi untuk meluncurkan sebuah sinar tunggal dengan parameter posisi sumber dan sudut peluncuran. Posisi sumber disini dapat berupa sumber tx ataupun sumber sinar dari refleksi, refraksi, maupun difraksi.
++ *Shooting*: Berfungsi untuk meluncurkan sebuah sinar tunggal dengan parameter posisi sumber dan sudut peluncuran. Posisi sumber disini dapat berupa sumber tx ataupun sumber sinar dari refleksi, refraksi, maupun difraksi.
 + *Bouncing*: Karena satu segmen sinar pantulan dipengaruhi oleh hasil dari peluncuran sebelumnya, maka algoritma bouncing dapat berlaku sebagai akumulator dari hasil shooting sebelumnya. Oleh karena itu, bouncing dapat diimplementasikan sebagai sebuah algoritma rekursif.
 
 #figure(
@@ -473,7 +473,7 @@ Secara umum, algoritma ini merupakan implementasi konkrit dari @sbrtec. Potongan
 
 Pada tahap sebelumnya, suatu sinar dapat direpresentasikan secara sederhana dalam sepasang vektor $RR^3 times RR^3$ yang menunjukkan titik asal dan arah sinar.
 
-$ bup(R) = (bup(o), bup(d)) $
+$ bup(R) = (bup(o), bup(d)) $ <basic>
 
 \
 

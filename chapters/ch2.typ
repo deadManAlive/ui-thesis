@@ -14,7 +14,7 @@ Selain itu juga terdapat konsep _physical optics_ (PO) sebagai alternatif dari G
 
 == Persamaan-Persamaan Maxwell
 
-Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan induksi magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) = hat(bup(x))x + hat(bup(y))y + hat(bup(z))z in Gamma$, dengan $Gamma subset.eq RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya.
+Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan diferensial parsial yang menjelaskan bagaimana medan listrik $bup(E) : Gamma times RR_+ arrow RR^3$ dan medan induksi magnet $bup(B) : Gamma times RR_+ arrow RR^3$ sebagai fungsi vektor atas ruang $bup(r) = hat(bup(x))x + hat(bup(y))y + hat(bup(z))z in Gamma$, dengan $Gamma subset.eq RR^3$, dan waktu $t in RR_+$  berperilaku dan berinteraksi satu sama lain dalam ruang. Seperti yang dapat dilihat pada @maxtab, sistem persamaan ini terdiri atas 4 persamaan yang masing-masing merupakan formulasi hukum elektromagnetik yang menjelaskan bagaimana medan magnet dan medan listrik dihasilkan dan berinteraksi dengan muatan, arus, dan satu sama lainnya.
 
 #[
   #figure(
@@ -28,18 +28,10 @@ Persamaan-persamaan Maxwell merupakan sistem dari sejumlah persamaan-persamaan d
       [Hukum Ampère], [$ nabla times bup(B) = mu_0(bup(J) + epsilon_0 (diff bup(E)) / (diff t)) $],
     ),
     caption: [Persamaan-persamaan Maxwell],
-  )
+  ) <maxtab>
 ]
 
-Dimana $rho$ adalah kerapatan muatan listrik, $epsilon_0$ permitivitas vakum, $mu_0$ permeabilitas vakum, dan $bup(J)$ kerapatan arus. Selain itu, medan listrik juga dapat direpresentasikan sebagai medan perpindahan listrik $bup(D)$, di mana pada ruang tanpa sumber medan listrik memiliki hubungan
-
-$ bup(D) = epsilon bup(E) $
-
-dan medan magnet juga dapat direpresentasikan melalui medan magnet $bup(H)$, yang pada ruang tanpa sumber medan magnet
-
-$ bup(H) = 1/mu bup(B) $
-
-\
+dimana $rho$ adalah kerapatan muatan listrik, $epsilon_0$ permitivitas vakum, $mu_0$ permeabilitas vakum, dan $bup(J)$ kerapatan arus.
 
 Persamaan-persamaan Maxwell ini dapat dijabarkan dalam bentuk integral maupun diferensial, di mana bentuk integral dari persamaan-persamaan ini dapat menjelaskan perilaku medan listrik dan magnet pada suatu area pada ruang sementara itu bentuk diferensialnya membantu dalam menjelaskan perilaku medan listrik dan medan magnet lokal pada suatu titik.
 
@@ -94,7 +86,7 @@ Bentuk diferensial dari persamaan ini sementara itu menunjukkan bahwa ketika di 
 
 === Persamaan Gelombang Elektromagnetik
 
-Pada ruang hampa, yaitu ruang yang bebas dari pengaruh sumber medan listrik dan medan magnet, persamaan-persamaan Maxwell menjadi:
+Pada ruang hampa, yaitu ruang yang bebas dari pengaruh sumber medan listrik dan medan magnet, persamaan-persamaan Maxwell dari @maxtab menjadi persamaan @gaussvacuum hingga @binvacuum
 
 $ nabla dot bup(E) = 0 $ <gaussvacuum>
 $ nabla dot bup(B) = 0 $
@@ -103,19 +95,19 @@ $ nabla times bup(B) = mu_0 epsilon_0 (diff bup(E)) / (diff t) $ <binvacuum>
 
 \
 
-Dengan melakukan operasi _curl_ kembali pada persamaan @einvacuum, maka didapatkan:
+Dengan melakukan operasi _curl_ kembali pada persamaan @einvacuum, maka didapatkan persamaan @ceinvacuum
 
 $ nabla times nabla times bup(E) = - diff / (diff t) nabla times bup(B) $ <ceinvacuum>
 
 \
 
-Lalu dengan melakukan substitusi persamaan @binvacuum ke persamaan @ceinvacuum didapatkan:
+Lalu dengan melakukan substitusi persamaan @binvacuum ke persamaan @ceinvacuum didapatkan persaamaan @cceinvacum
 
 $ nabla times nabla times bup(E) = -mu_0 epsilon_0 diff^2/(diff t^2) bup(E) $ <cceinvacum>
 
 \
 
-Salah satu identitas operator _curl_ adalah $nabla times (nabla times F) = nabla (nabla dot F)-nabla^2 F$, sedangkan pada ruang hampa tnapa sumber fluks listrik $nabla dot bup(E) = 0$, sehingga persamaan @cceinvacum menjadi:
+Salah satu identitas operator _curl_ adalah $nabla times (nabla times F) = nabla (nabla dot F)-nabla^2 F$, sedangkan pada ruang hampa tnapa sumber fluks listrik $nabla dot bup(E) = 0$, sehingga persamaan @cceinvacum menjadi persamaan @ewaveequation
 
 $ diff^2/(diff t^2)bup(E)= c^2 nabla^2 bup(E) $ <ewaveequation>
 
@@ -123,7 +115,7 @@ yang merupakan persamaan gelombang, di mana kecepatan cahaya pada ruang hampa $c
 
 === Persamaan Helmholtz
 
-Persamaan-persamaan @gaussvacuum sampai @binvacuum juga dapat dijabarkan ke dalam domain frekuensi dengan bantuan transformasi Fourier temporal $cal(F)[bup(F)(bup(r), t)] = tilde(bup(F))(bup(r), omega)$:
+Persamaan-persamaan @gaussvacuum sampai @binvacuum juga dapat dijabarkan ke dalam domain frekuensi dengan bantuan transformasi Fourier temporal $cal(F)[bup(F)(bup(r), t)] = tilde(bup(F))(bup(r), omega)$ didapatkan persaamaan @fourb hingga @foure
 
 $ nabla dot tilde(bup(E)) = 0 $  <fourb>
 $ nabla dot tilde(bup(B)) = 0 $
@@ -132,7 +124,7 @@ $ nabla times tilde(bup(B)) =  (j omega)/c^2 tilde(bup(E)) $ <foure>
 
 di mana $tilde(bup(E)) : Gamma times RR arrow RR^3$ dab $tilde(bup(B)) : Gamma times RR arrow RR^3$ masing-masing merupakan medan listrik dan medan magnet sebagai fungsi vektor pada domain frekuensi.
 
-Jika dilakukan transformasi Fourier pada persamaan @ewaveequation, akan didapatkan:
+Jika dilakukan transformasi Fourier pada persamaan @ewaveequation, akan didapatkan persaamaan @helmholtz
 
 #[
   #set math.equation(number-align: bottom)
@@ -147,11 +139,11 @@ di mana persamaan @helmholtz adalah persamaan Helmholtz dengan $k=omega/c$ adala
 
 === Persamaan Eikonal
 
-Indeks refraksi $n$ merupakan sebuah skalar yang berupa perbandingan antara cepat rambat gelombang elektromagnetik pada vakum $c$ dan kecepatan fasa pada material $v$
+Indeks refraksi $n$ merupakan sebuah skalar yang berupa perbandingan antara cepat rambat gelombang elektromagnetik pada vakum $c$ dan kecepatan fasa pada material $v$ seperti pada persaamaan @refrin
 
-$ n = c/v  = sqrt(mu epsilon)/sqrt(mu_0 epsilon_0) = sqrt(mu_r epsilon_r) $
+$ n = c/v  = sqrt(mu epsilon)/sqrt(mu_0 epsilon_0) = sqrt(mu_r epsilon_r) $ <refrin>
 
-Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium juga berupa fungsi ruang $n(bup(r))$, sehingga persaamaan @helmholtz pada kondisi ini menjadi
+Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium seperti yang terformulasi pada persamaan @refrin juga berupa fungsi ruang $n(bup(r))$, sehingga persaamaan @helmholtz pada kondisi ini menjadi persaamaan @nhhelmholtz
 
 #[
   #set math.equation(number-align: bottom)
@@ -163,7 +155,7 @@ Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terd
 
 \
 
-Solusi tepat dari persamaan Maxwell secara umum sulit diperoleh secara langsung, sehingga pada praktiknya, perkiraan solusi dari sistem persamaan tersebut umumnya dilakukan dengan pendekatan, salah satunya adalah ekspansi asimtotik Luneberg-Kline@dominek_additional_1987:
+Solusi tepat dari persamaan Maxwell secara umum sulit diperoleh secara langsung, sehingga pada praktiknya, perkiraan solusi dari sistem persamaan tersebut umumnya dilakukan dengan pendekatan, salah satunya adalah ekspansi asimtotik Luneberg-Kline@dominek_additional_1987 yang dapat dilihat pada persaamaan @lkexpansion
 
 $
   hat(bup(E))(bup(r), omega) = e^(-j k phi.alt(bup(r))) sum_(i in NN)(hat(bup(E))_i (bup(r))) / (j omega)^n
@@ -203,9 +195,9 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka akan
   $
     k^2 e0 (nabla phi.alt(bup(r)))^2 &= nabla^2 e0 + nr k^2 e0 \
     (nabla phi.alt(bup(r)))^2 &= (nabla^2 e0)/(k^2 e0) + nr \
-  $
+  $ <preikonal>
 
-  yang dapat disederhanakan menjadi
+  yang mana persamaan @preikonal tersebut dapat disederhanakan menjadi
 
   $
     norm(nabla phi.alt(bup(r))) = n(bup(r))
@@ -269,9 +261,11 @@ yang dapat disubstitusikan ke persamaan @fourb (persamaan Gauss) dan @fourfar (p
 
   $
     nabla ps times eo(E) &= c eo(B)
-  $
+  $ <pseoiszerotwo>
 
-  yang dapat disubstitusikan ke @poynting0 serta menggunakan perkalian silang tiga vektor $bup(A) times (bup(B) times bup(C)) = (bup(A) dot bup(C))bup(B) - (bup(A) dot bup(B))bup(C)$ untuk mendapatkan
+  \
+
+  Persamaan @pseoiszero dan @pseoiszerotwo ini dapat disubstitusikan ke @poynting0 serta menggunakan perkalian silang tiga vektor $bup(A) times (bup(B) times bup(C)) = (bup(A) dot bup(C))bup(B) - (bup(A) dot bup(B))bup(C)$ untuk mendapatkan
 
   $
     angle.l bup(S) angle.r &= 1/(2 c mu_0)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
@@ -281,11 +275,12 @@ yang dapat disubstitusikan ke persamaan @fourb (persamaan Gauss) dan @fourfar (p
 
   $ angle.l w_e angle.r = 1/4 cal(Re)[epsilon_0 bup(E) dot dash(bup(E))] $ <elintencity>
 
-  adalah kerapatan energi listrik rata-rata, sehingga
+  adalah kerapatan energi listrik rata-rata, sehingga jika persaamaan @elintencity disubstitusikan ke persaamaan @poynting1, akan didapatkan
 
   $
     angle.l bup(S) angle.r &= 2c angle.l w_e angle.r nabla ps
   $ <finalpoynting>
+
 ]
 
 \
@@ -311,18 +306,18 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
 
   $
     e0 nabla^2 pr = -2 (nabla pr dot nabla) e0
-  $
+  $ <thehell>
   
   \
 
-  $(nabla pr dot nabla)e0$ merupakan aplikasi suatu operator diferensial (turunan direksional) yang menunjukkan turunan $e0$ pada arah $nabla pr$. Karena arah propagasi $e0$ adalah $nabla pr$ itu sendiri, maka operasi tersebut dapat juga ditulis sebagai $norm(nabla pr)d/(d s) e0$ dengan $s$ jalur propagasi, sehingga didapatkan
+  $(nabla pr dot nabla)e0$ pada persaamaan @thehell merupakan aplikasi suatu operator diferensial (turunan direksional) yang menunjukkan turunan $e0$ pada arah $nabla pr$. Karena arah propagasi $e0$ adalah $nabla pr$ itu sendiri, maka operasi tersebut dapat juga ditulis sebagai $norm(nabla pr)d/(d s) e0$ dengan $s$ jalur propagasi, sehingga didapatkan
 
   $
     e0 nabla^2 pr &= -2 norm(pr) d / (d s) e0 \
     (d e0) / e0 &= - (nabla^2 pr) / (2 norm(pr))d s
-  $
+  $ <nexthell>
 
-  dan jika persamaan tersebut diintegrasikan diantara dua posisi berbeda pada ruang, $rho_0$ dan $rho_0 + Delta$, maka
+  dan jika persamaan @nexthell tersebut diintegrasikan diantara dua posisi berbeda pada ruang, $rho_0$ dan $rho_0 + Delta$, maka
 
   $
     er(rho_0 + Delta rho) &= er(rho_0) exp(- integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s) \
@@ -336,53 +331,51 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan
 
   \
 
-  Muka gelombang dapat diinterpretasikan sebagai lengkungan Gauss, yaitu sebuah permukaan yang terbentuk dari dua lengkungan utama. @gausscurv mengilustrasikan dua muka gelombang $cal(A)$ dan proyeksinya $cal(B)$ pada jarak $s$, masing-masing memiliki kelengkungan
-  
-  
-  $  K_cal(A) = 1/(rho_1 rho_2) $
-  $  K_cal(B) &= 1/((rho_1 + s)(rho_2 + 2)) $
+  Muka gelombang dapat diinterpretasikan sebagai lengkungan Gauss, yaitu sebuah permukaan yang terbentuk dari dua lengkungan utama. @gausscurv mengilustrasikan dua muka gelombang $cal(A)$ dan proyeksinya $cal(B)$ pada jarak $s$, masing-masing memiliki kelengkungan $K_cal(A) = 1/(rho_1 rho_2)$ dan $K_cal(B) &= 1/((rho_1 + s)(rho_2 + 2)$.
 
-  \
-
-  Misalkan unit vektor $hat(bup(t)) = (nabla pr) / norm(nabla pr) = (nabla pr) / n(bup(r))$ merupakan vektor unit yang menunjukkan arah propagasi pada suatu titik di muka gelombang, serta vektor $bup(u)$ dan $bup(v)$ yang menunjukkan pergerakan di sepanjang masing-masing kelengkungan muka gelombang, maka divergensi dari $hat(bup(t))$ dapat dijabarkan sebagai penjumlahan dari turunan direksional setiap basis sebarang non-ortonormal yang menyusunnya, dalam hal ini digunakan $(bup(t), bup(u), bup(v))$, sehingga
+  Misalkan unit vektor $hat(bup(t)) = (nabla pr) / norm(nabla pr) = (nabla pr) / n(bup(r))$ merupakan vektor unit yang menunjukkan arah propagasi pada suatu titik di muka gelombang, serta vektor $bup(u)$ dan $bup(v)$ yang menunjukkan pergerakan di sepanjang masing-masing kelengkungan muka gelombang, maka divergensi dari $hat(bup(t))$ dapat dijabarkan sebagai penjumlahan dari turunan direksional setiap basis sebarang non-ortonormal yang menyusunnya, dalam hal ini digunakan $(bup(t), bup(u), bup(v))$, sehingga didapatkan
 
   $
     nabla dot hat(bup(t)) = nabla_bup(t) dot hat(bup(t)) + nabla_bup(u) dot hat(bup(t)) + nabla_bup(v) dot hat(bup(t)) space "dimana" space nabla_bup(g) dot bup(F) = hat(bup(g)) dot (partial bup(F))/(partial bup(g))
-  $
+  $ <awaw>
 
   \
 
-  Turunan direksional vektor unit terhadap arahnya sendiri adalah $0$ $(hat(bup(t)) dot hat(bup(t)) = 1 arrow.double.l.r partial_bup(t)(hat(bup(t)) dot hat(bup(t))) = 0 arrow.double.l.r 2hat(bup(t)) dot partial_bup(t) hat(bup(t)) = 0 arrow.double.l.r hat(bup(t)) dot partial_bup(t) hat(bup(t)) = 0)$. Selain itu, turunan direksional terhadap $bup(u)$ dan $bup(v)$ terkait dengan perubahan kelengkungan permukaan Gauss terhadap masing-masing kelengkungan utama dan $sigma$ perubahan terhadap $s$, sehingga 
+  Turunan direksional vektor unit terhadap arahnya sendiri adalah $0$ $(hat(bup(t)) dot hat(bup(t)) = 1 arrow.double.l.r partial_bup(t)(hat(bup(t)) dot hat(bup(t))) = 0 arrow.double.l.r 2hat(bup(t)) dot partial_bup(t) hat(bup(t)) = 0 arrow.double.l.r hat(bup(t)) dot partial_bup(t) hat(bup(t)) = 0)$. Selain itu, turunan direksional terhadap $bup(u)$ dan $bup(v)$ terkait dengan perubahan kelengkungan permukaan Gauss terhadap masing-masing kelengkungan utama dan $sigma$ perubahan terhadap $s$, hal ini membuat persamaan @awaw menjadi
 
   $
     nabla dot hat(bup(t)) = 1/(rho_1 + sigma) + 1/(rho_2 + sigma)
-  $
+  $ <f1>
 
-  atau karena $hat(bup(t)) = (nabla pr) / norm(nabla pr)$, juga dapat ditulis
+  atau karena $hat(bup(t)) = (nabla pr) / norm(nabla pr)$, persamaan @f1 juga dapat ditulis menjadi
 
   $
     nabla dot (nabla pr) / norm(nabla pr) = (nabla^2 pr)/norm(nabla pr) &= 1/(rho_1 + sigma) + 1/(rho_2 + sigma) \
-  $
+  $ <f2>
   
-  yang mana sisi kiri dari persamaan dapat dibuat sama dengan suku eksponensial dari persamaan @direxp dengan melakukan integrasi, negasi, dan eksponensiasi:
+  \
+
+  Sedangkan sisi kiri dari persamaan @f2 dapat dibuat sama dengan suku eksponensial dari persamaan @direxp dengan melakukan integrasi, negasi, dan eksponensiasi:
 
   $
     exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma) &=  exp(-integral ^s_0 (d sigma)/(rho_1 + sigma)) exp(- integral^s_0 (d sigma)/(rho_2 + sigma)) \
-  $
+  $ <f3>
 
-  dengan asumsi muka gelombang $cal(A)$ berada pada $s = 0$. Kemudian, dengan melakukan integrasi pada sisi kanan persamaan, didapatkan
+  dengan asumsi muka gelombang $cal(A)$ berada pada $s = 0$.
+  
+  Kemudian, dengan melakukan integrasi pada sisi kanan persamaan @f3 ini, didapatkan
 
   $
     exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d s) &= (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
-  $
+  $ <f4>
 
-  sehingga persaamaan @direxp dapat ditulis menjadi
+  yang mana persaamaan @f4 ini disubstitusikan ke persaamaan @direxp, akan didapatkan
 
   $
     tilde(bup(E))_0 (s) &= tilde(bup(E))_0 (0) sqrt( (rho_1 rho_2)/((rho_1 + s)(rho_2 + s))) \
-  $
+  $ <f5>
 
-  yang menunjukkan atenuasi ruang pada jarak $s$ dari sumber. Pada sumber gelombang bulat, maka $rho_1 = rho_2 = R$, sehingga
+  yang mana persaamaan @f5 ini menunjukkan adanya atenuasi ruang pada jarak $s$ dari sumber. Pada sumber gelombang bulat, maka $rho_1 = rho_2 = R$, sehingga
 
   $ 
     A(s) &= sqrt( (R^2)/((R + s)^2)) \
@@ -432,19 +425,19 @@ $ integral.cont_(diff Sigma) bup(E) dot d bup(cal(l)) = - upright(d) / (upright(
 
 \
 
-Jika $delta$ mendekati 0, maka luas $S$ juga mendekati 0 sehingga sisi kanan persamaan tersebut menjadi 0:
+Jika $delta$ mendekati 0, maka luas $S$ juga mendekati 0 sehingga sisi kanan persamaan tersebut menjadi 0, dan didapakan bentuk persaamaan @f6
 
 #[
   #set math.equation(number-align: bottom)
   $
     lim_(delta arrow 0) integral.cont_(diff Sigma) bup(E) dot d bup(cal(l)) &= lim_(delta arrow 0) - upright(d) / (upright(d) t) integral.double_Sigma bup(B) dot d bup(S) \
     integral.cont_(diff Sigma) bup(E) dot d bup(cal(l)) &= 0
-  $
+  $ <f6>
 ]
 
-dan karena segmen membagi ruang pada medium 1 dan medium 2 serta medan listrik yang terdapat di masing-masing potongan, maka
+dan karena segmen membagi ruang pada medium 1 dan medium 2 serta medan listrik yang terdapat di masing-masing potongan, maka didapakan bentuk @f7
 
-$ integral_(n_1) bup(E) dot d bup(cal(l)) + integral_(n_2) bup(E) dot d bup(cal(l)) = 0 $
+$ integral_(n_1) bup(E) dot d bup(cal(l)) + integral_(n_2) bup(E) dot d bup(cal(l)) = 0 $ <f7>
 
 \
 
@@ -453,11 +446,11 @@ Masing-masing $bup(E)$ pada kedua sisi antarmuka berada disepanjang $cal(l)$ dan
 $
   (bup(E)_2 dot hat(bup(t))) cal(l) - (bup(E)_1 dot hat(bup(t))) cal(l) &= 0 \
   (bup(E)_2 - bup(E)_1) dot bup(t) &= 0
-$
+$ <zerodot>
 
 \
 
-Karena pada $RR^3$, vektor $bup(t)$ dapat  berupa vektor mana saja pada bidang antarmuka, maka persamaan tersebut juga dapat ditulis sebagai
+Karena pada $RR^3$, vektor $bup(t)$ dapat  berupa vektor mana saja pada bidang antarmuka, maka persamaan @zerodot tersebut juga dapat ditulis sebagai
 
 $ bup(n) times (bup(E)_2 - bup(E)_1) = 0 $ <intcond>
 
@@ -512,15 +505,15 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   Karena $bup(k) = abs(bup(k))hat(bup(k))$, sedangkan $abs(bup(k))$ adalah intrinsik untuk setiap medium, sehingga @continuity1 menjadi
 
-  $ k_1 sin theta_i = k_1 sin theta_r = k_2 sin theta_t $
+  $ k_1 sin theta_i = k_1 sin theta_r = k_2 sin theta_t $ <snells>
 
-  yang menunjukkan hukum refleksi
+  yang mana persaamaan @snells tersebut terdiri atas hukum refleksi @snref
 
-  $ sin theta_i = sin theta_r $
+  $ sin theta_i = sin theta_r $ <snref>
 
-  dan hukum refraksi
+  dan hukum refraksi @sntra
 
-  $ n_1 sin theta_i = n_2 sin theta_t $
+  $ n_1 sin theta_i = n_2 sin theta_t $ <sntra>
 
   di mana $k_n = n k_0$, $k_0$ angka gelombang pada vakum.
 
@@ -536,17 +529,17 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
   Jika kembali diperhatikan persamaan gelombang listrik harmonik dengan sembarang arah osilasi
 
-  $ bup(E) = E_0 e^(-j bup(k) dot bup(r)) $
+  $ bup(E) = E_0 e^(-j bup(k) dot bup(r)) $ <simplewave>
 
-  dan kemudian diaplikasikan ke persamaan @fourfar, akan didapatkan
+  dan kemudian jika medan pada persamaan @simplewave ini diaplikasikan ke persamaan @fourfar, akan didapatkan
 
   #[
     #set math.equation(number-align: bottom)
     $
        bup(B) &= (bup(k) times bup(E)) / omega
-    $
+    $ <fz1>
 
-    karena $bup(k) = abs(bup(k)) hat(bup(k)) = omega/v bup(hat(k)) = omega sqrt(mu epsilon) hat(bup(k))$, maka
+    karena $bup(k) = abs(bup(k)) hat(bup(k)) = omega/v bup(hat(k)) = omega sqrt(mu epsilon) hat(bup(k))$, maka @fz1 menjadi
 
     $
       bup(B) &= 1/v hat(bup(k)) times bup(E)
@@ -554,11 +547,11 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
     atau juga dapat ditulis dalam medan magnet $bup(H) = bup(B) slash mu$:
 
-    $ bup(H) = (hat(bup(k)) times bup(E)) / eta $
+    $ bup(H) = (hat(bup(k)) times bup(E)) / eta $ <maghey>
 
-    di mana $eta = sqrt(mu/epsilon)$ impedansi medium.
+    di mana $eta = sqrt(mu/epsilon)$ pada persaamaan @maghey ini adalah impedansi medium.
 
-    Mengaplikasikan persamaan tersebut ke persamaan @harm2 hingga @trans1 memberikan
+    Mengaplikasikan persamaan tersebut ke persamaan @harm2 hingga @trans1 memberikan persaamaan
 
     $ bup(H)_i = E_0/eta_1 bup(k)_i times e^(-j bup(k)_i dot bup(r))  $ <magr1>
     $ bup(H)_i = (Gamma E_0)/eta_1 bup(k)_r times e^(-j bup(k)_r dot bup(r))  $
@@ -570,25 +563,25 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
 
     $ un(z) times (bup(H)_i + bup(H)_r) &= un(z) times bup(H)_t |_(z=0) $
 
-    dan dari @reftrans dapat diuraikan masing-masing vektor gelombang menjadi komponen-komponen unitnya
-
-    $ un(k)_i &= un(x) sin theta_i + un(z) cos theta_i $
+    dan dari @reftrans dapat diuraikan masing-masing vektor gelombang menjadi komponen-komponen unitnya yang dapat dilihat pada persaamaan @xxa hingga @xxc:
+  
+    $ un(k)_i &= un(x) sin theta_i + un(z) cos theta_i $ <xxa>
     $ un(k)_r &= un(x) sin theta_r - un(z) cos theta_r $
-    $ un(k)_t &= un(x) sin theta_t + un(z) cos theta_t $
+    $ un(k)_t &= un(x) sin theta_t + un(z) cos theta_t $ <xxc>
 
     sehingga persamaan @magr1 hingga @magr3 menjadi
 
-    $ 1/eta_1 (-cos theta_i e^(-j bup(k)_i dot bup(r))+Gamma cos theta_r e^(-j bup(k)_r dot bup(r)))=T/eta_2(-cos theta_t e^(-j bup(k)_t dot bup(r))) $
+    $ 1/eta_1 (-cos theta_i e^(-j bup(k)_i dot bup(r))+Gamma cos theta_r e^(-j bup(k)_r dot bup(r)))=T/eta_2(-cos theta_t e^(-j bup(k)_t dot bup(r))) $ <magsup>
 
     \
 
-    Karena $theta_i = theta_r$ dan pada $z=0$, fasa tiap suku adalah sama, maka
+    Karena $theta_i = theta_r$ dan pada $z=0$, fasa tiap suku adalah sama, maka @magsup dapat disederhanakan menjadi
 
-    $ 1/eta_1 (Gamma - 1) cos theta_i = - T/eta_2 cos theta_t $
+    $ 1/eta_1 (Gamma - 1) cos theta_i = - T/eta_2 cos theta_t $ <magmag>
 
     \
 
-    Dengan persamaan @refltrans, maka didapatkan koefisien refleksi dan transmisi dengan medan listrik tegak lurus bidang refleksi sebagai persamaan Fresnel berupa
+    Jika hubungan yang diberikan oleh persamaan @refltrans digunakan pada @magmag, maka didapatkan koefisien refleksi dan transmisi dengan medan listrik tegak lurus bidang refleksi sebagai persamaan Fresnel berupa
 
     $
       Gamma_perp = (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t)
@@ -684,32 +677,35 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
     &+ cot((pi - (pa - pa'))/2n) F(k L a^-(pa - pa')) \
     &minus.plus {cot((pi + (pa + pa'))/2n) F(k L a^+(pa + pa')) \
     &+ cot((pi - (pa + pa'))/2n)F(k L a^-(pa + pa'))}]
-  $
+  $ <utdfunc>
 
   dimana parameter jarak $L$ adalah
 
-  $
-    L = cases(
-      rho &"gelombang planar",
-      (rho rho')/(rho + rho') &"gelombang silindris"
-    )
-  $
+  #[
+    #set math.equation(numbering: none)
+    $
+      L = cases(
+        rho &"gelombang planar",
+        (rho rho')/(rho + rho') &"gelombang silindris"
+      )
+    $
 
-  kemudian
+    kemudian
 
-  $
-    a^plus.minus(theta) = 2 cos((2 n pi N^plus.minus - theta)/2)
-  $
+    $
+      a^plus.minus(theta) = 2 cos((2 n pi N^plus.minus - theta)/2)
+    $
 
-  dengan $N^plus.minus$ adalah bilangan bulat yang memenuhi
+    dengan $N^plus.minus$ adalah bilangan bulat yang memenuhi
 
-  $ 2 pi n N^+ - theta = pi "dan" 2 pi n N^- - theta = - pi $
+    $ 2 pi n N^+ - theta = pi "dan" 2 pi n N^- - theta = - pi $
 
-  dan fungsi transisi $F$ merupakan fungsi transisi Fresnel berupa
+    dan fungsi transisi $F$ merupakan fungsi transisi Fresnel berupa
 
-  $
-    F(x) = 2 j sqrt(x) e^(j x) integral^infinity_sqrt(x) e^(j t^2) d t
-  $
+    $
+      F(x) = 2 j sqrt(x) e^(j x) integral^infinity_sqrt(x) e^(j t^2) d t
+    $
+  ]
 
   === Difraksi Oleh Objek Dielektrik
 
@@ -738,35 +734,38 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
     D_(s,h)(pa, pa') = [(1-T)D(pa - pa') + Gamma D(pa + pa')]
   $ <dieutd>
 
-  dengan koefisien refleksi total $R$
+  #[
+    #set math.equation(numbering: none)
+    dengan koefisien refleksi total $R$
 
-  $
-    R = R_(perp, parallel) = (R_(1(perp,parallel))(1-P_d^2 P_a))/(1-R^2_(1,(perp,parallel))P_d^2 P_a)
-  $
+    $
+      R = R_(perp, parallel) = (R_(1(perp,parallel))(1-P_d^2 P_a))/(1-R^2_(1,(perp,parallel))P_d^2 P_a)
+    $
 
-  koefisien transmisi total $T$
+    koefisien transmisi total $T$
 
-  $
-    T = T_(perp, parallel) = ((1 - R_(1(perp,parallel)))P_d^2 P_t)/(1-R^2_(1,(perp,parallel))P_d^2 P_a)
-  $
+    $
+      T = T_(perp, parallel) = ((1 - R_(1(perp,parallel)))P_d^2 P_t)/(1-R^2_(1,(perp,parallel))P_d^2 P_a)
+    $
 
-  dan
+    dan
 
-  $
-    D(pa minus.plus pa') = (-e^(-j pi / 4))/(2 sqrt(2 pi k)) (F[k L a(pa minus.plus pa')])/cos((pa minus.plus pa')/2)
-  $
+    $
+      D(pa minus.plus pa') = (-e^(-j pi / 4))/(2 sqrt(2 pi k)) (F[k L a(pa minus.plus pa')])/cos((pa minus.plus pa')/2)
+    $
 
-  dimana
+    dimana
 
-  $
-    P_d = exp(-j k' d/(cos theta_t))
-  $
-  $
-    P_a = exp(j k 2 d/(cos(theta_r)) sin(theta_t) sin(theta_i))
-  $
-  $
-    P_t = exp(j k d/(cos(theta_t)) cos(theta_i - theta_t))
-  $
+    $
+      P_d = exp(-j k' d/(cos theta_t))
+    $
+    $
+      P_a = exp(j k 2 d/(cos(theta_r)) sin(theta_t) sin(theta_i))
+    $
+    $
+      P_t = exp(j k d/(cos(theta_t)) cos(theta_i - theta_t))
+    $
+  ]
 
   dengan $k$ konstanta propagasi pada ruang bebas, $k'$ konstanta propagasi pada dielektrik, dan $d$ ketebalan dielektrik.
 ]
@@ -863,27 +862,26 @@ Terdapat dua metode utama yang dapat digunakan untuk meluncurkan sinar, yang per
 
 Sementara itu, karena transformasi dilakukan pada setiap kombinasi $N$ reflektor untuk setiap $M$ refleksi, algoritma ini memiliki kompleksitas kuadrat $cal(O)(N^M)$ yang tidak efisien dan memberikan beban komputasi yang besar dengan semakin rumitnya geometri ruangan. Kekurangan lainnya adalah bahwa setiap transformasi oleh reflektor hanya memungkinkan satu bayangan sehingga pemodelan transmisi dan tentu saja difraksi tidak dapat dilakukan dengan metode ini.
 
+Sementara itu, metode _shooting and bouncing rays_ (SBR) dalam peluncuran sinar dilakukan dengan cara meluncurkan sinar-sinar dari sumber ke segala arah dan setiap sinar dibiarkan berinteraksi dengan objek-objek di lingkungan seperti yang diilustrasikan @sbrill. Kemudian, sinar-sinar yang valid (mengenai penerima) didapatkan dengan melakukan seleksi dengan kriteria tertentu dari sinar-sinar yang telah diluncurkan.
 
-Sementara itu, metode _shooting and bouncing rays_ (SBR) dalam peluncuran sinar dilakukan dengan cara meluncurkan sinar-sinar dari sumber ke segala arah dan setiap sinar dibiarkan berinteraksi dengan objek-objek di lingkungan. Kemudian, sinar-sinar yang valid (mengenai penerima) didapatkan dengan melakukan seleksi dengan kriteria tertentu dari sinar-sinar yang telah diluncurkan.
+Meskipun metode ini memperkenalkan penyimpangan fasa karena jalur yang tidak tepat seperti metode bayangan, algoritma memiliki kompleksitas $cal(O)(N M)$ sehingga metode jauh lebih efisien pada geometri ruangan yang lebih rumit, disamping SBR juga memungkinkan pemodelan transmisi dan difraksi, dengan memungkinkan sumber sekunder. Tidak terdapat cara perhitungan spesifik terkait kriteria sinar valid meskipun beberapa memberikan jari-jari lingkaran penerima (_reception sphere_) $r$ untuk menyaring jalur valid seperti pada persaamaan @recsphere, yaitu
 
-Meskipun metode ini memperkenalkan penyimpangan fasa karena jalur yang tidak tepat seperti metode bayangan, algoritma memiliki kompleksitas $cal(O)(N M)$ sehingga metode jauh lebih efisien pada geometri ruangan yang lebih rumit, disamping SBR juga memungkinkan pemodelan transmisi dan difraksi, dengan memungkinkan sumber sekunder. Tidak terdapat cara perhitungan spesifik terkait kriteria sinar valid meskipun beberapa memberikan jari-jari lingkaran penerima (_reception sphere_) $r$ untuk menyaring jalur valid
-
-$ r = (alpha s)/sqrt(3) $
+$ r = (alpha s)/sqrt(3) $ <recsphere>
   
 dimana $alpha$ adalah sudut antar sinar yang diluncurkan pemancar, dan $s$ panjang total sinar@schaubach_ray_1992@seidel_site-specific_1994@zhengqing_yun_development_2001.
   
 #figure(
   image("assets/sbr.jpg", width: 80%),
   caption: [Metode SBR@remcom_ray-tracing_nodate]
-)
+) <sbrill>
 
 Tahap selanjutnya setelah peluncuran sinar dilakukan adalah pengukuran, dimana dalam propagasinya, masing-masing sinar mengalami atenuasi akibat refleksi, transmisi, dan difraksi berupa koefisien-koefisien Fresnel dan koefisien difraksi GTD/UTD, sehingga medan pada pemodelan dengan refleksi, transmisi, dan difraksi, medan yang dihasilkan oleh setiap sinar dapat diformulasikan ke dalam@schaubach_ray_1992@seidel_site-specific_1994@balanis_balanis_2024
 
 $ E_R = E_0 f_T f_R [product_i A_i Gamma_i product_j A_j T_j product_k A_k D_k] (e^(-j k s))/s $ <rayfield>
 
-dimana $E_R$ merupakan medan pada penerima yang dihasilkan oleh suatu sinar, $E_0$ adalah magnitudo awal medan, $f_(T,R)$ adalah faktor pola radiasi antena yang bernilai 1 pada antena isotropik, $A$ adalah faktor persebaran atau atenuasi ruang pada setiap interaksi sinar, $Gamma$ adalah koefisien refleksi, $T$ adalah koefisien transmisi, dan $D$ adalah koefisien difraksi, sementara $1/s$ adalah faktor atenuasi ruang bebas sebagai implikasi dari @fsat2. Selain itu, karena sifat linear dari persamaan Maxwell, medan total pada titik penerima merupakan superposisi dari masing-masing sinar@kasdorf_advancing_2021, sehingga medan total $E_"total"$ adalah
+dimana $E_R$ merupakan medan pada penerima yang dihasilkan oleh suatu sinar, $E_0$ adalah magnitudo awal medan, $f_(T,R)$ adalah faktor pola radiasi antena yang bernilai 1 pada antena isotropik, $A$ adalah faktor persebaran atau atenuasi ruang pada setiap interaksi sinar, $Gamma$ adalah koefisien refleksi, $T$ adalah koefisien transmisi, dan $D$ adalah koefisien difraksi, sementara $1/s$ adalah faktor atenuasi ruang bebas sebagai implikasi dari @fsat2. Selain itu, karena sifat linear dari persamaan Maxwell, medan total pada titik penerima merupakan superposisi dari masing-masing sinar@kasdorf_advancing_2021, sehingga medan total $E_"total"$ ditentukan oleh persaamaan @tot:
 
-$ E_"total" = sum_i E_R[i] $
+$ E_"total" = sum_i E_R[i] $ <tot>
 
 #[
   #set math.equation(number-align: bottom)
@@ -892,43 +890,43 @@ $ E_"total" = sum_i E_R[i] $
 
   $
     angle.l bup(S) angle.r  &= 1/(2 eta_0) cal(Re)[bup(E) times dash(hat(bup(k))) times dash(bup(E))] \
-  $
+  $ <angler>
 
-  dengan kembali menggunakan perkalian silang tiga vektor, persaamaan tersebut menjadi
+  dengan kembali menggunakan perkalian silang tiga vektor, persaamaan @angler tersebut menjadi
 
   $
     angle.l bup(S) angle.r &= 1/(2 eta_0) cal(Re)[(bup(E) dot dash(bup(E)))dash(hat(bup(k))) - (bup(E) dot dash(hat(bup(k))))dash(bup(E))]
-  $
+  $ <anglen>
 
   \
 
-  Karena $bup(E)$ dan $hat(bup(k))$ saling tegak lurus sehingga perkalian titiknya nol, maka
+  Karena $bup(E)$ dan $hat(bup(k))$ saling tegak lurus sehingga perkalian titiknya nol, maka @anglen menjadi
 
   $
     angle.l bup(S) angle.r &= 1/(2 eta_0) cal(Re)[(bup(E) dot dash(bup(E)))dash(hat(bup(k)))] \
-  $
+  $ <anglex>
 
-  sehingga intensitas atau rapat daya
+  sehingga intensitas atau rapat daya sebagai besar dari vector Poynting rata-rata yang terdefinsi pada persaamaan @anglex menjadi
 
   $
     I = abs(angle.l bup(S) angle.r) = 1/2 abs(bup(E))^2/eta_0
-  $
+  $ <intex>
 
   \
 
-  Daya yang diterima dapat dikalkulasi dengan@stutzman_antenna_2013
+  Menggunakan defini intensitas dari persaamaan @intex ini, didapakan daya yang diterima sebagai@stutzman_antenna_2013
 
   $
     P_R = I A_"em"
-  $
+  $ <powtex>
 
-  dimana $A_"em"$ adalah apertur efektif maksimum yang berupa@balanis_balanis_2024
+  dimana $A_"em"$ pada persaamaan @powtex adalah apertur efektif maksimum yang berupa@balanis_balanis_2024
 
   $
     A_"em" = lambda^2/(4 pi) D_0
-  $
+  $ <nextkk>
 
-  dengan $D_0$ direktivitas maksimum. Maka dengan menggunakan medan listrik total dari tahap sebelumnya dan mengasumsikan penerima berupa antena isotropik dengan $D_0 = 1$, dan daya pada pemancar $P_0$, maka rugi jalur (linear) dapat dikalkulasi dengan
+  dengan $D_0$ direktivitas maksimum. Maka dengan menggunakan medan listrik total dari tahap sebelumnya dan mengasumsikan penerima berupa antena isotropik dengan $D_0 = 1$, dan daya pada pemancar $P_0$, dengan menggunakan defini @nextkk, maka rugi jalur linear dapat dikalkulasi dengan
 
   $
     L = P_R/P_T = 1/(8 P_0) abs(bup(E)_"total")^2/eta_0 lambda^2/pi
@@ -941,6 +939,8 @@ $ E_"total" = sum_i E_R[i] $
   #set par(leading: 1em)
   #show figure: set block(breakable: true)
   == Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
+
+  @endkk menunjukkan perbedaan beberapa istilah pada pemodelan asimtotik gelombang elektromagnetika.
 
   #figure(
     table(
@@ -976,5 +976,5 @@ $ E_"total" = sum_i E_R[i] $
       [Refleksi, dapat diintegrasikan dengan transmisi dan difraksi],
     ),
     caption: [Perbandingan RT, GO, GTD, UTD, dan SBR],
-  )
+  ) <endkk>
 ]
