@@ -37,10 +37,10 @@
       stroke: none,
       inset: dpad,
       ..for a in cfg.advisors {
-        ([Pembimbing], [:], a, [(......tanda tangan......)])
+        ([Pembimbing], [:], a, [(........................)])
       },
       ..for a in cfg.examiners {
-        ([Penguji], [:], a, [(......tanda tangan......)])
+        ([Penguji], [:], a, [(........................)])
       }
     )
   ]

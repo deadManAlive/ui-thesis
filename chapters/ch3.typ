@@ -102,7 +102,7 @@ Dapat dilihat bahwa Rust jauh lebih efisien dari Python dan bahkan memiliki rera
                     + $bup(d)_i = "Refl"_(angle bup(w))(bup(d)_(i-1))$
                 + *end*
             + *end*
-            + return $S = union.big_(i in Q) (bup(o)_i, bup(d)_i)$
+            + return $S = union.big_(i in NN) (bup(o)_i, bup(d)_i)$
             ]
         ],
         supplement: [Algoritma],
