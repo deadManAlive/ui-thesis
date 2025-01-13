@@ -16,8 +16,15 @@
   ),
   authors: (
     (
+      name: "Eko Tjipto Rahardjo",
+      department: [Department of Electrical Engineering],
+      organization: [Faculty of Engineering, Universitas Indonesia],
+      location: [Depok, West Java, Indonesia],
+      email: "eko@eng.ui.ac.id"
+    ),
+    (
       name: "Muhammad Rafky Alfarrakhan.S",
-      department: [Electrical Engineering Department],
+      department: [Department of Electrical Engineering],
       organization: [Faculty of Engineering, Universitas Indonesia],
       location: [Depok, West Java, Indonesia],
       email: "muhammad.rafky91@ui.ac.id"
@@ -313,11 +320,15 @@ One more thing to add is diffraction ray generation. This can be easily implemen
 ]
 
 = Result
-
+#place(
+  top+center,
+  scope: "parent",
+  float: true,
+  [
 #figure(
-  image("chapters/assets/simplefray.png"),
+  image("chapters/assets/simplefray.png", height: 24em),
   caption: [FRAY in simple floorplan]
-)
+)])
 
 Comparison of FRAY, the written application, against Altair FEKO 2022.3 Student Edition ProMan with Standard Ray Tracing configuration by comparing a . For a simple closed polygon 2D floorplan for 2.4 GHz yields
 
@@ -339,10 +350,18 @@ while in 5 GHz
 
 This shows no improvement despite asymptotic property that prevers high frequencies. One thing to point out in these two comparison is that FRAY errs in LOS. This may be explained as effect of closed nature of the floorplan.
 
-#figure(
-  image("chapters/assets/realfray.png"),
-  caption: [FRAY in real floorplan]
+#place(
+  top+center,
+  scope: "parent",
+  float: true,
+  [
+    #figure(
+      image("chapters/assets/realfray.png", height: 24em),
+      caption: [FRAY in real floorplan]
+    )
+  ]
 )
+
 
 For real floorplan, building I floor 2nd EE UI is used. For 2.4 GHz, comparison yields
 
@@ -364,6 +383,11 @@ while 5 GHz
 
 Now the result more what asyntotic approach should resembles and also there's no LOS discrepancy as in simple closed floorplan.While error still may reach around 20%, the average error is just 10%, enough to give an overal prediction on signal coverage.
 
+#figure(
+  image("chapters/assets/test.png"),
+  caption: [FEKO vs FRAY for a real floorplan on 2.4 GHz]
+) <paper:realplan>
+
 Comparing both FEKO and FRAY to real world measurement using POCO X3 NFC using Fing application for 4 different points in the room yields
 
 #figure(
@@ -374,10 +398,6 @@ Comparing both FEKO and FRAY to real world measurement using POCO X3 NFC using F
 
 where a significant error can be seen spiking on C (can be seen in @paper:realplan) for 2.4 GHz, where it is the furthest from source and most obstacles between, while similar thing also happens in FEKO. The same thing doesn't occur in 5 GHz comparison, where the result is fairly alright.
 
-#figure(
-  image("chapters/assets/test.png"),
-  caption: [FEKO vs FRAY for a real floorplan on 2.4 GHz]
-) <paper:realplan>
 
 = Conclusion
 
