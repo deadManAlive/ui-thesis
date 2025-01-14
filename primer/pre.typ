@@ -64,8 +64,8 @@
     footer: context [
       #set align(center)
       #counter(page).display("i") \
-      #set align(right)
-      #text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
+      // #set align(right)
+      // #text("Universitas Indonesia", font: "Arial", size: 10pt, weight: "bold")
     ]
   )
 

@@ -53,7 +53,7 @@
   placement: none,
 ) <proflow>
 
-@proflow menggambarkan secara garis besar bahwa perancangan aplikasi ini terdiri dari dua tahap, yaitu 1.) penyusunan kerangka aplikasi bersama kerangka algoritma SBR, serta 2.) pemodelan interaksi gelombang lebih lanjut dan validasi. Pembagian ke dalam tahap-tahap tersebut dilakukan karena terdapat tingkat kesulitan dalam implementasi dan perbedaan dalam topik pembahasan secara umum. Secara kronologis, perancangan aplikasi dimulai dari studi literatur, kemudian penulisan kerangka pemrograman, penulisan pemodelan lebih lanjut, dan diakhiri dengan validasi.
+Dapat dilihat dari @proflow bahwa secara garis besar perancangan aplikasi ini terdiri dari dua tahap, yaitu 1.) penyusunan kerangka aplikasi bersama kerangka algoritma SBR, serta 2.) pemodelan interaksi gelombang lebih lanjut dan validasi. Pembagian ke dalam tahap-tahap tersebut dilakukan karena terdapat tingkat kesulitan dalam implementasi dan perbedaan dalam topik pembahasan secara umum. Secara kronologis, perancangan aplikasi dimulai dari studi literatur, kemudian penulisan kerangka pemrograman, penulisan pemodelan lebih lanjut, dan diakhiri dengan validasi.
 
 Studi literatur dilakukan pertama kali untuk hal terkait teori dasar yang mendasari propagasi gelombang, metode sinar sebagai pendekatan solusi propagasi gelombang, serta fenomena-fenomena gelombang yang dapat dimodelkan dengan metode sinar. Selain itu, studi literatur juga dilakukan dalam mempersiapkan _environment_ pemrograman diantaranya adalah pemrograman grafis, pemodelan geometri dalam pemrograman, dasar pemrograman itu sendiri, dan sebagainya.
 
@@ -377,7 +377,7 @@ Inti dari algoritma _ray tracing_ pada aplikasi ini berada pada metode SBR yang 
 + *Bouncing*: Karena satu segmen sinar pantulan dipengaruhi oleh hasil dari peluncuran sebelumnya, maka algoritma bouncing dapat berlaku sebagai akumulator dari hasil shooting sebelumnya. Oleh karena itu, bouncing dapat diimplementasikan sebagai sebuah algoritma rekursif.
 
 #figure(
-    image("assets/sbr.png"),
+    image("assets/sbr.png", width: 80%),
     caption: [Ilustrasi SBR dengan memisahkan _shooting_ dan _bouncing_ (sumber pribadi)]
 ) <sbrtec>
 
@@ -471,13 +471,13 @@ Secara umum, algoritma ini merupakan implementasi konkrit dari @sbrtec. Potongan
 
 == Pemodelan Interaksi Sinar
 
-Pada tahap sebelumnya, suatu sinar dapat direpresentasikan secara sederhana dalam sepasang vektor $RR^3 times RR^3$ yang menunjukkan titik asal dan arah sinar.
+Pada tahap sebelumnya, suatu sinar dapat direpresentasikan secara sederhana dalam sepasang vektor $RR^3 times RR^3$ yang menunjukkan titik asal dan arah sinar seperti pada persamaan @basic
 
 $ bup(R) = (bup(o), bup(d)) $ <basic>
 
 \
 
-Untuk dapat melakukan kalkulasi _ray tracing_, informasi-informasi gelombang dapat diintegrasikan kepada objek sinar, sehingga suatu segmen sinar pada program dapat direpresentasikan sebagai
+Untuk dapat melakukan kalkulasi _ray tracing_, informasi-informasi gelombang dapat diintegrasikan kepada objek sinar, sehingga suatu segmen sinar pada program dapat direpresentasikan seperti persaamaan @packedray
 
 $ bup(R) = (bup(o), bup(d), bup(Gamma), bup(T), bup(D), s) $ <packedray>
 
@@ -485,36 +485,36 @@ dimana vektor $bup(o),bup(d) in RR^2$ masing-masing adalah vektor yang menunjuk 
 
 === Refleksi dan Transmisi
 
-Pemodelan refleksi dilakukan dengan melakukan perhitungan terhadap koefisien Fresnel refleksi $Gamma$ untuk setiap interaksi dengan objek reflektor, yaitu menggunakan persamaan @gammaperp dan @gammapar. Lalu, dengan mencoba mensubstitusi indeks refraksi dengan impedansi intrinsik pada hukum refraksi ($n = eta_0 slash eta$) didapatkan
+Pemodelan refleksi dilakukan dengan melakukan perhitungan terhadap koefisien Fresnel refleksi $Gamma$ untuk setiap interaksi dengan objek reflektor, yaitu menggunakan persamaan @gammaperp dan @gammapar. Lalu, dengan mencoba mensubstitusi indeks refraksi dengan impedansi intrinsik pada hukum refraksi ($n = eta_0 slash eta$) didapatkan persaamaan @x:1
 
-$ eta_2 sin theta_i = eta_1 sin theta_t $
+$ eta_2 sin theta_i = eta_1 sin theta_t $ <x:1>
 
-dan kemudian
+atau dalam bentuk persaamaan @x:2
 
-$ sin theta_t = eta_2/eta_1 sin theta_i $
+$ sin theta_t = eta_2/eta_1 sin theta_i $ <x:2>
 
-sehingga persamaan @gammaperp dan @gammapar dapat ditulis sebagai fungsi dari $eta_(1,2)$ dan $theta_i$ saja:
+sehingga persamaan @gammaperp dan @gammapar dapat ditulis sebagai fungsi dari $eta_(1,2)$ dan $theta_i$ saja, dimana koefisien reflksi dapat dikalkulasi menggunakan persamaan @freshf untuk polarisasi tegak lurus
 
 $
   Gamma_perp &= (eta_2 cos theta_i - eta_1 cos theta_t)/(eta_2 cos theta_i + eta_1 cos theta_t) \
   &= (eta_2 cos theta_i - eta_1 sqrt(1 - eta_2/eta_1 sin theta_i))/(eta_2 cos theta_i + eta_1 sqrt(1 - eta_2/eta_1 sin theta_i)) \
 $ <freshf>
 
-dan
+dan persaamaan @freshf:1 untuk polarisasi sejajar
 
 $
   Gamma_parallel = (eta_2 sqrt(1 - eta_2/eta_1 sin theta_i) - eta_1 cos theta_i)/(eta_2 sqrt(1 - eta_2/eta_1 sin theta_i) + eta_1 cos theta_i)
-$
+$ <freshf:1>
 
 \
 
-Begitu juga dengan transmisi
+Begitu juga dengan transmisi pada polarisasi tegak lurus dengan persaamaan @transf:1
 
 $
   T_perp = (2 eta_2 cos theta_i)/(eta_2 cos theta_i + eta_1 sqrt(1 - eta_2/eta_1 sin theta_i))
-$
+$ <transf:1>
 
-dan
+dan pada polarisasi sejajar seperti pada persaamaan @freshl
 
 $
   T_parallel = (2 eta_2 cos theta_i)/(eta_2 cos sqrt(1 - eta_2/eta_1 sin theta_i) + eta_1 cos theta_i)
@@ -522,31 +522,33 @@ $ <freshl>
 
 \
 
-Akan tetapi, karena ruangan simulasi menggunakan material non-PEC, maka permitivitas relatif materi berupa bilangan kompleks yang menunjukkan adanya rugi materi. Program mengikuti rekomendasi ITU-R seri P propagasi gelombang radio@international_telecommunication_union_effects_2023 dimana permeabilitas material $mu$ bernilai 1 dan permitivitas material $epsilon$ dikalkulasi dengan
+Akan tetapi, karena ruangan simulasi menggunakan material non-PEC, maka permitivitas relatif materi berupa bilangan kompleks yang menunjukkan adanya rugi materi. Program mengikuti rekomendasi ITU-R seri P propagasi gelombang radio@international_telecommunication_union_effects_2023 dimana permeabilitas material $mu$ bernilai 1 dan permitivitas material $epsilon$ didefinisikan seperti pada persamaan @imge
 
-$ epsilon = epsilon_r epsilon_0 $
+$ epsilon = epsilon_r epsilon_0 $ <imge>
 
-dimana $epsilon_r$ adalah nilai kompleks
+dimana $epsilon_r$ adalah nilai kompleks seperti pada persaamaan @imge:1
 
-$ epsilon_r = epsilon' - j epsilon'' $
+$ epsilon_r = epsilon' - j epsilon'' $ <imge:1>
 
-dimana
+dimana $sigma$, $epsilon'$, dan $epsilon''$ dapat diperkirakan dengan persamaan-persamaan @imge:2 hingga @imge:3
 
-$ sigma = c f_"GHz"^d $
+$ sigma = c f_"GHz"^d $ <imge:2>
 
 $ epsilon' = Re(epsilon_r) = a f_"GHz"^b $
 
-$ epsilon'' = Im(epsilon_r) = sigma / (epsilon_0 omega) $
+$ epsilon'' = Im(epsilon_r) = sigma / (epsilon_0 omega) $ <imge:3>
 
-$a,b,c,d$ adalah nilai rekomendasi ITU, dengan atenuasi materi $A$
+dengan $a,b,c,d$ adalah nilai rekomendasi ITU.
 
-$ A = 1636 sigma/sqrt(epsilon') $
+Atenuasi materi $A$ kemudian ditentukan oleh persaamaan @aten1
 
-oleh materi dielektrik. Dengan rincian ini, maka $eta_(1,2)$ pada persamaan @freshf sampai @freshl dapat disubstitusi menjadi
+$ A = 1636 sigma/sqrt(epsilon') $ <aten1>
+
+oleh materi dielektrik. Dengan rincian ini, maka $eta_(1,2)$ pada persamaan @freshf sampai @freshl dapat disubstitusi menjadi seperti pada persamaan @etaend
 
 $
   eta_(1,2) arrow 1/sqrt(epsilon' - j sigma/(epsilon_0 omega))
-$
+$ <etaend>
 
 \
 

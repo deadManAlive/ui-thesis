@@ -16,8 +16,8 @@ Dari penelitian yang telah dilakukan dalam menyusun suatu algoritma _ray tracing
 
 Setelah dilakukan penelitian dan pengukian aplikasi program yang disusun, beberapa saran yang dapat diberikan untuk mengembangkan aplikasi lebih lanjut ialah:
 
-+ Mendalami pemodelan interaksi dengan dielektrik, karena bahan dielektrik berinteraksi dengan cara yang berbeda dengan dibanding konduktor, integrasi pemodelan dielektrik yang lebih matang dan menggunakan beberapa fenomena gelombang pada dielektrik seperti absorbsi dan gelombang permukaan, akan membantu dalam meningkatkan akurasi program. Pilihan lainnya adalah menggunakan basis _physical optics_ (PO) dari pada GO yang lebih merepresentasikan sifat gelombang dari propagasi.
++ Mendalami pemodelan interaksi dengan dielektrik, karena bahan dielektrik berinteraksi dengan cara yang berbeda dengan dibanding konduktor, integrasi pemodelan dielektrik yang lebih matang dan menggunakan beberapa fenomena gelombang pada dielektrik seperti absorbsi dan gelombang permukaan, akan membantu dalam meningkatkan akurasi program. Pilihan lainnya juga termasuk menggunakan basis _physical optics_ (PO) dari pada GO yang lebih merepresentasikan sifat gelombang dari propagasi.
 
 + Integrasi algoritma pembelajaran mesin yang dapat menentukan posisi titik akses agar memiliki cakupan terbaik akan menambah nilai guna dan kepraktisan dari program aplikasi yang disusun.
 
-+ Karena berupa implementasi secara langsung dari persamaan-persamaan dan algoritma, kode program yang ditulis belum merupakan kode yang teroptimisasi sepenuhnya dan juga belum disesuaikan untuk paralelisasi, yang dapat meningkatkan performa program lebih jauh lagi jika program dapat dijalankan pada pemroses grafis (GPU).
++ Kode program yang ditulis belum merupakan kode yang teroptimisasi sepenuhnya dan juga belum disesuaikan untuk paralelisasi, yang dapat meningkatkan performa program lebih jauh lagi jika program dapat dijalankan pada pemroses grafis (GPU), Hal ini dikarenakan kode-kode tersebut masih berupa implementasi secara langsung dari persamaan-persamaan dan algoritma.

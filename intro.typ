@@ -2,7 +2,7 @@ Puji dan syukur penulis panjatkan kepada Tuhan Yang Maha Esa karena atas berkat,
 
 + Prof. Dr. Ir. Eko Tjipto Rahardjo, M.Sc. selaku dosen pembimbing yang telah meluangkan waktu dan pikirannya untuk membimbing penulis dalam menyusun laporan skripsi ini.
 
-+ Prof. Dr. Ir. Fitri Yulia Zulkifli, S.T., M.Sc. dan Dr. Ir. Catur Apriono, S.T., M.T., Ph.D. selaku pembimbing AMRG yang juga telah memberikan banyak masukan kepada penulis.
++ Prof. Dr. Ir. Fitri Yulia Zulkifli, S.T., M.Sc., IPU. dan Dr. Ir. Catur Apriono, S.T., M.T., Ph.D. selaku pembimbing AMRG yang juga telah memberikan banyak masukan kepada penulis.
 
 + Kedua orang tua penulis, Lusi dan keluarga, serta keluarga penulis sendiri yang telah memberikan semangat dan dukungan yang tak terhitung hingga penulis dapat menyelesaikan penulisan laporan skripsi ini.
 

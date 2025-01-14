@@ -1,0 +1,3 @@
+[submodule "fray"]
+	path = fray
+	url = https://gitlab.com/mrsvnctmn/fray.git

@@ -130,6 +130,8 @@ Jika transformasi Fourier dilakukan pada persamaan @ewaveequation, akan didapatk
   #set math.equation(number-align: bottom)
 
   $
+    diff^2/(diff t^2)bup(E) &= c^2 nabla^2 bup(E) \
+    cal(F)[diff^2/(diff t^2)bup(E)] &= cal(F)[c^2 nabla^2 bup(E)] \
     -omega^2 tilde(bup(E)) &= c^2 nabla^2 tilde(bup(E)) \
     (nabla^2 + k^2) tilde(bup(E)) &= 0
   $ <helmholtz>
@@ -145,12 +147,19 @@ $ n = c/v  = sqrt(mu epsilon)/sqrt(mu_0 epsilon_0) = sqrt(mu_r epsilon_r) $ <ref
 
 \
 
-Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium seperti yang terformulasi pada persamaan @refrin juga berupa fungsi ruang $n(bup(r))$, sehingga persamaan @helmholtz pada kondisi ini menjadi persamaan @nhhelmholtz
+Jika gelombang elektromagnetik berpropagasi pada medium non-homogen di mana terdapat permitivitas $epsilon$ dan permeabilitas $mu$ berupa medan skalar pada ruang, maka kecepatan rambat gelombang menjadi fungsi ruang $v (bup(r))$ yang dapat disebut juga sebagai kecepatan fasa. Pada kondisi tersebut, indeks refraksi $n$ sebagai perbandingan antara cepat rambat gelombang pada ruang hampa dan medium seperti yang terformulasi pada persamaan @refrin juga berupa fungsi ruang $n(bup(r))$ seperti pada persaamaan @nohomo
+
+$ n(bup(r)) = c/(v(bup(r))) = sqrt(mu(bup(r)) epsilon(bup(r)))/sqrt(mu_0 epsilon_0) = sqrt(mu_r (bup(r)) epsilon_r (bup(r))) $ <nohomo>
+
+
+sehingga persamaan @helmholtz pada kondisi ini menjadi seperti persamaan @nhhelmholtz
 
 #[
   #set math.equation(number-align: bottom)
 
   $
+    (nabla^2 + omega^2/(v^2(bup(r)))) tilde(bup(E)) &= 0 \
+    (nabla^2 + n^2(bup(r)) omega^2/c^2) tilde(bup(E)) &= 0 \
     (nabla^2 + n^2(bup(r)) k^2) tilde(bup(E)) &= 0 \
   $ <nhhelmholtz>
 ]
@@ -176,12 +185,51 @@ Jika persamaan @lkexpansion disubstitusikan ke persamaan @nhhelmholtz, maka akan
   #let nr = [$n^2(bup(r))$]
 
   $
+    (nabla^2 + n^2 k^2) tilde(bup(E)) &= 0 \
+    nabla^2 tilde(bup(E)) + nr k^2 tilde(bup(E)) &= 0\
+    nabla^2 sn ex/jw en + nr k^2 sn ex/jw en &= 0 \
     sn nabla^2 ex/jw en + nr k^2 sn ex/jw en &= 0 \
   $ <a1>
 
   \
 
-  Operator Laplace (Laplacian) $nabla^2$ memiliki identitas $nabla^2 (psi bup(F)) = bup(F) nabla^2 psi + 2 (nabla psi dot nabla) bup(F) + psi nabla^2 bup(F)$ dengan $psi$ medan skalar dan $bup(F)$ medan vektor. Sementara itu untuk $omega$ yang sangat besar, maka hanya orda $i = 0$ yang signifikan sehingga persamaan @a1 menjadi persamaan @lkexpanded
+  Operator Laplace (Laplacian) $nabla^2$ memiliki identitas $nabla^2 (psi bup(F)) = bup(F) nabla^2 psi + 2 (nabla psi dot nabla) bup(F) + psi nabla^2 bup(F)$ dengan $psi$ medan skalar dan $bup(F)$ medan vektor, sehingga suku pertama dari persamaan @a1 dapat dikembangkan menjadi bentuk persamaan @lzero:1
+
+  $
+    sn 1/jw [en nabla^2 ex  + 2 (nabla ex dot nabla) en + ex nabla^2 en] \
+    + nr k^2 sn ex/jw en = 0
+  $ <lzero:1>
+
+  dengan $nabla ex$ dapat dijabarkan seperti pada persaamaan @lzero:2
+
+  $ nabla ex = -j k ex nabla phi.alt(bup(r)) $ <lzero:2>
+
+  dan $nabla^2 ex$ juga dijabarkan untuk mendapatkan persaamaan @lzero:3
+
+  $ nabla^2 ex = -j k ex nabla^2 phi.alt(bup(r)) - k^2 ex (nabla phi.alt(bup(r)))^2 $ <lzero:3>
+
+  \
+
+  Dengan mensubstitusikan persaamaan @lzero:2 dan @lzero:3 ke persamaan @lzero:1 akan didapakan persaamaan @lzero:4
+
+  $
+    sn 1/jw [-j k ex en nabla^2 phi.alt(bup(r)) - k^2 ex en (nabla phi.alt(bup(r)))^2 \
+    - 2 (j k ex nabla phi.alt(bup(r)) dot nabla) en + ex nabla^2 en \
+    + nr k^2 ex en
+    ] &= 0 \
+
+    ex sn 1/jw [-j k en nabla^2 phi.alt(bup(r)) - k^2 en (nabla phi.alt(bup(r)))^2 \
+    - 2 (j k nabla phi.alt(bup(r)) dot nabla) en + nabla^2 en \
+    + nr k^2 en
+    ] &= 0 \
+
+    ex sn 1/jw [(nabla^2 en + nr k^2 en - k^2 en (nabla phi.alt(bup(r)))^2) \
+    - j(k en nabla^2 phi.alt(bup(r)) + 2k (nabla phi.alt(bup(r)) dot nabla) en)] &= 0
+  $ <lzero:4>
+
+  \
+
+  Untuk $omega$ yang sangat besar, maka hanya orda $i = 0$ yang signifikan sehingga persamaan tersebut menjadi seperti pada persamaan @lkexpanded
 
   #let e0 = [$tilde(bup(E))_0 (bup(r))$]
 
@@ -242,16 +290,27 @@ yang dapat disubstitusikan ke persamaan @fourb (persamaan Gauss) dan @fourfar (p
   #let eo(f) = [$tilde(bup(#f))_0(bup(r))$]
 
   $
+    nabla dot tilde(bup(E)) &= 0 \
+    nabla dot (eo(E) ex) &= 0 \
+    ex nabla dot eo(E) + eo(E) dot nabla ex &= 0 \
+    ex nabla dot eo(E) + eo(E) dot (-j k ex nabla ps) &= 0 \
+    nabla dot eo(E) - j k nabla ps dot eo(E) &= 0 \
     nabla ps dot eo(E) &= 1/(j k) nabla dot eo(E)
   $ <eigauss>
 
-  untuk persamaan Gauss, dan persamaan @eifaraday
+  dari persamaan Gauss, dan persamaan @eifaraday
 
   $
+    nabla times tilde(bup(E)) &=  -j omega tilde(bup(B)) \
+    nabla times (eo(E) ex) &= -j omega eo(B) ex \
+    ex (nabla times eo(E)) + (nabla ex) times eo(E) &= -j omega eo(B) ex \
+    ex nabla times eo(E) - j k ex nabla ps times eo(E) &= -j omega eo(B) ex \
+    nabla times eo(E) - j k nabla ps times eo(E) &= -j omega eo(B) \
+    j k nabla ps times eo(E) &= j omega eo(B) + nabla times eo(E) \
     nabla ps times eo(E) &= c eo(B) + 1/(j k) nabla times eo(E)
   $ <eifaraday>
 
-  untuk persamaan Faraday.
+  dari persamaan Faraday.
 
   Karena $omega arrow infinity$ dan $k = omega / c$, maka $k arrow infinity$, sehingga persamaan @eigauss menjadi persamaan @pseoiszero
 
@@ -270,7 +329,9 @@ yang dapat disubstitusikan ke persamaan @fourb (persamaan Gauss) dan @fourfar (p
   Persamaan @pseoiszero dan @pseoiszerotwo ini dapat disubstitusikan ke @poynting0 dan menggunakan identitas perkalian silang tiga vektor $bup(A) times (bup(B) times bup(C)) = (bup(A) dot bup(C))bup(B) - (bup(A) dot bup(B))bup(C)$ untuk mendapatkan persamaan @poynting1
 
   $
-    angle.l bup(S) angle.r &= 1/(2 c mu_0)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))] \
+    angle.l bup(S) angle.r &= 1/(2 mu_0) cal(Re)[bup(E) times dash(bup(B))] \
+    &= 1/(2mu_0)cal(Re)[eo(E) times 1/c (nabla ps times dash(eo(E)))] \
+    &= 1/(2 c mu_0)cal(Re)[(eo(E) dot dash(eo(E)))nabla ps-(eo(E) dot nabla ps)dash(eo(E))]
   $ <poynting1>
 
   \
@@ -282,7 +343,8 @@ yang dapat disubstitusikan ke persamaan @fourb (persamaan Gauss) dan @fourfar (p
   sehingga jika persamaan @elintencity disubstitusikan ke persamaan @poynting1, akan didapatkan persamaan @finalpoynting
 
   $
-    angle.l bup(S) angle.r &= 2c angle.l w_e angle.r nabla ps
+    angle.l bup(S) angle.r &= 2/(c mu_0 epsilon_0) angle.l w_e angle.r nabla ps \
+    &= 2c angle.l w_e angle.r nabla ps
   $ <finalpoynting>
 
 ]
@@ -324,6 +386,10 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan persamaan @thehell
   dan jika persamaan @nexthell tersebut diintegrasikan diantara dua posisi berbeda pada ruang, $rho_0$ dan $rho_0 + Delta$, maka akan didapakan persamaan @direxpand
 
   $
+    integral^er(rho_0 + Delta rho)_er(rho_0) (d e0) / e0 &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
+    ln er(rho_0 + Delta rho) - ln er(rho_0) &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
+    ln er(rho_0 + Delta rho) / er(rho_0) &= - integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s \
+    er(rho_0 + Delta rho) / er(rho_0) &= exp(- integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s) \
     er(rho_0 + Delta rho) &= er(rho_0) exp(- integral^(rho_0 + Delta rho)_(rho_0) (nabla^2 pr) / (2 norm(pr)) d s) \
   $ <direxpand>
 
@@ -368,6 +434,9 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan persamaan @thehell
   Sedangkan sisi kiri dari persamaan @f2 dapat dibuat sama dengan suku eksponensial dari persamaan @direxp dengan melakukan beberapa operasi matematis untuk mendapatkan bentuk persamaan @f3
 
   $
+    (nabla^2 pr)/norm(nabla pr) &= 1/(rho_1 + sigma) + 1/(rho_2 + sigma) \
+    integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma &=  integral ^s_0 (d sigma)/(rho_1 + sigma) + integral^s_0 (d sigma)/(rho_2 + sigma) \
+    -integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma &=  -integral^s_0 (d sigma)/(rho_1 + sigma) - integral^s_0 (d sigma)/(rho_2 + sigma) \
     exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d sigma) &=  exp(-integral ^s_0 (d sigma)/(rho_1 + sigma)) exp(- integral^s_0 (d sigma)/(rho_2 + sigma)) \
   $ <f3>
 
@@ -376,12 +445,16 @@ Suku imajiner dari persamaan @lkexpanded akan memberikan persamaan @thehell
   Kemudian, dengan melakukan integrasi pada sisi kanan persamaan @f3 ini, didapatkan persamaan @f4
 
   $
-    exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d s) &= (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
+    exp(-integral^s_0 (nabla^2 pr)/norm(nabla pr) d s) &=  exp(-integral ^s_0 (d sigma)/(rho_1 + s)) exp(- integral^s_0 (d sigma)/(rho_2 + sigma)) \
+    &= exp(- ln (rho_1 + sigma) bar^s_0) exp(- ln(rho_2 + sigma) |^s_0) \
+    &= (rho_1/(rho_1 + s))(rho_2/(rho_2 + s)) \
+    &= (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
   $ <f4>
 
   yang mana jika persamaan @f4 ini disubstitusikan ke persamaan @direxp, akan didapatkan persamaan @f5
 
   $
+    tilde(bup(E))_0^2 (s) &= tilde(bup(E))_0^2 (0) (rho_1 rho_2)/((rho_1 + s)(rho_2 + s)) \
     tilde(bup(E))_0 (s) &= tilde(bup(E))_0 (0) sqrt( (rho_1 rho_2)/((rho_1 + s)(rho_2 + s))) \
   $ <f5>
 
@@ -501,7 +574,8 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
   #[
     #set math.equation(number-align: bottom)
     $
-      un(z) times (un(y)E_0 e^(-j bup(k)_i dot bup(r)) + un(y) R E_0 e^(-j bup(k)_r dot bup(r))) &= un(z) times un(y) T E_0 e^(-j bup(k)_t dot bup(r)) |_(z=0) \
+      un(z) times (bup(E)_i + bup(E)_r) &= un(z) times bup(E)_t |_(z=0) \
+      un(z) times (un(y)E_0 e^(-j bup(k)_i dot r) + un(y) R e^(-j bup(k)_r dot bup(r))) &= un(z) times un(y) T e^(-j bup(k)_t dot bup(r)) |_(z=0) \
     $ <continuity>
   ]
 
@@ -548,13 +622,19 @@ dengan $bup(n)$ vektor normal dari bidang antarmuka.
   #[
     #set math.equation(number-align: bottom)
     $
+        -j omega bup(B) &= nabla times bup(E) \
+       &= nabla times E_0 e^(-j bup(k) dot bup(r)) \
+       &= -j bup(k) times E_0 e^(-j bup(k) dot bup(r)) \
+       &= -j bup(k) times bup(E) \
        bup(B) &= (bup(k) times bup(E)) / omega
     $ <fz1>
 
     dan karena $bup(k) = abs(bup(k)) hat(bup(k)) = omega/v bup(hat(k)) = omega sqrt(mu epsilon) hat(bup(k))$, maka persamaan @fz1 dapat ditulis sebagai persamaan @direh
 
     $
-      bup(B) &= 1/v hat(bup(k)) times bup(E)
+      bup(B) &=(omega sqrt(mu epsilon) hat(bup(k)) times bup(E))/omega \
+      &= sqrt(mu epsilon) hat(bup(k)) times bup(E) \
+      &= 1/v hat(bup(k)) times bup(E)
     $ <direh>
 
     atau juga dapat ditulis dalam medan magnet $bup(H) = bup(B) slash mu$ sehingga didapakan persamaan @maghey
@@ -942,7 +1022,7 @@ $ E_"total" = sum_i E_R[i] $ <tot>
   #show figure: set block(breakable: true)
   == Perbandingan Beberapa Konsep Pemodelan Propagasi Berbasis Sinar
 
-  @endkk menunjukkan perbedaan beberapa istilah pada pemodelan asimtotik gelombang elektromagnetika.
+  @endkk menunjukkan perbedaan beberapa istilah pada pemodelan asimtotik gelombang elektromagnetika yang muncul pada penjabaran teori di atas.
 
   #figure(
     table(
